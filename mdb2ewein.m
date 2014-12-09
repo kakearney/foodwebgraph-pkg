@@ -59,10 +59,7 @@ end
 tables = regexp(r, ',', 'split');
 tables = regexprep(tables, '\n', '');
 isemp = cellfun('isempty', tables);
-tables = tables(~isemp);    
-
-% isecopath = strncmp(tables, 'Ecopath', 7);
-% tables = tables(isecopath);
+tables = tables(~isemp);  
 
 % Crazy regular expression for Excel-style comma-delimited stuff... find
 % commas that aren't imbedded within quotes
@@ -73,7 +70,13 @@ pattern = ',(?=(?:[^\"]*\"[^\"]*\")*(?![^\"]*\"))';
 
 err = cell(0,2);
 for it = 1:length(tables)
-    cmd = sprintf('mdb-export %s %s > mdbtmp.txt', file, tables{it});
+    if regexpfound(tables{it}, '\s')
+        tbl = regexprep(tables{it}, '([\s,<>|:\(\)&;\?\*])', '\\$1');
+        cmd = sprintf('mdb-export %s %s > mdbtmp.txt', file, tbl);
+        tables{it} = regexprep(tables{it}, '\s', '_');
+    else
+        cmd = sprintf('mdb-export %s %s > mdbtmp.txt', file, tables{it});
+    end
     [s,r] = system(cmd);
     if s
         err = [err; {tables{it} r}];
