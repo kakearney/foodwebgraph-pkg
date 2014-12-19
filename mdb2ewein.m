@@ -10,9 +10,11 @@ function [Ewein, A] = mdb2ewein(file)
 % conversion utility that comes with EwE6.
 %
 % This function relies on the mdbtools utilities to read the MS Access
-% database files (http://mdbtools.sourceforge.net/); these work on
-% Linux/Unix and Mac systems, but I have no idea if they can be installed
-% on a Windows operating system.
+% database files (https://github.com/brianb/mdbtools).  Mac users can get
+% it via either MacPorts or Homebrew if they don't want to compile from
+% source. Please make sure this utility is properly compiled prior to
+% calling mdb2ewein.m.  Windows users: you will need a C compiler (I
+% believe you can get one for free via Visual Studio Express).
 %
 % Input variables:
 %
