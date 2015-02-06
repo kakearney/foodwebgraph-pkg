@@ -27,16 +27,20 @@ function [Ewein, A] = mdb2ewein(file)
 %   Ewein:  ecopathlite input structure (see ecopathlite.m).  Also includes
 %           a few extra fields just for reference:
 %
-%           name:   ngroup x 1 cell array of strings, names of each
-%                   functional group
+%           name:       ngroup x 1 cell array of strings, names of each
+%                       functional group
 %
-%           Info:   Structure with Ecopath model information (e.g. model
-%                   name, description, units, etc.).
+%           Info:       dataset array with Ecopath model information (e.g.
+%                       model name, description, units, etc.). 
+%
+%           pedigree:   ngroup x 7 pedigree array.  Columns correspond to
+%                       B, PB, QB, DC, EE, GE, and catch, with NaNs used as
+%                       placeholders where no pedigree data is defined.
 %
 %   A:      structure of database arrays holding all data from the file in
 %           its original format
 
-% Copyright 2012-2014 Kelly Kearney
+% Copyright 2012-2015 Kelly Kearney
 
 %----------------------------
 % Extract data from .mdb file
@@ -161,6 +165,7 @@ Ewein.pp       = A.EcopathGroup.Type;
 [tf, seqj] = ismember(A.EcopathDietComp.PredID, A.EcopathGroup.GroupID);
 
 Ewein.dc = full(sparse(seqi, seqj, A.EcopathDietComp.Diet, Ewein.ngroup, Ewein.ngroup));
+Ewein.dc(:,Ewein.pp>1) = 0; % Some files seem to store flow to det fractions here
 
 % Detritus fate
 
@@ -215,6 +220,23 @@ Ewein.ageStart(seqs) = A.StanzaLifeStage.AgeStart;
 
 Ewein.stanzadata = A.Stanza;
 Ewein.vbK = A.EcopathGroup.vbK;
+
+% Pedigree (At the moment, EwE6 allows pedigree values for B, PB, QB, DC,
+% and catch, while I focus on B, PB, QB, DC, EE, and GE)
+
+Ewein.pedigree = nan(Ewein.ngroup, 7);
+
+if ~isempty(A.EcopathGroupPedigree)
+
+    cols = {'BiomassAreaInput', 'PBInput', 'QBInput', 'DietComp', 'ee','ge','TCatchInput'};
+
+    [tf, ridx] = ismember(A.EcopathGroupPedigree.GroupID, A.EcopathGroup.GroupID);
+    [tf, cidx] = ismember(A.EcopathGroupPedigree.VarName, cols);
+    [tf, lidx] = ismember(A.EcopathGroupPedigree.LevelID, A.Pedigree.LevelID);
+
+    idx = sub2ind(size(Ewein.pedigree), ridx, cidx);
+    Ewein.pedigree(idx) = A.Pedigree.Confidence(lidx)./100;
+end
 
 
 
