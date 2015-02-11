@@ -158,8 +158,11 @@ Ewein.dtImp    = A.EcopathGroup.DtImports;
 Ewein.bh       = nan(Ewein.ngroup,1); % Not in file?
 Ewein.pp       = A.EcopathGroup.Type;
 
-% Diet
+% Imports
 
+Ewein.import = A.EcopathGroup.ImpVar;
+
+% Diet
 
 [tf, seqi] = ismember(A.EcopathDietComp.PreyID, A.EcopathGroup.GroupID);
 [tf, seqj] = ismember(A.EcopathDietComp.PredID, A.EcopathGroup.GroupID);
