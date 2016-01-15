@@ -93,7 +93,9 @@ end
 % Initial plot
 
 if Opt.plot
-    h = plotgrid('setup', cell(2,1));
+    h.fig = figure;
+    h.ax(1) = subplot(2,1,1);
+    h.ax(2) = subplot(2,1,2);
     if verLessThan('matlab', 'R2015b')
         axes(h.ax(1));
         text(0.5, 0.5, 'Graph plot requires R2015b or later', 'horiz', 'center');
