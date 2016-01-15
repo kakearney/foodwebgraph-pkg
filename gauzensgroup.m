@@ -84,11 +84,12 @@ degree = sum(adj>0,1)' + sum(adj>0,2);  % degree of each node
 
 % Connected components
 
-comp = find_conn_comp(adj);
-cidx = nan(nnode,1);
-for ic = 1:length(comp)
-    cidx(comp{ic}) = ic;
-end
+% comp = find_conn_comp(adj);
+% cidx = nan(nnode,1);
+% for ic = 1:length(comp)
+%     cidx(comp{ic}) = ic;
+% end
+cidx = conncomp(graph(adj | adj'));
 
 % Initial plot
 
