@@ -1,4 +1,5 @@
 function gen37_foodweb
+%GEN37_FOODWEB An example script for the food web layout/edge bundling
 
 %% Step 1: Start with an Ecopath model
 
