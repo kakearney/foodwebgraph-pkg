@@ -79,7 +79,12 @@ function varargout = renderfoodwebforce(G, varargin)
 %
 %   init:       initialization mode ['cpack']:
 %               'cpack':    initialize using circle-packing layout
-%               'coords':   initialize using coordinates in the JSON file
+%               'coords':   initialize using coordinates and radii in the
+%                           JSON file.  Each node object in the input file
+%                           should include the 'xinit', 'yinit', and
+%                           'rinit' fields, which list x-coordinate,
+%                           y-coordinate, and radius, respectively, in
+%                           pixels.
 %
 % Output variables:
 %
@@ -111,7 +116,7 @@ function varargout = renderfoodwebforce(G, varargin)
 %                       coordinates reference the lower left corner of the
 %                       text extent.
 %
-%   F:          structure holding path names to the temporary files created
+%   File:       structure holding path names to the temporary files created
 %               by this function.
 %               json:   the JSON file used as input, holding the G.Nodes
 %                       table
@@ -163,9 +168,24 @@ if isempty(Opt.jsdir)
     Opt.jsdir = fileparts(thisfile);
 end
 
+% Set up temporary folder for all.  Copy necessary files to this folder so
+% the html file can be viewed in a browser without any cross-origin,
+% cross-folder stuff 
+
+folder = tempname;
+mkdir(folder);
+
+File.json = fullfile(folder, 'foodweb.json');
+File.html = fullfile(folder, 'prerender.html');
+
+copyfile(fullfile(Opt.jsdir, 'packages.js'), folder);
+copyfile(fullfile(Opt.jsdir, 'foodweblayout.js'), folder);
+copyfile(fullfile(Opt.jsdir, 'seedrandom.min.js'), folder);
+copyfile(fullfile(Opt.jsdir, 'labeler.js'), folder);
+
 % Save Nodes structure to JSON file
 
-File.json = [tempname '.json'];
+% File.json = [tempname '.json'];
 
 Jopt = struct('Compact', 0, ...
               'FileName', File.json, ...
@@ -200,14 +220,19 @@ htmltxt = {...
         '-->'                                                                    
         ''                                                                       
         '<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>'   
-sprintf('<script src="%s"></script>', fullfile(Opt.jsdir, 'packages.js'))                                   
-sprintf('<script src="%s"></script>', fullfile(Opt.jsdir, 'foodweblayout.js'))                               
-sprintf('<script src="%s"></script>', fullfile(Opt.jsdir, 'seedrandom.min.js'))                             
-sprintf('<script src="%s"></script>', fullfile(Opt.jsdir, 'labeler.js'))                           
+% sprintf('<script src="%s"></script>', fullfile(Opt.jsdir, 'packages.js'))                                   
+% sprintf('<script src="%s"></script>', fullfile(Opt.jsdir, 'foodweblayout.js'))                               
+% sprintf('<script src="%s"></script>', fullfile(Opt.jsdir, 'seedrandom.min.js'))                             
+% sprintf('<script src="%s"></script>', fullfile(Opt.jsdir, 'labeler.js'))   
+        '<script src="packages.js"></script>'                          
+        '<script src="foodweblayout.js"></script>'
+        '<script src="seedrandom.min.js"></script>'                           
+        '<script src="labeler.js"></script>'                       
         ''                                                                       
         '<script>'                                                               
         ''                                                                       
-sprintf('d3.json("%s", function(data) {', File.json)                                  
+% sprintf('d3.json("%s", function(data) {', File.json)  
+        'd3.json("foodweb.json", function(data) {'    
         '    d3.select("#fwf")'                                                  
         '        .datum(data)'                                                   
         '    .call(foodweblayout()'                                              
@@ -235,7 +260,7 @@ sprintf('	    .drawmode(''%s''));',  Opt.drawmode)
 
 % Render webpage
 
-File.html = [tempname '.html'];
+% File.html = [tempname '.html'];
 printtextarray(htmltxt, File.html);
 
 switch Opt.mode
@@ -250,6 +275,9 @@ switch Opt.mode
     case 'extract'
         
         % Render svg file using phantomJS
+        
+%         File.html2 = fullfile(folder, 'postrender.html');
+%         File.svg   = fullfile(folder, 'postrender.svg');
         
         File.html2 = [tempname '.html'];
         File.svg = [tempname '.svg'];
