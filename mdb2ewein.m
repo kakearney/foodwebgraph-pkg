@@ -231,12 +231,14 @@ Ewein.pedigree = nan(Ewein.ngroup, 7);
 
 if ~isempty(A.EcopathGroupPedigree)
 
-    cols = {'BiomassAreaInput', 'PBInput', 'QBInput', 'DietComp', 'ee','ge','TCatchInput'};
+    cols = {'BiomassAreaInput', 'PBInput', 'QBInput', 'DietComp', 'ee','ge','TCatchInput', 'Biomass'};
 
     [tf, ridx] = ismember(A.EcopathGroupPedigree.GroupID, A.EcopathGroup.GroupID);
     [tf, cidx] = ismember(A.EcopathGroupPedigree.VarName, cols);
     [tf, lidx] = ismember(A.EcopathGroupPedigree.LevelID, A.Pedigree.LevelID);
 
+    cidx(cidx == 8) = 1; % TODO: Is this the same?  Found in Albatross Bay model, which was upgraded from older version of EwE
+    
     idx = sub2ind(size(Ewein.pedigree), ridx, cidx);
     Ewein.pedigree(idx) = A.Pedigree.Confidence(lidx)./100;
 end
