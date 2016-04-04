@@ -59,10 +59,15 @@ function foodweblayout() {
 		    // Append SVG to selected DOM object, and append a <g> to
 			// that with a bit of a margin
 
-		    var svg = d3.select(this).append("svg")
+		    var main = d3.select(this).append("svg")
 		        .attr("width", totwidth)
-		        .attr("height", totheight)
-		        .append("g")
+			    .attr("height", totheight);
+			main.append("rect")
+				.attr("width", "100%")
+				.attr("height", "100%")
+				.attr("fill", "#F8F9F9");
+			
+			var svg = main.append("g")
 	            .attr("transform", "translate(" + marl + "," + mart + ")");
 
 	        // Use circle packing to calculate hierarchy details and
@@ -92,9 +97,6 @@ function foodweblayout() {
 			// Color
 
             var c10 = d3.scale.category20();
-			// var col = d3.scale.ordinal()
-	// 				  .domain([0,1,2,3])
-	// 		          .range([d3.rgb(216,220,214), d3.rgb(188,236,172), d3.rgb(230,218,166), d3.rgb(208,254,254)])
             var col = d3.scale.ordinal()
 				      .domain([0,1,2,3])
 					  .range(["rgb(236,237,135)", "rgb(186,222,131)", "rgb(240,180,139)", "rgb(152,222,224)"]);
