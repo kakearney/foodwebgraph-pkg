@@ -89,8 +89,15 @@ G.Nodes.tv = vert(loc);
 
 Ax.ylim = fun(C.yref([2 1]));
 Ax.xlim = C.xref./fac;
-Ax.dx = diff(C.xref);
-Ax.dy = diff(C.yref);
+Ax.figpos = [0 0 C.svgsz];
+
+w = diff(C.xref);
+h = diff(C.yref);
+Ax.axpos = [C.trans(1) C.svgsz(2)-C.trans(1)-h w h]./[C.svgsz C.svgsz];
+
+
+% Ax.dx = diff(C.xref);
+% Ax.dy = diff(C.yref);
 
 
 

@@ -97,13 +97,20 @@ function varargout = renderfoodwebforce(G, varargin)
 %   C:          structure holding details of circle elements found in the
 %               resulting svg image, with the following fields
 %               x:      x-coordinate of nodes, in pixels (measured from
-%                       left to right)
+%                       left to right, with 0 at the left of the main
+%                       grouping element)
 %               y:      y-coordinate of nodes, in pixels (measured from top
-%                       to bottom)
+%                       to bottom, with 0 at the top of the main grouping
+%                       element) 
 %               xref:   x-coordinate of corner reference dots, in pixels
+%                       (these define the main grouping element)
 %               yref:   y-coordinate of corner reference dots, in pixels
 %               r:      radius of nodes, in pixels
 %               label:  node name associated with each x, y, and r value
+%               trans:  transform (i.e. shift left, shift down) from upper
+%                       right of svg canvas to upper right of main grouping
+%                       element 
+%               svgsz:  width and height of svg canvas
 %
 %   T:          structure holding details of the text elements found in the
 %               resulting svg image, with the following fields:
@@ -364,6 +371,17 @@ for it = 1:nt
         T.label{it} = '';
     end
 end
+
+g = xdoc.getElementsByTagName('g');
+gmain = g.item(0);
+trans = char(gmain.getAttribute('transform'));
+C.trans = cellfun(@str2double, regexp(trans, 'translate\(([0-9]*),([0-9]*)\)', 'tokens', 'once'));
+
+svg = xdoc.getElementsByTagName('svg');
+svg = svg.item(0);
+C.svgsz = [str2double(char(svg.getAttribute('width'))), ...
+           str2double(char(svg.getAttribute('height')))];
+
 
 %-----------------------------------
 % Pull out the svg portion of file
