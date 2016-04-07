@@ -1,0 +1,1476 @@
+{
+	"nodes": [
+		{
+			"Name": "Transient Killers",
+			"B": 0.000135059,
+			"type": 0,
+			"TL": 4.834210928,
+			"parent": "lev1_35",
+			"TG": 35
+		},
+		{
+			"Name": "Sperm and Beaked Whales",
+			"B": 0.01767473,
+			"type": 0,
+			"TL": 4.717128963,
+			"parent": "lev1_32",
+			"TG": 32
+		},
+		{
+			"Name": "Resident Killers",
+			"B": 0.00135018,
+			"type": 0,
+			"TL": 4.658883812,
+			"parent": "lev1_28",
+			"TG": 28
+		},
+		{
+			"Name": "Porpoises",
+			"B": 0.003618792,
+			"type": 0,
+			"TL": 4.641934222,
+			"parent": "lev1_28",
+			"TG": 28
+		},
+		{
+			"Name": "Belugas",
+			"B": 0.01225278,
+			"type": 0,
+			"TL": 4.617769173,
+			"parent": "lev1_23",
+			"TG": 23
+		},
+		{
+			"Name": "Gray Whales",
+			"B": 0.0326672,
+			"type": 0,
+			"TL": 3.51106989,
+			"parent": "lev1_13",
+			"TG": 13
+		},
+		{
+			"Name": "Humpbacks",
+			"B": 0.01209702,
+			"type": 0,
+			"TL": 3.95458533,
+			"parent": "lev1_21",
+			"TG": 21
+		},
+		{
+			"Name": "Fin Whales",
+			"B": 0.45474,
+			"type": 0,
+			"TL": 3.737117979,
+			"parent": "lev1_21",
+			"TG": 21
+		},
+		{
+			"Name": "Sei whales",
+			"B": 0.006334031,
+			"type": 0,
+			"TL": 3.673511849,
+			"parent": "lev1_16",
+			"TG": 16
+		},
+		{
+			"Name": "Right whales",
+			"B": 0.003554848,
+			"type": 0,
+			"TL": 3.50175004,
+			"parent": "lev1_16",
+			"TG": 16
+		},
+		{
+			"Name": "Minke whales",
+			"B": 0.02403828,
+			"type": 0,
+			"TL": 4.13793483,
+			"parent": "lev1_21",
+			"TG": 21
+		},
+		{
+			"Name": "Bowhead Whales",
+			"B": 0.007173534,
+			"type": 0,
+			"TL": 3.524302634,
+			"parent": "lev1_13",
+			"TG": 13
+		},
+		{
+			"Name": "Sea Otters",
+			"B": 0.000750327,
+			"type": 0,
+			"TL": 3.732559645,
+			"parent": "lev1_23",
+			"TG": 23
+		},
+		{
+			"Name": "Walrus Bd Seals",
+			"B": 0.1142484,
+			"type": 0,
+			"TL": 3.573723761,
+			"parent": "lev1_18",
+			"TG": 18
+		},
+		{
+			"Name": "N. Fur Seal",
+			"B": 0.033503483,
+			"type": 0,
+			"TL": 4.616738815,
+			"parent": "lev1_31",
+			"TG": 31
+		},
+		{
+			"Name": "Steller Sea Lion",
+			"B": 0.0014936719,
+			"type": 0,
+			"TL": 4.67131493,
+			"parent": "lev1_31",
+			"TG": 31
+		},
+		{
+			"Name": "Resident seals",
+			"B": 0.01344924,
+			"type": 0,
+			"TL": 4.542976821,
+			"parent": "lev1_31",
+			"TG": 31
+		},
+		{
+			"Name": "Wintering seals",
+			"B": 0.03029022,
+			"type": 0,
+			"TL": 4.564957878,
+			"parent": "lev1_31",
+			"TG": 31
+		},
+		{
+			"Name": "Shearwater",
+			"B": 0.0004,
+			"type": 0,
+			"TL": 4.536387904,
+			"parent": "lev1_28",
+			"TG": 28
+		},
+		{
+			"Name": "Murres",
+			"B": 0.008142997,
+			"type": 0,
+			"TL": 4.528511738,
+			"parent": "lev1_26",
+			"TG": 26
+		},
+		{
+			"Name": "Kittiwakes",
+			"B": 0.000662705,
+			"type": 0,
+			"TL": 4.422225277,
+			"parent": "lev1_26",
+			"TG": 26
+		},
+		{
+			"Name": "Auklets",
+			"B": 0.001754495,
+			"type": 0,
+			"TL": 3.570726125,
+			"parent": "lev1_26",
+			"TG": 26
+		},
+		{
+			"Name": "Puffins",
+			"B": 0.000474985,
+			"type": 0,
+			"TL": 4.408246627,
+			"parent": "lev1_26",
+			"TG": 26
+		},
+		{
+			"Name": "Fulmars",
+			"B": 0.000520162,
+			"type": 0,
+			"TL": 4.616658415,
+			"parent": "lev1_26",
+			"TG": 26
+		},
+		{
+			"Name": "Storm Petrels",
+			"B": 1.7533e-06,
+			"type": 0,
+			"TL": 4.282163448,
+			"parent": "lev1_26",
+			"TG": 26
+		},
+		{
+			"Name": "Cormorants",
+			"B": 0.000149799,
+			"type": 0,
+			"TL": 4.487716949,
+			"parent": "lev1_26",
+			"TG": 26
+		},
+		{
+			"Name": "Gulls",
+			"B": 0.00010491,
+			"type": 0,
+			"TL": 4.469882341,
+			"parent": "lev1_26",
+			"TG": 26
+		},
+		{
+			"Name": "Albatross Jaeger",
+			"B": 0.0001,
+			"type": 0,
+			"TL": 4.622682785,
+			"parent": "lev1_28",
+			"TG": 28
+		},
+		{
+			"Name": "Sleeper shark",
+			"B": 0.0532473,
+			"type": 0,
+			"TL": 4.669866791,
+			"parent": "lev1_27",
+			"TG": 27
+		},
+		{
+			"Name": "W. Pollock",
+			"B": 22.978894,
+			"type": 0,
+			"TL": 3.628604478,
+			"parent": "lev1_20",
+			"TG": 20
+		},
+		{
+			"Name": "P. Cod",
+			"B": 2.6509231,
+			"type": 0,
+			"TL": 3.986287624,
+			"parent": "lev1_20",
+			"TG": 20
+		},
+		{
+			"Name": "Herring",
+			"B": 0.7827157,
+			"type": 0,
+			"TL": 3.523175594,
+			"parent": "lev1_17",
+			"TG": 17
+		},
+		{
+			"Name": "Arrowtooth",
+			"B": 0.95058302,
+			"type": 0,
+			"TL": 4.339969596,
+			"parent": "lev1_20",
+			"TG": 20
+		},
+		{
+			"Name": "Kamchatka fl.",
+			"B": 0.056440553,
+			"type": 0,
+			"TL": 4.511427628,
+			"parent": "lev1_22",
+			"TG": 22
+		},
+		{
+			"Name": "Gr. Turbot",
+			"B": 0.356774702,
+			"type": 0,
+			"TL": 4.465837624,
+			"parent": "lev1_27",
+			"TG": 27
+		},
+		{
+			"Name": "P. Halibut",
+			"B": 0.223761632,
+			"type": 0,
+			"TL": 4.481168543,
+			"parent": "lev1_20",
+			"TG": 20
+		},
+		{
+			"Name": "YF. Sole",
+			"B": 5.2579743,
+			"type": 0,
+			"TL": 3.539801421,
+			"parent": "lev1_20",
+			"TG": 20
+		},
+		{
+			"Name": "FH. Sole",
+			"B": 1.3411727,
+			"type": 0,
+			"TL": 3.661212095,
+			"parent": "lev1_20",
+			"TG": 20
+		},
+		{
+			"Name": "N. Rock sole",
+			"B": 3.3830116,
+			"type": 0,
+			"TL": 3.633952714,
+			"parent": "lev1_20",
+			"TG": 20
+		},
+		{
+			"Name": "AK Plaice",
+			"B": 1.068403,
+			"type": 0,
+			"TL": 3.509893707,
+			"parent": "lev1_20",
+			"TG": 20
+		},
+		{
+			"Name": "Dover Sole",
+			"B": 0.000229773,
+			"type": 0,
+			"TL": 3.709783197,
+			"parent": "lev1_18",
+			"TG": 18
+		},
+		{
+			"Name": "Rex Sole",
+			"B": 0.04062556,
+			"type": 0,
+			"TL": 3.724755129,
+			"parent": "lev1_18",
+			"TG": 18
+		},
+		{
+			"Name": "Misc. Flatfish",
+			"B": 0.2216919025,
+			"type": 0,
+			"TL": 3.708561821,
+			"parent": "lev1_20",
+			"TG": 20
+		},
+		{
+			"Name": "Alaska skate",
+			"B": 0.6804544,
+			"type": 0,
+			"TL": 4.163315272,
+			"parent": "lev1_27",
+			"TG": 27
+		},
+		{
+			"Name": "Other skates",
+			"B": 0.09293227,
+			"type": 0,
+			"TL": 4.402267411,
+			"parent": "lev1_27",
+			"TG": 27
+		},
+		{
+			"Name": "Sablefish",
+			"B": 0.035291293,
+			"type": 0,
+			"TL": 4.271437111,
+			"parent": "lev1_27",
+			"TG": 27
+		},
+		{
+			"Name": "Eelpouts",
+			"B": 2.371533082,
+			"type": 0,
+			"TL": 3.577770134,
+			"parent": "lev1_22",
+			"TG": 22
+		},
+		{
+			"Name": "Grenadiers",
+			"B": 0.968099,
+			"type": 0,
+			"TL": 4.293328125,
+			"parent": "lev1_27",
+			"TG": 27
+		},
+		{
+			"Name": "Misc. fish deep",
+			"B": 0.008094369285,
+			"type": 0,
+			"TL": 4.293328125,
+			"parent": "lev1_24",
+			"TG": 24
+		},
+		{
+			"Name": "POP",
+			"B": 0.1666428,
+			"type": 0,
+			"TL": 3.548366546,
+			"parent": "lev1_19",
+			"TG": 19
+		},
+		{
+			"Name": "Sharpchin Rock",
+			"B": 0.001528286008,
+			"type": 0,
+			"TL": 3.768908794,
+			"parent": "lev1_19",
+			"TG": 19
+		},
+		{
+			"Name": "Northern Rock",
+			"B": 0.02792531015,
+			"type": 0,
+			"TL": 3.602633111,
+			"parent": "lev1_19",
+			"TG": 19
+		},
+		{
+			"Name": "Dusky Rock",
+			"B": 0.000611554,
+			"type": 0,
+			"TL": 3.517008277,
+			"parent": "lev1_19",
+			"TG": 19
+		},
+		{
+			"Name": "Shortraker Rock",
+			"B": 0.009492034,
+			"type": 0,
+			"TL": 3.864371186,
+			"parent": "lev1_19",
+			"TG": 19
+		},
+		{
+			"Name": "Rougheye Rock",
+			"B": 0.003686704,
+			"type": 0,
+			"TL": 4.296510278,
+			"parent": "lev1_19",
+			"TG": 19
+		},
+		{
+			"Name": "Shortspine Thorns",
+			"B": 0.00461327,
+			"type": 0,
+			"TL": 3.575535018,
+			"parent": "lev1_19",
+			"TG": 19
+		},
+		{
+			"Name": "Other Sebastes",
+			"B": 0.01113565006,
+			"type": 0,
+			"TL": 3.768908794,
+			"parent": "lev1_19",
+			"TG": 19
+		},
+		{
+			"Name": "Atka mackerel",
+			"B": 0.14397383,
+			"type": 0,
+			"TL": 3.526917813,
+			"parent": "lev1_19",
+			"TG": 19
+		},
+		{
+			"Name": "Greenlings",
+			"B": 0.001190084002,
+			"type": 0,
+			"TL": 4.251185086,
+			"parent": "lev1_22",
+			"TG": 22
+		},
+		{
+			"Name": "Lg. Sculpins",
+			"B": 0.5403231,
+			"type": 0,
+			"TL": 4.036607703,
+			"parent": "lev1_20",
+			"TG": 20
+		},
+		{
+			"Name": "Other sculpins",
+			"B": 1.136692026,
+			"type": 0,
+			"TL": 3.893813261,
+			"parent": "lev1_22",
+			"TG": 22
+		},
+		{
+			"Name": "Misc. fish shallow",
+			"B": 1.167694048,
+			"type": 0,
+			"TL": 3.675755363,
+			"parent": "lev1_11",
+			"TG": 11
+		},
+		{
+			"Name": "Octopi",
+			"B": 0.1924760051,
+			"type": 0,
+			"TL": 3.817605917,
+			"parent": "lev1_11",
+			"TG": 11
+		},
+		{
+			"Name": "Squids",
+			"B": 0.9269976009,
+			"type": 0,
+			"TL": 3.67915625,
+			"parent": "lev1_17",
+			"TG": 17
+		},
+		{
+			"Name": "Salmon returning",
+			"B": 0.1637697,
+			"type": 0,
+			"TL": 3.82708125,
+			"parent": "lev1_17",
+			"TG": 17
+		},
+		{
+			"Name": "Salmon outgoing",
+			"B": 0.01419720007,
+			"type": 0,
+			"TL": 3.5125,
+			"parent": "lev1_17",
+			"TG": 17
+		},
+		{
+			"Name": "Bathylagidae",
+			"B": 0.1616437002,
+			"type": 0,
+			"TL": 3.5225,
+			"parent": "lev1_15",
+			"TG": 15
+		},
+		{
+			"Name": "Myctophidae",
+			"B": 0.8262178022,
+			"type": 0,
+			"TL": 3.5225,
+			"parent": "lev1_15",
+			"TG": 15
+		},
+		{
+			"Name": "Capelin",
+			"B": 1.244670999,
+			"type": 0,
+			"TL": 3.5225,
+			"parent": "lev1_14",
+			"TG": 14
+		},
+		{
+			"Name": "Sandlance",
+			"B": 2.527658014,
+			"type": 0,
+			"TL": 3.5225,
+			"parent": "lev1_14",
+			"TG": 14
+		},
+		{
+			"Name": "Eulachon",
+			"B": 0.5520827013,
+			"type": 0,
+			"TL": 3.5225,
+			"parent": "lev1_14",
+			"TG": 14
+		},
+		{
+			"Name": "Oth. managed forage",
+			"B": 1.050980015,
+			"type": 0,
+			"TL": 3.5225,
+			"parent": "lev1_14",
+			"TG": 14
+		},
+		{
+			"Name": "Oth. pelagic smelt",
+			"B": 0.4986836012,
+			"type": 0,
+			"TL": 3.5225,
+			"parent": "lev1_14",
+			"TG": 14
+		},
+		{
+			"Name": "Bairdi",
+			"B": 0.5218537,
+			"type": 0,
+			"TL": 3.368986899,
+			"parent": "lev1_12",
+			"TG": 12
+		},
+		{
+			"Name": "King Crab",
+			"B": 0.2383894,
+			"type": 0,
+			"TL": 3.383165463,
+			"parent": "lev1_12",
+			"TG": 12
+		},
+		{
+			"Name": "Opilio",
+			"B": 2.178832,
+			"type": 0,
+			"TL": 3.280631431,
+			"parent": "lev1_12",
+			"TG": 12
+		},
+		{
+			"Name": "Pandalidae",
+			"B": 6.742452034,
+			"type": 0,
+			"TL": 2.9075,
+			"parent": "lev1_11",
+			"TG": 11
+		},
+		{
+			"Name": "NP shrimp",
+			"B": 12.70244,
+			"type": 0,
+			"TL": 2.9075,
+			"parent": "lev1_11",
+			"TG": 11
+		},
+		{
+			"Name": "Sea stars",
+			"B": 2.471359,
+			"type": 0,
+			"TL": 3.529754342,
+			"parent": "lev1_10",
+			"TG": 10
+		},
+		{
+			"Name": "Brittle stars",
+			"B": 2.950093076,
+			"type": 0,
+			"TL": 2.15,
+			"parent": "lev1_05",
+			"TG": 5
+		},
+		{
+			"Name": "Urchins dollars cucumbers",
+			"B": 1.167417991,
+			"type": 0,
+			"TL": 2,
+			"parent": "lev1_10",
+			"TG": 10
+		},
+		{
+			"Name": "Snails",
+			"B": 0.8071689002,
+			"type": 0,
+			"TL": 2.905,
+			"parent": "lev1_05",
+			"TG": 5
+		},
+		{
+			"Name": "Hermit crabs",
+			"B": 1.773873009,
+			"type": 0,
+			"TL": 3.13125,
+			"parent": "lev1_11",
+			"TG": 11
+		},
+		{
+			"Name": "Misc. crabs",
+			"B": 0.7101216058,
+			"type": 0,
+			"TL": 3.13125,
+			"parent": "lev1_05",
+			"TG": 5
+		},
+		{
+			"Name": "Misc. Crustacean",
+			"B": 8.885810002,
+			"type": 0,
+			"TL": 2.5,
+			"parent": "lev1_06",
+			"TG": 6
+		},
+		{
+			"Name": "Benthic Amphipods",
+			"B": 12.79612005,
+			"type": 0,
+			"TL": 2.5,
+			"parent": "lev1_06",
+			"TG": 6
+		},
+		{
+			"Name": "Anemones",
+			"B": 0.1095207,
+			"type": 0,
+			"TL": 2.525,
+			"parent": "lev1_08",
+			"TG": 8
+		},
+		{
+			"Name": "Corals",
+			"B": 0.01316798,
+			"type": 0,
+			"TL": 2.525,
+			"parent": "lev1_08",
+			"TG": 8
+		},
+		{
+			"Name": "Hydroids",
+			"B": 0.2361990121,
+			"type": 0,
+			"TL": 2.525,
+			"parent": "lev1_05",
+			"TG": 5
+		},
+		{
+			"Name": "Urochordata",
+			"B": 0.3544967,
+			"type": 0,
+			"TL": 2.525,
+			"parent": "lev1_10",
+			"TG": 10
+		},
+		{
+			"Name": "Sea Pens",
+			"B": 0.01341994,
+			"type": 0,
+			"TL": 2.525,
+			"parent": "lev1_08",
+			"TG": 8
+		},
+		{
+			"Name": "Sponges",
+			"B": 0.05448509,
+			"type": 0,
+			"TL": 2.525,
+			"parent": "lev1_10",
+			"TG": 10
+		},
+		{
+			"Name": "Bivalves",
+			"B": 61.87307,
+			"type": 0,
+			"TL": 2.525,
+			"parent": "lev1_06",
+			"TG": 6
+		},
+		{
+			"Name": "Polychaetes",
+			"B": 21.68738,
+			"type": 0,
+			"TL": 2.5,
+			"parent": "lev1_06",
+			"TG": 6
+		},
+		{
+			"Name": "Misc. worms",
+			"B": 3.669484005,
+			"type": 0,
+			"TL": 2.5,
+			"parent": "lev1_06",
+			"TG": 6
+		},
+		{
+			"Name": "Scyphozoid Jellies",
+			"B": 0.3379304,
+			"type": 0,
+			"TL": 3.428988436,
+			"parent": "lev1_28",
+			"TG": 28
+		},
+		{
+			"Name": "Fish Larvae",
+			"B": 0.01166913,
+			"type": 0,
+			"TL": 2.525,
+			"parent": "lev1_09",
+			"TG": 9
+		},
+		{
+			"Name": "Chaetognaths",
+			"B": 0.7048802005,
+			"type": 0,
+			"TL": 2.90625,
+			"parent": "lev1_09",
+			"TG": 9
+		},
+		{
+			"Name": "Euphausiids",
+			"B": 17.83103004,
+			"type": 0,
+			"TL": 2.525,
+			"parent": "lev1_07",
+			"TG": 7
+		},
+		{
+			"Name": "Mysids",
+			"B": 1.500296,
+			"type": 0,
+			"TL": 2.525,
+			"parent": "lev1_07",
+			"TG": 7
+		},
+		{
+			"Name": "Pelagic Amphipods",
+			"B": 1.695004007,
+			"type": 0,
+			"TL": 2.525,
+			"parent": "lev1_07",
+			"TG": 7
+		},
+		{
+			"Name": "Gelatinous filter feeders",
+			"B": 0.7738760187,
+			"type": 0,
+			"TL": 2.525,
+			"parent": "lev1_09",
+			"TG": 9
+		},
+		{
+			"Name": "Pteropods",
+			"B": 0.2317499002,
+			"type": 0,
+			"TL": 2.525,
+			"parent": "lev1_09",
+			"TG": 9
+		},
+		{
+			"Name": "Copepods",
+			"B": 26.85738006,
+			"type": 0,
+			"TL": 2.5,
+			"parent": "lev1_07",
+			"TG": 7
+		},
+		{
+			"Name": "Pelagic microbes",
+			"B": 45,
+			"type": 0,
+			"TL": 2,
+			"parent": "lev1_03",
+			"TG": 3
+		},
+		{
+			"Name": "Benthic microbes",
+			"B": 22.06101003,
+			"type": 0,
+			"TL": 2,
+			"parent": "lev1_04",
+			"TG": 4
+		},
+		{
+			"Name": "Macroalgae",
+			"B": 0.7501762975,
+			"type": 1,
+			"TL": 1,
+			"parent": "lev1_01",
+			"TG": 1
+		},
+		{
+			"Name": "Lg Phytoplankton",
+			"B": 4.350356011,
+			"type": 1,
+			"TL": 1,
+			"parent": "lev1_03",
+			"TG": 3
+		},
+		{
+			"Name": "Sm Phytoplankton",
+			"B": 39.50390001,
+			"type": 1,
+			"TL": 1,
+			"parent": "lev1_03",
+			"TG": 3
+		},
+		{
+			"Name": "Discards",
+			"B": 1.81876286,
+			"type": 2,
+			"TL": 1,
+			"parent": "lev1_01",
+			"TG": 1
+		},
+		{
+			"Name": "Offal",
+			"B": 8.760389688,
+			"type": 2,
+			"TL": 1,
+			"parent": "lev1_05",
+			"TG": 5
+		},
+		{
+			"Name": "Pelagic Detritus",
+			"B": 200,
+			"type": 2,
+			"TL": 1,
+			"parent": "lev1_02",
+			"TG": 2
+		},
+		{
+			"Name": "Benthic Detritus",
+			"B": 200,
+			"type": 2,
+			"TL": 1,
+			"parent": "lev1_04",
+			"TG": 4
+		},
+		{
+			"Name": "Trawl: pollock",
+			"B": 0.4346261834,
+			"type": 3,
+			"TL": 4.636762238,
+			"parent": "lev1_33",
+			"TG": 33
+		},
+		{
+			"Name": "Trawl: cod",
+			"B": 0.0687301999,
+			"type": 3,
+			"TL": 4.87529118,
+			"parent": "lev1_33",
+			"TG": 33
+		},
+		{
+			"Name": "Pots: cod",
+			"B": 0.0092055036,
+			"type": 3,
+			"TL": 4.971986815,
+			"parent": "lev1_36",
+			"TG": 36
+		},
+		{
+			"Name": "Longline: cod",
+			"B": 0.1067247103,
+			"type": 3,
+			"TL": 5.001916847,
+			"parent": "lev1_36",
+			"TG": 36
+		},
+		{
+			"Name": "Trawl: other ground",
+			"B": 0.002071783,
+			"type": 3,
+			"TL": 4.655240542,
+			"parent": "lev1_33",
+			"TG": 33
+		},
+		{
+			"Name": "Trawl: rock sole",
+			"B": 0.0418231429,
+			"type": 3,
+			"TL": 4.678236961,
+			"parent": "lev1_33",
+			"TG": 33
+		},
+		{
+			"Name": "Trawl: YF sole",
+			"B": 0.1611182385,
+			"type": 3,
+			"TL": 4.604099868,
+			"parent": "lev1_33",
+			"TG": 33
+		},
+		{
+			"Name": "Trawl: arrowtooth",
+			"B": 0.0002871469,
+			"type": 3,
+			"TL": 5.061627901,
+			"parent": "lev1_33",
+			"TG": 33
+		},
+		{
+			"Name": "Trawl: flathead sole",
+			"B": 0.0128333234,
+			"type": 3,
+			"TL": 4.72289699,
+			"parent": "lev1_33",
+			"TG": 33
+		},
+		{
+			"Name": "Trawl: other flat",
+			"B": 1.5403e-06,
+			"type": 3,
+			"TL": 4.509893707,
+			"parent": "lev1_29",
+			"TG": 29
+		},
+		{
+			"Name": "Trawl: turbot",
+			"B": 0.0026960868,
+			"type": 3,
+			"TL": 5.319692852,
+			"parent": "lev1_33",
+			"TG": 33
+		},
+		{
+			"Name": "Longline: turbot",
+			"B": 0.0027548684,
+			"type": 3,
+			"TL": 5.356706721,
+			"parent": "lev1_36",
+			"TG": 36
+		},
+		{
+			"Name": "Longline: sablefish",
+			"B": 0.0013696917,
+			"type": 3,
+			"TL": 5.334320541,
+			"parent": "lev1_36",
+			"TG": 36
+		},
+		{
+			"Name": "Trawl: rockfish",
+			"B": 0.010513839,
+			"type": 3,
+			"TL": 4.740446661,
+			"parent": "lev1_33",
+			"TG": 33
+		},
+		{
+			"Name": "Longline: halibut",
+			"B": 0.00838684,
+			"type": 3,
+			"TL": 5.42300797,
+			"parent": "lev1_37",
+			"TG": 37
+		},
+		{
+			"Name": "Pots: crab",
+			"B": 0.367264507,
+			"type": 3,
+			"TL": 4.297149973,
+			"parent": "lev1_25",
+			"TG": 25
+		},
+		{
+			"Name": "Fishery: salmon",
+			"B": 0.1691467,
+			"type": 3,
+			"TL": 4.82708125,
+			"parent": "lev1_34",
+			"TG": 34
+		},
+		{
+			"Name": "Fishery: herring",
+			"B": 0.02152522,
+			"type": 3,
+			"TL": 4.523175594,
+			"parent": "lev1_30",
+			"TG": 30
+		},
+		{
+			"Name": "Fishery: subsistence",
+			"B": 0.0001904562,
+			"type": 3,
+			"TL": 5.432248508,
+			"parent": "lev1_38",
+			"TG": 38
+		},
+		{
+			"Name": "lev1_01",
+			"B": 0,
+			"type": 5,
+			"TL": "_NaN_",
+			"parent": "lev2_01",
+			"TG": 0
+		},
+		{
+			"Name": "lev1_02",
+			"B": 0,
+			"type": 5,
+			"TL": "_NaN_",
+			"parent": "lev2_11",
+			"TG": 0
+		},
+		{
+			"Name": "lev1_03",
+			"B": 0,
+			"type": 5,
+			"TL": "_NaN_",
+			"parent": "lev2_11",
+			"TG": 0
+		},
+		{
+			"Name": "lev1_04",
+			"B": 0,
+			"type": 5,
+			"TL": "_NaN_",
+			"parent": "lev2_01",
+			"TG": 0
+		},
+		{
+			"Name": "lev1_05",
+			"B": 0,
+			"type": 5,
+			"TL": "_NaN_",
+			"parent": "lev2_07",
+			"TG": 0
+		},
+		{
+			"Name": "lev1_06",
+			"B": 0,
+			"type": 5,
+			"TL": "_NaN_",
+			"parent": "lev2_07",
+			"TG": 0
+		},
+		{
+			"Name": "lev1_07",
+			"B": 0,
+			"type": 5,
+			"TL": "_NaN_",
+			"parent": "lev2_02",
+			"TG": 0
+		},
+		{
+			"Name": "lev1_08",
+			"B": 0,
+			"type": 5,
+			"TL": "_NaN_",
+			"parent": "lev2_07",
+			"TG": 0
+		},
+		{
+			"Name": "lev1_09",
+			"B": 0,
+			"type": 5,
+			"TL": "_NaN_",
+			"parent": "lev2_02",
+			"TG": 0
+		},
+		{
+			"Name": "lev1_10",
+			"B": 0,
+			"type": 5,
+			"TL": "_NaN_",
+			"parent": "lev2_07",
+			"TG": 0
+		},
+		{
+			"Name": "lev1_11",
+			"B": 0,
+			"type": 5,
+			"TL": "_NaN_",
+			"parent": "lev2_07",
+			"TG": 0
+		},
+		{
+			"Name": "lev1_12",
+			"B": 0,
+			"type": 5,
+			"TL": "_NaN_",
+			"parent": "lev2_07",
+			"TG": 0
+		},
+		{
+			"Name": "lev1_13",
+			"B": 0,
+			"type": 5,
+			"TL": "_NaN_",
+			"parent": "lev2_08",
+			"TG": 0
+		},
+		{
+			"Name": "lev1_14",
+			"B": 0,
+			"type": 5,
+			"TL": "_NaN_",
+			"parent": "lev2_06",
+			"TG": 0
+		},
+		{
+			"Name": "lev1_15",
+			"B": 0,
+			"type": 5,
+			"TL": "_NaN_",
+			"parent": "lev2_06",
+			"TG": 0
+		},
+		{
+			"Name": "lev1_16",
+			"B": 0,
+			"type": 5,
+			"TL": "_NaN_",
+			"parent": "lev2_09",
+			"TG": 0
+		},
+		{
+			"Name": "lev1_17",
+			"B": 0,
+			"type": 5,
+			"TL": "_NaN_",
+			"parent": "lev2_06",
+			"TG": 0
+		},
+		{
+			"Name": "lev1_18",
+			"B": 0,
+			"type": 5,
+			"TL": "_NaN_",
+			"parent": "lev2_08",
+			"TG": 0
+		},
+		{
+			"Name": "lev1_19",
+			"B": 0,
+			"type": 5,
+			"TL": "_NaN_",
+			"parent": "lev2_04",
+			"TG": 0
+		},
+		{
+			"Name": "lev1_20",
+			"B": 0,
+			"type": 5,
+			"TL": "_NaN_",
+			"parent": "lev2_04",
+			"TG": 0
+		},
+		{
+			"Name": "lev1_21",
+			"B": 0,
+			"type": 5,
+			"TL": "_NaN_",
+			"parent": "lev2_09",
+			"TG": 0
+		},
+		{
+			"Name": "lev1_22",
+			"B": 0,
+			"type": 5,
+			"TL": "_NaN_",
+			"parent": "lev2_04",
+			"TG": 0
+		},
+		{
+			"Name": "lev1_23",
+			"B": 0,
+			"type": 5,
+			"TL": "_NaN_",
+			"parent": "lev2_10",
+			"TG": 0
+		},
+		{
+			"Name": "lev1_24",
+			"B": 0,
+			"type": 5,
+			"TL": "_NaN_",
+			"parent": "lev2_03",
+			"TG": 0
+		},
+		{
+			"Name": "lev1_25",
+			"B": 0,
+			"type": 5,
+			"TL": "_NaN_",
+			"parent": "lev2_08",
+			"TG": 0
+		},
+		{
+			"Name": "lev1_26",
+			"B": 0,
+			"type": 5,
+			"TL": "_NaN_",
+			"parent": "lev2_10",
+			"TG": 0
+		},
+		{
+			"Name": "lev1_27",
+			"B": 0,
+			"type": 5,
+			"TL": "_NaN_",
+			"parent": "lev2_04",
+			"TG": 0
+		},
+		{
+			"Name": "lev1_28",
+			"B": 0,
+			"type": 5,
+			"TL": "_NaN_",
+			"parent": "lev2_04",
+			"TG": 0
+		},
+		{
+			"Name": "lev1_29",
+			"B": 0,
+			"type": 5,
+			"TL": "_NaN_",
+			"parent": "lev2_13",
+			"TG": 0
+		},
+		{
+			"Name": "lev1_30",
+			"B": 0,
+			"type": 5,
+			"TL": "_NaN_",
+			"parent": "lev2_05",
+			"TG": 0
+		},
+		{
+			"Name": "lev1_31",
+			"B": 0,
+			"type": 5,
+			"TL": "_NaN_",
+			"parent": "lev2_10",
+			"TG": 0
+		},
+		{
+			"Name": "lev1_32",
+			"B": 0,
+			"type": 5,
+			"TL": "_NaN_",
+			"parent": "lev2_13",
+			"TG": 0
+		},
+		{
+			"Name": "lev1_33",
+			"B": 0,
+			"type": 5,
+			"TL": "_NaN_",
+			"parent": "lev2_10",
+			"TG": 0
+		},
+		{
+			"Name": "lev1_34",
+			"B": 0,
+			"type": 5,
+			"TL": "_NaN_",
+			"parent": "lev2_05",
+			"TG": 0
+		},
+		{
+			"Name": "lev1_35",
+			"B": 0,
+			"type": 5,
+			"TL": "_NaN_",
+			"parent": "lev2_12",
+			"TG": 0
+		},
+		{
+			"Name": "lev1_36",
+			"B": 0,
+			"type": 5,
+			"TL": "_NaN_",
+			"parent": "lev2_10",
+			"TG": 0
+		},
+		{
+			"Name": "lev1_37",
+			"B": 0,
+			"type": 5,
+			"TL": "_NaN_",
+			"parent": "lev2_13",
+			"TG": 0
+		},
+		{
+			"Name": "lev1_38",
+			"B": 0,
+			"type": 5,
+			"TL": "_NaN_",
+			"parent": "lev2_12",
+			"TG": 0
+		},
+		{
+			"Name": "lev2_01",
+			"B": 0,
+			"type": 5,
+			"TL": "_NaN_",
+			"parent": "web",
+			"TG": 0
+		},
+		{
+			"Name": "lev2_02",
+			"B": 0,
+			"type": 5,
+			"TL": "_NaN_",
+			"parent": "web",
+			"TG": 0
+		},
+		{
+			"Name": "lev2_03",
+			"B": 0,
+			"type": 5,
+			"TL": "_NaN_",
+			"parent": "web",
+			"TG": 0
+		},
+		{
+			"Name": "lev2_04",
+			"B": 0,
+			"type": 5,
+			"TL": "_NaN_",
+			"parent": "web",
+			"TG": 0
+		},
+		{
+			"Name": "lev2_05",
+			"B": 0,
+			"type": 5,
+			"TL": "_NaN_",
+			"parent": "web",
+			"TG": 0
+		},
+		{
+			"Name": "lev2_06",
+			"B": 0,
+			"type": 5,
+			"TL": "_NaN_",
+			"parent": "web",
+			"TG": 0
+		},
+		{
+			"Name": "lev2_07",
+			"B": 0,
+			"type": 5,
+			"TL": "_NaN_",
+			"parent": "web",
+			"TG": 0
+		},
+		{
+			"Name": "lev2_08",
+			"B": 0,
+			"type": 5,
+			"TL": "_NaN_",
+			"parent": "web",
+			"TG": 0
+		},
+		{
+			"Name": "lev2_09",
+			"B": 0,
+			"type": 5,
+			"TL": "_NaN_",
+			"parent": "web",
+			"TG": 0
+		},
+		{
+			"Name": "lev2_10",
+			"B": 0,
+			"type": 5,
+			"TL": "_NaN_",
+			"parent": "web",
+			"TG": 0
+		},
+		{
+			"Name": "lev2_11",
+			"B": 0,
+			"type": 5,
+			"TL": "_NaN_",
+			"parent": "web",
+			"TG": 0
+		},
+		{
+			"Name": "lev2_12",
+			"B": 0,
+			"type": 5,
+			"TL": "_NaN_",
+			"parent": "web",
+			"TG": 0
+		},
+		{
+			"Name": "lev2_13",
+			"B": 0,
+			"type": 5,
+			"TL": "_NaN_",
+			"parent": "web",
+			"TG": 0
+		},
+		{
+			"Name": "web",
+			"B": 0,
+			"type": 6,
+			"TL": "_NaN_",
+			"parent": "null",
+			"TG": 0
+		}
+	]
+}
