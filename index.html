@@ -34,27 +34,27 @@ Main page
 
 		<p>
 			<label for="totheight">SVG height:</label>
-			<input type="number" min="0" max="2000" step="5" value="600" id="totheight">
+			<input type="number" min="0" max="2000" step="1" value="600" id="totheight">
 		<!-- </p>
 		<p> -->
 			<label for="totwidth">SVG width:</label>
-			<input type="number" min="0" max="2000" step="5" value="800" id="totwidth">
+			<input type="number" min="0" max="2000" step="1" value="800" id="totwidth">
 		<!-- </p>
 		<p> -->
 			<label for="marl">Left margin:</label>
-			<input type="number" min="0" max="200" step="5" value="20" id="marl">
+			<input type="number" min="0" max="200" step="1" value="20" id="marl">
 		<!-- </p>
 		<p> -->
 			<label for="marr">Right margin:</label>
-			<input type="number" min="0" max="200" step="5" value="20" id="marr">
+			<input type="number" min="0" max="200" step="1" value="20" id="marr">
 		<!-- </p>
 		<p> -->
 			<label for="mart">Top margin:</label>
-			<input type="number" min="0" max="200" step="5" value="20" id="mart">
+			<input type="number" min="0" max="200" step="1" value="20" id="mart">
 		<!-- </p>
 		<p> -->
 			<label for="marb">Bottom margin:</label>
-			<input type="number" min="0" max="200" step="5" value="20" id="marb">
+			<input type="number" min="0" max="200" step="1" value="20" id="marb">
 		</p>
 		<p>
 			<label for="padding">Padding:</label>
@@ -66,11 +66,11 @@ Main page
 		<!-- </p>
 		<p> -->
 			<label for="linkdist">Link distance:</label>
-			<input type="number" min="0" max="20" step="1" value="5" id="linkdist">
+			<input type="number" min="0" max="20" step="0.1" value="5" id="linkdist">
 		<!-- </p>
 		<p> -->
 			<label for="charge">Charge:</label>
-			<input type="number" min="-500" max="0" step="10" value="-100" id="charge">
+			<input type="number" min="-500" max="0" step="1" value="-100" id="charge">
 		<!-- </p>
 		<p> -->
 			<label for="seed">Random seed:</label>
@@ -82,11 +82,11 @@ Main page
 		<!-- </p>
 		<p> -->
 			<label for="tlmin">Trophic level minimum:</label>
-			<input type="number" min="0" max="5" step="0.1" value="" id="tlmin">
+			<input type="number" min="0" max="5" step="0.01" value="" id="tlmin">
 		<!-- </p>
 		<p> -->
 			<label for="tlmax">Trophic level maximum:</label>
-			<input type="number" min="0" max="5" step="0.1" value="" id="tlmax">
+			<input type="number" min="0" max="5" step="0.01" value="" id="tlmax">
 		</p>
 		<p>
 			<label for="hlineop">Connector line opacity:</label>
@@ -190,7 +190,21 @@ function update() {
 		    .tllim([tlmin.valueAsNumber, tlmax.valueAsNumber])
 	      .init(init.value)
 		    .drawmode(drawmode.value));
+				
+				// Add corner reference points (used by
+				// waitforfoodweb to check that everything is
+				// finished)
+		
+			  svg = d3.select("#g_svg");
+				var width = totwidth.valueAsNumber - marl.valueAsNumber - marr.valueAsNumber;
+				    height = totheight.valueAsNumber - mart.valueAsNumber - marb.valueAsNumber;
+	
+				svg.append("circle").attr("cx",0).attr("cy",0).attr("r",1).attr("class","ref")
+				svg.append("circle").attr("cx",width).attr("cy",height).attr("r",1).attr("class","ref")
 	});
+	
+
+
 }
 
 function addlabel() {
@@ -305,13 +319,6 @@ function addlabel() {
 			            .attr("stroke", "gray");
 
 	// hlink.remove();
-
-	// Add corner reference points (used by
-	// waitforfoodweb to check that everything is
-	// finished)
-
-	svg.append("circle").attr("cx",0).attr("cy",0).attr("r",1).attr("class","ref")
-	svg.append("circle").attr("cx",width).attr("cy",height).attr("r",1).attr("class","ref")
 	
 }
 
