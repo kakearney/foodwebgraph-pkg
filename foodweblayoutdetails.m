@@ -63,6 +63,10 @@ fun = @(x) m*(x - C.yref(2)) + tllim(1);
 
 fac = diff(C.yref)./diff(tllim);
 
+if isempty(T.x)
+    error('No text object found; did you forget to label?');
+end
+
 C.x = C.x./fac;
 C.y = fun(C.y);
 C.r = C.r./fac;
