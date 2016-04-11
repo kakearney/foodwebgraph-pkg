@@ -26,10 +26,13 @@ if ~strcmp(ex, '.json')
     filename = [filename '.json'];
 end
 
+E = struct('source', G.Edges.EndNodes(:,1), 'target', G.Edges.EndNodes(:,2));
+
 Jopt = struct('Compact', 0, ...
               'FileName', filename, ...
               'NoRowBracket', 1); 
 Json.nodes = table2struct(G.Nodes)';
+Json.edges = E;
 savejson('', Json, Jopt);
 
 % Set up sandbox environment in the targeted folder
