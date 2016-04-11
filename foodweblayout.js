@@ -11,6 +11,7 @@ function foodweblayout() {
         linkdist  = 5,       // link distance
         charge    = -100,    // charge
 	    hlineop   = 0.5,     // opacity for temporary trophic group lines
+	    flineop   = 0.3,     // opacity for flux lines
         fontsz    = 8,       // font size for labels
 	    seed      = 'hello', // string used to initialize random number generator
 	    cpfac     = 0.8,     // scaling factor for box used to pack circles, compared to svg canvas 
@@ -163,7 +164,38 @@ function foodweblayout() {
 			                  .enter().append("line")
 			                    .attr("class", "link")
 			                    .style("stroke", "rgb(150,150,150)")
-			                    .style("opacity", hlineop); 
+								.style("opacity", hlineop); 
+								
+
+			    // Container for flux lines, so under nodes
+						
+				fluxdata = data.edges[0];				
+				for(var i = 0, j = fluxdata.length; i < j; i++) {
+				    for(var k = 0, l = tnodes.length; k < l; k++) {
+				        if( fluxdata[i].source == tnodes[k].Name)  {
+				            fluxdata[i].sidx = k;
+				        }
+				        if( fluxdata[i].target == tnodes[k].Name) {
+				            fluxdata[i].tidx = k;
+				        }
+				    }
+				}
+				
+				// Add flux lines
+			
+				var fluxlines = svg.selectAll(".fluxline")
+		            .data(fluxdata)
+	            .enter().append("line")
+		            .attr("class", "link")
+		            .attr("x1", function(d) { return (tnodes[d.sidx].x); })
+		            .attr("y1", function(d) { return (tnodes[d.sidx].y); })
+		            .attr("x2", function(d) { return (tnodes[d.tidx].x); })
+		            .attr("y2", function(d) { return (tnodes[d.tidx].y); })
+		            .attr("stroke-width", 1)
+		            .attr("stroke", "#D1D0CE")
+					.attr("opacity", flineop);
+				
+				var fluxg = svg.append("g").selectAll(".fluxline");
 								
 	            // Create container for label-connector edges 
 			    // now so they're layered under the nodes and labels
@@ -252,7 +284,21 @@ function foodweblayout() {
 
 	            }
 				
+				var updateFLink = function () {
+	                this.attr("x1", function(d) {
+	                    return tnodes[d.sidx].x;
+	                }).attr("y1", function(d) {
+	                    return tnodes[d.sidx].y;
+	                }).attr("x2", function(d) {
+	                    return tnodes[d.tidx].x;
+	                }).attr("y2", function(d) {
+	                    return tnodes[d.tidx].y;
+	                });
+				}
+				
+				
 				node.call(updateNode);
+				
 				
 	            // While force layout runs...
                 
@@ -283,6 +329,8 @@ function foodweblayout() {
                 
 	                node.call(updateNode);
 	                hlink.call(updateLink);
+					fluxlines.call(updateFLink);
+					
                 
 	                // Collision detection
                 
@@ -394,6 +442,12 @@ function foodweblayout() {
     chart.hlineop = function(value) {
         if (!arguments.length) return hlineop;
         hlineop = value;
+        return chart;
+    };
+	
+    chart.flineop = function(value) {
+        if (!arguments.length) return flineop;
+        flineop = value;
         return chart;
     };
     
