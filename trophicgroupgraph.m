@@ -85,12 +85,21 @@ parent(cidx) = G.Nodes.Name(pidx);
 isemp = cellfun('isempty', parent);
 [parent{isemp}] = deal('null');
 
-G.Nodes.parent = parent;
-
 % Add TG field
 
 G.Nodes.TG = zeros(numnodes(G),1);
 G.Nodes.TG(1:length(tg{1})) = tg{1};
+
+% Remove redundant groupers (i.e. grouping nodes with only one leaf node)
+
+[pnode, nleaf] = aggregate(parent, parent, @length);
+unneeded = pnode(cat(1, nleaf{:})  == 1 & ~strcmp(pnode, 'null'));
+[parent{ismember(parent, unneeded)}] = deal('web');
+
+G.Nodes.parent = parent;
+
+G = rmnode(G, unneeded);
+
 
 % % Add mass flux links as "imports" field, as needed for d3 layout-parsers
 % 
