@@ -101,7 +101,8 @@ function foodweblayout() {
             var c10 = d3.scale.category20();
             var col = d3.scale.ordinal()
 				      .domain([0,1,2,3])
-					  .range(["rgb(236,237,135)", "rgb(186,222,131)", "rgb(240,180,139)", "rgb(152,222,224)"]);
+				      .range(["#AEC7E8", "#98DF8A", "#C49C94", "#FF9896"]);
+					  // .range(["rgb(236,237,135)", "rgb(186,222,131)", "rgb(240,180,139)", "rgb(152,222,224)"]);
 
 			switch (drawmode) {
 				
@@ -120,6 +121,7 @@ function foodweblayout() {
 		  	        .attr('r', function(d) { return d.r; })
 		  		    .style("fill", function(d) {return d.type >= 4 ? "white" : col(d.type); })
 		  		    .style("stroke", function(d) {return c10(d.TG); })
+					.style("stroke-width", 2)
 				
 				// Add corner reference points (used by 
 				// waitforfoodweb to check that everything is 
@@ -238,7 +240,8 @@ function foodweblayout() {
 	                .attr("r", function(d) {return d.radius = (d.type >= 4 ? 0 : d.r); })
 	                .style("fill", function(d) {return d.type >= 4 ? "white" : col(d.type); }) 
 	                .style("stroke", function(d) {return d.TG == 0 ? "white" : c10(d.TG-1); })
-	                .style("opacity", 0.9);
+	                .style("opacity", 0.9)
+				    .style("stroke-width", 2);
 
 	            circle.append("title")
 	                .text(function(d) { return d.Name; });  
