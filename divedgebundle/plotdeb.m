@@ -72,6 +72,7 @@ Opt.rloop = 20;
 Opt.gmax = NaN;
 % Opt.plot = true;
 % Opt.edgefun = [];
+Opt.upsample = [];
 
 Opt = parsepv(Opt, varargin);
 
@@ -122,6 +123,24 @@ if Opt.smooth
     
 end
 
+if ~isempty(Opt.upsample)
+    [xnew, ynew] = deal(nan(Opt.upsample, size(x,2)));
+    t = linspace(0,1,Opt.upsample);
+    for ie = 1:size(x,2)
+        xy = unique([x(:,ie), y(:,ie)], 'rows', 'stable');
+        if size(xy,1) > 1
+            pt = interparc(t, xy(:,1), xy(:,2), 'linear');
+            xnew(:,ie) = pt(:,1);
+            ynew(:,ie) = pt(:,2);
+        else
+            xnew(:,ie) = xy(1,1);
+            ynew(:,ie) = xy(1,2);
+        end
+    end
+    x = xnew;
+    y = ynew;
+end
+
 % Bundle weight and visible edge thickness
 
 if isnan(Opt.gmax)
@@ -144,17 +163,55 @@ else
         xcmp = x(:,mask(ie,:));
         ycmp = y(:,mask(ie,:));
         gcmp = ones(npt,1) * gedge(mask(ie,:))';
-
+        
+        %---
+        
+        debug = false;
+        
+        if debug
+            
+            h1 = plot(xcmp, ycmp, '.');
+            hold on;
+            h2 = plot(x(:,ie), y(:,ie), 'marker', 'x', 'markersize', 10);
+            arrayfun(@(x,y) rectangle('position', [x-d1(ie)/2 y-d1(ie)/2 d1(ie) d1(ie)], 'curvature', [1 1]), x(:,ie), y(:,ie));
+          
+        end
+        
         D = ipdm([x(:,ie) y(:,ie)], [xcmp(:) ycmp(:)], ...
-            'Result', 'Structure', 'Subset', 'Maximum', 'Limit', d1(ie));
+            'Result', 'Structure', 'Subset', 'Maximum', 'Limit', d1(ie)/2);
 
         gcontrol(:,ie) = gedge(ie);
         if ~isempty(D.rowindex)
             [~,cidx] = ind2sub(size(xcmp), D.columnindex);
-            [ridx,b] = aggregate(D.rowindex, cidx, @unique);
-            wadd = cellfun(@(x) sum(gcmp(x)), b);
+            
+            [ridx,tmp] = aggregate(D.rowindex, [cidx D.columnindex],  @(x) unique(x, 'rows'));
+            wadd = nan(size(ridx));
+            for ii = 1:length(tmp)
+                [~,iunq] = unique(tmp{ii}(:,1));
+                wadd(ii) = sum(gcmp(tmp{ii}(iunq,2)));
+            end
+           
             gcontrol(ridx,ie) = gcontrol(ridx,ie) + wadd;
         end
+        
+        if debug
+            h3 = plot(xcmp(D.columnindex), ycmp(D.columnindex), 'o');
+            dtmp = (Opt.w.*gcontrol(:,ie).^Opt.p)./fac;
+            h4 = arrayfun(@(x,y,d) rectangle('position', [x-d/2 y-d/2 d d], 'curvature', [1 1]), x(:,ie), y(:,ie), dtmp, 'uni', 0);
+            h4 = cat(1, h4{:});
+            set(h4, 'edgecolor', 'r');
+            
+            gtmp = ones(npt,1)*gedge(ie);
+            [tmpridx,gaddtmp] = aggregate(D.rowindex, gcmp(D.columnindex), @unique);
+            gaddtmp = catuneven(2, 0, gaddtmp{:})';
+            gadd = zeros(npt,size(gaddtmp,2));
+            gadd(tmpridx,:) = gaddtmp;
+            
+%             figure;
+%             bar([gtmp gadd], 'stacked');
+            
+        end
+        
 %         gcontrol = gcontrol./Opt.gmax; % Bundle weight of control points
     end
 end
