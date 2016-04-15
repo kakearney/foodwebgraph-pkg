@@ -2,6 +2,19 @@ function [tsim, etsim] = trophicsimilarity(adj)
 %TROPHICSIMILARILTY Calculate trophic similarity
 %
 % tsim = trophicsimilarity(adj)
+%
+% Calculates trophic similarity between groups in a food web, based on the
+% equation from Gauzens et al. 2014 (J. R. Soc. Interface, volume 12).
+%
+% Input variables:
+%
+%   adj:    ngroup x ngroup adjacency matrix, 1 if column j eats row i
+%
+% Output variables:
+%
+%   tsim:   ngroup x ngroup trophic similarity matrix
+
+% Copyright 2016 Kelly Kearney
 
 nnode = size(adj,1);
 
