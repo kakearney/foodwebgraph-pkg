@@ -79,7 +79,12 @@ function varargout = renderfoodwebforce(G, varargin)
 %
 %   init:       initialization mode ['cpack']:
 %               'cpack':    initialize using circle-packing layout
-%               'coords':   initialize using coordinates in the JSON file
+%               'coords':   initialize using coordinates and radii in the
+%                           JSON file.  Each node object in the input file
+%                           should include the 'xinit', 'yinit', and
+%                           'rinit' fields, which list x-coordinate,
+%                           y-coordinate, and radius, respectively, in
+%                           pixels.
 %
 % Output variables:
 %
@@ -92,13 +97,20 @@ function varargout = renderfoodwebforce(G, varargin)
 %   C:          structure holding details of circle elements found in the
 %               resulting svg image, with the following fields
 %               x:      x-coordinate of nodes, in pixels (measured from
-%                       left to right)
+%                       left to right, with 0 at the left of the main
+%                       grouping element)
 %               y:      y-coordinate of nodes, in pixels (measured from top
-%                       to bottom)
+%                       to bottom, with 0 at the top of the main grouping
+%                       element) 
 %               xref:   x-coordinate of corner reference dots, in pixels
+%                       (these define the main grouping element)
 %               yref:   y-coordinate of corner reference dots, in pixels
 %               r:      radius of nodes, in pixels
 %               label:  node name associated with each x, y, and r value
+%               trans:  transform (i.e. shift left, shift down) from upper
+%                       right of svg canvas to upper right of main grouping
+%                       element 
+%               svgsz:  width and height of svg canvas
 %
 %   T:          structure holding details of the text elements found in the
 %               resulting svg image, with the following fields:
@@ -111,7 +123,7 @@ function varargout = renderfoodwebforce(G, varargin)
 %                       coordinates reference the lower left corner of the
 %                       text extent.
 %
-%   F:          structure holding path names to the temporary files created
+%   File:       structure holding path names to the temporary files created
 %               by this function.
 %               json:   the JSON file used as input, holding the G.Nodes
 %                       table
@@ -163,9 +175,24 @@ if isempty(Opt.jsdir)
     Opt.jsdir = fileparts(thisfile);
 end
 
+% Set up temporary folder for all.  Copy necessary files to this folder so
+% the html file can be viewed in a browser without any cross-origin,
+% cross-folder stuff 
+
+folder = tempname;
+mkdir(folder);
+
+File.json = fullfile(folder, 'foodweb.json');
+File.html = fullfile(folder, 'prerender.html');
+
+copyfile(fullfile(Opt.jsdir, 'packages.js'), folder);
+copyfile(fullfile(Opt.jsdir, 'foodweblayout.js'), folder);
+copyfile(fullfile(Opt.jsdir, 'seedrandom.min.js'), folder);
+copyfile(fullfile(Opt.jsdir, 'labeler.js'), folder);
+
 % Save Nodes structure to JSON file
 
-File.json = [tempname '.json'];
+% File.json = [tempname '.json'];
 
 Jopt = struct('Compact', 0, ...
               'FileName', File.json, ...
@@ -200,14 +227,19 @@ htmltxt = {...
         '-->'                                                                    
         ''                                                                       
         '<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>'   
-sprintf('<script src="%s"></script>', fullfile(Opt.jsdir, 'packages.js'))                                   
-sprintf('<script src="%s"></script>', fullfile(Opt.jsdir, 'foodweblayout.js'))                               
-sprintf('<script src="%s"></script>', fullfile(Opt.jsdir, 'seedrandom.min.js'))                             
-sprintf('<script src="%s"></script>', fullfile(Opt.jsdir, 'labeler.js'))                           
+% sprintf('<script src="%s"></script>', fullfile(Opt.jsdir, 'packages.js'))                                   
+% sprintf('<script src="%s"></script>', fullfile(Opt.jsdir, 'foodweblayout.js'))                               
+% sprintf('<script src="%s"></script>', fullfile(Opt.jsdir, 'seedrandom.min.js'))                             
+% sprintf('<script src="%s"></script>', fullfile(Opt.jsdir, 'labeler.js'))   
+        '<script src="packages.js"></script>'                          
+        '<script src="foodweblayout.js"></script>'
+        '<script src="seedrandom.min.js"></script>'                           
+        '<script src="labeler.js"></script>'                       
         ''                                                                       
         '<script>'                                                               
         ''                                                                       
-sprintf('d3.json("%s", function(data) {', File.json)                                  
+% sprintf('d3.json("%s", function(data) {', File.json)  
+        'd3.json("foodweb.json", function(data) {'    
         '    d3.select("#fwf")'                                                  
         '        .datum(data)'                                                   
         '    .call(foodweblayout()'                                              
@@ -235,7 +267,7 @@ sprintf('	    .drawmode(''%s''));',  Opt.drawmode)
 
 % Render webpage
 
-File.html = [tempname '.html'];
+% File.html = [tempname '.html'];
 printtextarray(htmltxt, File.html);
 
 switch Opt.mode
@@ -250,6 +282,9 @@ switch Opt.mode
     case 'extract'
         
         % Render svg file using phantomJS
+        
+%         File.html2 = fullfile(folder, 'postrender.html');
+%         File.svg   = fullfile(folder, 'postrender.svg');
         
         File.html2 = [tempname '.html'];
         File.svg = [tempname '.svg'];
@@ -336,6 +371,17 @@ for it = 1:nt
         T.label{it} = '';
     end
 end
+
+g = xdoc.getElementsByTagName('g');
+gmain = g.item(0);
+trans = char(gmain.getAttribute('transform'));
+C.trans = cellfun(@str2double, regexp(trans, 'translate\(([0-9]*),([0-9]*)\)', 'tokens', 'once'));
+
+svg = xdoc.getElementsByTagName('svg');
+svg = svg.item(0);
+C.svgsz = [str2double(char(svg.getAttribute('width'))), ...
+           str2double(char(svg.getAttribute('height')))];
+
 
 %-----------------------------------
 % Pull out the svg portion of file

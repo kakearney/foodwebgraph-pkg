@@ -11,6 +11,7 @@ function foodweblayout() {
         linkdist  = 5,       // link distance
         charge    = -100,    // charge
 	    hlineop   = 0.5,     // opacity for temporary trophic group lines
+	    flineop   = 0.3,     // opacity for flux lines
         fontsz    = 8,       // font size for labels
 	    seed      = 'hello', // string used to initialize random number generator
 	    cpfac     = 0.8,     // scaling factor for box used to pack circles, compared to svg canvas 
@@ -59,10 +60,16 @@ function foodweblayout() {
 		    // Append SVG to selected DOM object, and append a <g> to
 			// that with a bit of a margin
 
-		    var svg = d3.select(this).append("svg")
+		    var main = d3.select(this).append("svg")
 		        .attr("width", totwidth)
-		        .attr("height", totheight)
-		        .append("g")
+			    .attr("height", totheight);
+			main.append("rect")
+				.attr("width", "100%")
+				.attr("height", "100%")
+				.attr("fill", "#F8F9F9");
+			
+			var svg = main.append("g") // misleading variable name, sorry
+				.attr("id", "g_svg")
 	            .attr("transform", "translate(" + marl + "," + mart + ")");
 
 	        // Use circle packing to calculate hierarchy details and
@@ -92,12 +99,10 @@ function foodweblayout() {
 			// Color
 
             var c10 = d3.scale.category20();
-			// var col = d3.scale.ordinal()
-	// 				  .domain([0,1,2,3])
-	// 		          .range([d3.rgb(216,220,214), d3.rgb(188,236,172), d3.rgb(230,218,166), d3.rgb(208,254,254)])
             var col = d3.scale.ordinal()
 				      .domain([0,1,2,3])
-					  .range(["rgb(236,237,135)", "rgb(186,222,131)", "rgb(240,180,139)", "rgb(152,222,224)"]);
+				      .range(["#AEC7E8", "#98DF8A", "#C49C94", "#FF9896"]);
+					  // .range(["rgb(236,237,135)", "rgb(186,222,131)", "rgb(240,180,139)", "rgb(152,222,224)"]);
 
 			switch (drawmode) {
 				
@@ -116,6 +121,7 @@ function foodweblayout() {
 		  	        .attr('r', function(d) { return d.r; })
 		  		    .style("fill", function(d) {return d.type >= 4 ? "white" : col(d.type); })
 		  		    .style("stroke", function(d) {return c10(d.TG); })
+					.style("stroke-width", 2)
 				
 				// Add corner reference points (used by 
 				// waitforfoodweb to check that everything is 
@@ -150,6 +156,7 @@ function foodweblayout() {
 	                .size([width, height])
 	                .linkDistance(function(d) { return  d.source.Name.substring(0,3)=="lev1" ? linkdist*5 : linkdist; })
 					.charge(charge)
+					.gravity(0.1)
 	                .start();
 					
 			    // Create hierarchical edge lines (for testing) 
@@ -159,7 +166,38 @@ function foodweblayout() {
 			                  .enter().append("line")
 			                    .attr("class", "link")
 			                    .style("stroke", "rgb(150,150,150)")
-			                    .style("opacity", hlineop); 
+								.style("opacity", hlineop); 
+								
+
+			    // Container for flux lines, so under nodes
+						
+				fluxdata = data.edges[0];				
+				for(var i = 0, j = fluxdata.length; i < j; i++) {
+				    for(var k = 0, l = tnodes.length; k < l; k++) {
+				        if( fluxdata[i].source == tnodes[k].Name)  {
+				            fluxdata[i].sidx = k;
+				        }
+				        if( fluxdata[i].target == tnodes[k].Name) {
+				            fluxdata[i].tidx = k;
+				        }
+				    }
+				}
+				
+				// Add flux lines
+			
+				var fluxlines = svg.selectAll(".fluxline")
+		            .data(fluxdata)
+	            .enter().append("line")
+		            .attr("class", "link")
+		            .attr("x1", function(d) { return (tnodes[d.sidx].x); })
+		            .attr("y1", function(d) { return (tnodes[d.sidx].y); })
+		            .attr("x2", function(d) { return (tnodes[d.tidx].x); })
+		            .attr("y2", function(d) { return (tnodes[d.tidx].y); })
+		            .attr("stroke-width", 1)
+		            .attr("stroke", "#D1D0CE")
+					.attr("opacity", flineop);
+				
+				var fluxg = svg.append("g").selectAll(".fluxline");
 								
 	            // Create container for label-connector edges 
 			    // now so they're layered under the nodes and labels
@@ -171,14 +209,39 @@ function foodweblayout() {
 	            var node = svg.selectAll(".node")
 	                .data(tnodes)
 	                .enter().append("g");
+					
+				var node_drag = d3.behavior.drag()
+				        .on("dragstart", dragstart)
+				        .on("drag", dragmove)
+				        .on("dragend", dragend);
+						
+				function dragstart(d, i) {
+				        force.stop() // stops the force auto positioning before you start dragging
+				    }
 
+			    function dragmove(d, i) {
+			        d.px += d3.event.dx;
+			        // d.py += d3.event.dy;
+			        d.x += d3.event.dx;
+			        // d.y += d3.event.dy;
+			        tick({type: "tick", alpha: 0.00}); // this is the key to make it work together with updating both px,py,x,y on d !
+			    }
+
+			    function dragend(d, i) {
+			        d.fixed = true;
+			        tick({type: "tick", alpha: 0.05});
+			        force.resume();
+			    }
+
+			    node.call(node_drag);
 
 	            var circle = node.append("circle")
 	                .attr("class", "node")
 	                .attr("r", function(d) {return d.radius = (d.type >= 4 ? 0 : d.r); })
 	                .style("fill", function(d) {return d.type >= 4 ? "white" : col(d.type); }) 
 	                .style("stroke", function(d) {return d.TG == 0 ? "white" : c10(d.TG-1); })
-	                .style("opacity", 0.9);
+	                .style("opacity", 0.9)
+				    .style("stroke-width", 2);
 
 	            circle.append("title")
 	                .text(function(d) { return d.Name; });  
@@ -224,12 +287,34 @@ function foodweblayout() {
 
 	            }
 				
+				var updateFLink = function () {
+	                this.attr("x1", function(d) {
+	                    return tnodes[d.sidx].x;
+	                }).attr("y1", function(d) {
+	                    return tnodes[d.sidx].y;
+	                }).attr("x2", function(d) {
+	                    return tnodes[d.tidx].x;
+	                }).attr("y2", function(d) {
+	                    return tnodes[d.tidx].y;
+	                });
+				}
+				
+				
 				node.call(updateNode);
+				
 				
 	            // While force layout runs...
                 
-	            force.on("tick", function(e) {
-                
+				force.on("tick", function(e) {tick(e)});
+				
+				function tick(e) {
+					
+					// Release previously-fixed nodes (custom drags) when nearly cooled
+					
+					if (e.alpha < 0.005) {
+						node.each(function(d) {d.fixed = false}); 
+					}	
+					
 	                // Nudge nodes towards prescribed x/y position
                 
 	                var k = tlnudge * e.alpha;
@@ -247,151 +332,14 @@ function foodweblayout() {
                 
 	                node.call(updateNode);
 	                hlink.call(updateLink);
+					fluxlines.call(updateFLink);
+					
                 
 	                // Collision detection
                 
 	                circle.each(collide(0.5))
-
-	            });
-				
-				// When force layout is finished...
-				
-	            force.on("end", function() {
-				
-	             	// width *= posfac;
-// 					height *= posfac;
-//
-// 					// Reposition nodes by factor
-//
-// 		            var reposNode = function() {
-// 		                this.attr("transform", function(d) {
-// 							d.x *= posfac;
-// 							d.y *= posfac;
-// 		                    return "translate(" + d.x + "," + d.y + ")";
-// 		                });
-// 						// this.attr("r", function(d) {return d.r *= posfac;})
-// 		            }
-// 					node.call(reposNode);
-
-	                // *****************
-	                // Add labels
-	                // *****************
-
-	                // Set up label positioning
-
-	                var labelshape = [];
-					var labelarray = []
-					    anchorarray = []
-					    inlabelarray = [];
-				
-
-	                node.each(function(n,i) {
-	                    if (n.type <= 3) {
-
-	                        var texttmp = svg.append("svg:text")
-	                            .attr("x", 100)
-	                            .attr("y", 100)
-								.attr("font-size", fontsz)
-								.attr("font-family", "Arial")
-								.text(n.Name);
-
-	                        var bbox = texttmp.node().getBBox();
-
-	                        texttmp.remove();
-						
-							if (bbox.width <= n.r*2) {
-								inlabelarray.push({x:      n.x,
-							                       y:      n.y, 
-							                       width:  bbox.width,
-							                       height: bbox.height,
-												   name:   n.Name});
-	 							labelarray.push({  x:      n.x,
-	 							                   y:      n.y, 
-	 							                   width:  bbox.width,
-	 							                   height: bbox.height,
-	 											   name:   ""});
-	 							anchorarray.push({ x:      n.x, 
-	 								               y:      n.y, 
-	 											   r:      n.r});
-							} else {               
-								labelarray.push({  x:      n.x,
-								                   y:      n.y, 
-								                   width:  bbox.width,
-								                   height: bbox.height,
-												   name:   n.Name});
-								anchorarray.push({ x:      n.x, 
-									               y:      n.y, 
-												   r:      n.r});
-
-							}							
-
-	                    }
-	                })
-					
-					// Add labels that fit inside nodes
-                
-	                var inlabels = svg.selectAll('.label1')
-	                                .data(inlabelarray)
-	                               .enter()
-	                               .append("text")
-	                                .attr("x", function(d) {return d.x})
-	                                .attr("y", function(d) {return d.y})
-	                                .attr("text-anchor", "middle")
-	                                .attr("dy", "0.35em")
-	                                .attr("font-size", fontsz)
-									.attr("font-family", "Arial")
-	                                .text(function(d) {return d.name});
-								
-				    // Use simulated annealing to place the rest of the labels
-				
-					var salabels = d3.labeler()
-					                .label(labelarray)
-					                .anchor(anchorarray)
-					                .width(width)
-					                .height(height)
-					                .start(1000);
-
-			        var outlabels = svg.selectAll(".label2")
-						            .data(labelarray)
-						            .enter()
-						            .append("text")
-						            .attr("class", "label")
-						            .attr('text-anchor', 'start')
-						            .text(function(d) { return d.name; })
-						            .attr("x", function(d) { return (d.x); })
-						            .attr("y", function(d) { return (d.y); })
-	                                .attr("font-size", fontsz)
-									.attr("font-family", "Arial")
-						            .attr("fill", "black");
-									
-					// Add lines connecting labels to nodes
-								
-		            var lbllinks = svg.selectAll(".lbllink")
-						            .data(labelarray)
-						            .enter()
-						            .append("line")
-						            .attr("class", "link")
-						            .attr("x1", function(d) { return (d.x); })
-						            .attr("y1", function(d) { return (d.y); })
-						            .attr("x2", function(d,i) { return (anchorarray[i].x); })
-						            .attr("y2", function(d,i) { return (anchorarray[i].y); })
-						            .attr("stroke-width", 0.6)
-						            .attr("stroke", "gray");
-									
-					// hlink.remove();
-					
-					// Add corner reference points (used by 
-					// waitforfoodweb to check that everything is 
-					// finished)
-						
-           			svg.append("circle").attr("cx",0).attr("cy",0).attr("r",1).attr("class","ref")
-            		svg.append("circle").attr("cx",width).attr("cy",height).attr("r",1).attr("class","ref")
-					
-					});
-					
-					
-	
-				
+			      
+			    };				
 				
 				break;
 			default: console.log('Unrecognized mode');
@@ -497,6 +445,12 @@ function foodweblayout() {
     chart.hlineop = function(value) {
         if (!arguments.length) return hlineop;
         hlineop = value;
+        return chart;
+    };
+	
+    chart.flineop = function(value) {
+        if (!arguments.length) return flineop;
+        flineop = value;
         return chart;
     };
     
