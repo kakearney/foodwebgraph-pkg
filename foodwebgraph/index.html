@@ -89,10 +89,10 @@ Main page
 			<input type="number" min="0" max="5" step="0.01" value="" id="tlmax">
 		</p>
 		<p>
-			<label for="hlineop">Connector line opacity:</label>
+			<!-- <label for="hlineop">Connector line opacity:</label>
 			<input type="number" min="0" max="1" step="0.1" value="1.0" id="hlineop">
 			<label for="flineop">Flux line opacity:</label>
-			<input type="number" min="0" max="1" step="0.1" value="0.3" id="flineop">
+			<input type="number" min="0" max="1" step="0.1" value="0.3" id="flineop"> -->
 		<!-- </p>
 		<p> -->
 			<label for="fontsz">Label font size:</label>
@@ -119,6 +119,20 @@ Main page
               value="Label" 
               onclick="addlabel()"/></p>
 </div>
+
+<hline>
+
+<!-- Opacity sliders -->
+
+<h3>Adjust line opacity</h3>
+
+
+<label for="hlineop">Connector line opacity:</label>
+<input type="range" min="0" max="1" step="0.1" value="1.0" id="hlineop">
+
+<label for="flineop">Flux line opacity:</label>
+<input type="range" min="0" max="1" step="0.1" value="0.3" id="flineop">
+
 
 
 <!-- Location for SVG canvas -->
@@ -324,5 +338,25 @@ function addlabel() {
 	// hlink.remove();
 	
 }
+
+d3.select("#flineop").on("input", function() {
+  updatefline(+this.valueAsNumber);
+});
+d3.select("#hlineop").on("input", function() {
+  updatehline(+this.valueAsNumber);
+});
+
+
+function updatefline(val) {
+  d3.selectAll(".fluxline") 
+    .attr("opacity", val);
+}
+
+
+function updatehline(val) {
+  d3.selectAll(".link") 
+    .style("opacity", val);
+}
+
 
 </script>

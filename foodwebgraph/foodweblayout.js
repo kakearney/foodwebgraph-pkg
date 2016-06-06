@@ -188,7 +188,7 @@ function foodweblayout() {
 				var fluxlines = svg.selectAll(".fluxline")
 		            .data(fluxdata)
 	            .enter().append("line")
-		            .attr("class", "link")
+		            .attr("class", "fluxline")
 		            .attr("x1", function(d) { return (tnodes[d.sidx].x); })
 		            .attr("y1", function(d) { return (tnodes[d.sidx].y); })
 		            .attr("x2", function(d) { return (tnodes[d.tidx].x); })

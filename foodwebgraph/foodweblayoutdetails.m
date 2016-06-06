@@ -97,8 +97,9 @@ Ax.figpos = [0 0 C.svgsz];
 
 w = diff(C.xref);
 h = diff(C.yref);
-Ax.axpos = [C.trans(1) C.svgsz(2)-C.trans(1)-h w h]./[C.svgsz C.svgsz];
-
+Ax.axpos = [C.trans(1) C.svgsz(2)-C.trans(2)-h w h]./[C.svgsz C.svgsz];
+Ax.fontsize = T.fontsize{1};
+Ax.fontname = T.font{1};
 
 % Ax.dx = diff(C.xref);
 % Ax.dy = diff(C.yref);
