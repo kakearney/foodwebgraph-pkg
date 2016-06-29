@@ -459,7 +459,7 @@ if any(isloop)
     G = Gorig;
 
 else
-    bcompat = A.issame & A.compat > 0.05;
+    bcompat = A.issame & (A.compat > 0.05);
 end
    
 % Assign to graph object
@@ -468,33 +468,7 @@ G.Edges.x = num2cell(xc, 1)';
 G.Edges.y = num2cell(yc, 1)';
 G.Edges.BundleCompat = num2cell(bcompat, 2);  
 
-
-% if any(isloop)
-%     for ii = 1:length(Gloop)
-%         idx = findnode(Gloop, Gloop.Edges.EndNodes{1});
-%         Gloop.x{ii} = ones(1,2) * Gloop.Nodes(idx).x;
-%         Gloop.y{ii} = ones(1,2) * Gloop.Nodes(idx).y;
-%         Gloop.BundleCompat{ii} = 
-%     end
-%     
-%     [~,stloc] = ismember(Gloop.Edges.EndNodes, G.Nodes.Name);
-%     xloop = G.Nodes.x(stloc);
-%     yloop = G.Nodes.y(stloc);
-%     if size(stloc,1) == 1
-%         xloop = xloop';
-%         yloop = yloop';
-%     end
-%     
-% 
-%     srctar = findnode(Gloop.Edges.EndNodes);
-%     for ii = 1:numedges(Gloop)
-%         G = addedge(G, Gloop.Edges.EndNodes{ii,1}, Gloop.Edges.EndNodes{ii,2}, Gloop.Edges.Weight(ii));
-%         
-%     end
-% end
-
 fprintf('Done\n');
-
 
 
 %---------------------------------------
