@@ -165,6 +165,8 @@ Main page
 	              type="button" 
 	              value="Update" 
 	              onclick="update()"/>
+								
+		<label><input type="checkbox" id="donecheck"> All Done!</label>
 		
 	</fieldset>
 	
@@ -386,6 +388,30 @@ d3.select("#flineop").on("input", function() {
 d3.select("#hlineop").on("input", function() {
   updatehline(+this.valueAsNumber);
 });
+
+d3.select("#donecheck").on("change", function(d){
+	d3.select("#textparams").html(
+				"<h1 style=\"font-size:1.5em\">Parameter summary</h1>" +
+		    "marl = "      + marl.value      + "<br>" +
+				"marr = "      + marr.value      + "<br>" +
+				"mart = "      + mart.value      + "<br>" +
+				"marb = "      + marb.value      + "<br>" +
+				"totwidth = "  + totwidth.value  + "<br>" +
+				"totheight = " + totheight.value + "<br>" +
+				"padding = "   + padding.value   + "<br>" +
+				"tlnudge = "   + tlnudge.value   + "<br>" +
+				"linkdist = "  + linkdist.value  + "<br>" +
+				"charge = "    + charge.value    + "<br>" +
+				"hlineop = "   + hlineop.value   + "<br>" +
+				"fontsz = "    + fontsz.value    + "<br>" +
+				"seed = "      + seed.value      + "<br>" +
+				"cpfac = "     + cpfac.value     + "<br>" +
+				"tlmin = "     + tlmin.value     + "<br>" +
+				"tlmax = "     + tlmax.value     + "<br>" +
+				"<H1>DONE</H1>"
+	);
+});
+
 
 
 function updatefline(val) {
