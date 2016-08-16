@@ -1,9 +1,9 @@
-function [tgpart, Out] = trophicgroup(G, varargin)
+function [tgpart, Out, G] = trophicgroup(G, varargin)
 %TROPHICGROUP Partition the nodes in a food web into trophic groups
 %
 % tgpart = trophicgroup(G)
 % tgpart = trophicgroup(EM)
-% [tgpart, Out] = trophicgroup(..., p1, v1, ...)
+% [tgpart, Out, G] = trophicgroup(..., p1, v1, ...)
 %
 % Based on Gauzens et al. 2014, this function attempts to partition a food
 % web network graph such that the resulting node clusters maximize the
@@ -123,6 +123,8 @@ function [tgpart, Out] = trophicgroup(G, varargin)
 %                   costAtMove:     metric from each proposed move
 %                   costAtAcceptedMove: metric after move has been accepted
 %                                   or rejected
+%
+%   G:          graph object used for calculations.
 
 % Copyright 2016 Kelly Kearney
 
@@ -296,7 +298,8 @@ switch Opt.method
         tgpart = pidx(:,imax);
         
         Out.tgmetricMax = max(energy);
-        Out.tgmetricDetails = struct('costAtCutoff', energy, 'cutoff', cutoff, 'partitions', tg);
+        Out.tgmetricDetails = struct('costAtCutoff', energy, 'cutoff', ...
+            cutoff, 'partitions', tg, 'links', links);
         
     case 'greedy'
         
