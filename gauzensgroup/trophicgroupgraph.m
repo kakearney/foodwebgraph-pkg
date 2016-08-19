@@ -5,27 +5,40 @@ function [H, G] = trophicgroupgraph(G, tg)
 %
 % Creates a graph object with the same nodes as G plus pseudo-nodes
 % representing trophic groups.  Edges connect nodes with the appropriate
-% pseudo-nodes.  See gauzensgroup.m for details of trophic grouping.
+% pseudo-nodes.  See gauzensgroup.m or trophicgroup.m for details of
+% grouping algorithms.
 %
 % Input variables:
 %
 %   G:  Ecopath graph object
 %
-%   tg: nnode x 1 vector of trophic group indices corresponding to each
-%       node, or n x 1 cell array of holding multiple levels of grouping
-%       indices (for the latter, see gauzensgroupep.m).
-%
+%   tg: nnode x nlev of indices.  Nodes that share an index are grouped
+%       together.  Multiple columns indicate multiple levels of grouping.
+%       For example, for a 5-node graph
+%       tg = [...
+%             1   1
+%             1   1
+%             2   2 
+%             2   2 
+%             3   1];
+%       indicates 3 node clusters, and then two clusters-of-clusters (i.e.
+%       clusters 1 and 3 from the first level are clustered at the second
+%       level).  An example of this would be multiple columns from the
+%       S.tgmetricDetails.partitions output of the trophicgroup.m
+%       hierarchical algorithm.
+%       
 % Output variables:
 %
 %   H:  graph object. Nodes are the same as those in the input graph (but
 %       stripped of Nodes fields except Name), with the addition of several
-%       grouping nodes.  Edges indicate the trophic-group connections 
+%       grouping nodes.  Edges indicate the trophic-group connections,
+%       resulting in a dendrogram-like graph.
 %
 %   G:  graph object. Nodes are the same as H, but this time with all Node
 %       properties intact and two additional ones added: 'parent' lists the
 %       name of the parent node in the trophic grouping hierarchy, and 'TG'
-%       lists the trophic group index for each node.  Edges are the same as
-%       in the input graph object.
+%       lists the trophic group index for each node (at the lowest grouping
+%       level).  Edges are the same as in the input graph object. 
 
 % Copyright 2015-2016 Kelly Kearney
 
@@ -33,31 +46,62 @@ function [H, G] = trophicgroupgraph(G, tg)
 % Trophic group nodes
 %--------------------------
 
-% Names for nodes and their parents
+% Check grouping indices
 
-if ~iscell(tg)
-    tg = {tg};
-end
-
-[nm1, nm2] = deal(cell(size(tg)));
-for it = 1:length(tg)
-    if it == 1
-        nm1{it} = G.Nodes.Name;
-    else
-        nm1{it} = arrayfun(@(x) sprintf('lev%d_%02d',it-1,x), (1:length(tg{it}))', 'uni', 0);
+nlev = size(tg,2);
+for ii = 1:nlev-1
+    [~,chk] = aggregate(tg(:,ii), tg(:,ii+1), @(x) length(unique(x)));
+    chk = cat(1, chk{:});
+    if any(chk > 1)
+        error('Nodes grouped at one level must stay together at the next');
     end
-    nm2{it} = arrayfun(@(x) sprintf('lev%d_%02d',it,x), tg{it}, 'uni', 0);
 end
-nm1 = cat(1, nm1{:});
-nm2 = cat(1, nm2{:});
 
-extranm = setdiff([nm2; G.Nodes.Name], nm1);
-nm1 = [nm1; extranm];
-nm2 = [nm2; repmat({'web'}, size(extranm))];
+% Create dendrogram-like graph
 
-% Add new nodes to the graph
+nnode = numnodes(G);
+tmp = [(1:nnode)' tg];
 
-newnode = setdiff([nm1; nm2], G.Nodes.Name);
+cidx = ones(nnode,1)*(1:nlev);
+nodename = [G.Nodes.Name ...
+    arrayfun(@(idx,lev) sprintf('lev%02d_%02d', lev, idx), tg, cidx, 'uni', 0), ...
+    repmat({'web'}, nnode, 1)]; 
+
+src = nodename(:,1:end-1);
+tar = nodename(:,2:end);
+src = src(:);
+tar = tar(:);
+
+unqnode = unique([src tar]);
+[~,snum] = ismember(src, unqnode);
+[~,tnum] = ismember(tar, unqnode);
+[~,ia] = unique([snum tnum], 'rows');
+
+Htmp = digraph(src(ia), tar(ia), ones(size(ia)));
+
+% Get rid of intermediate nodes, and connect top-level nodes to an overall
+% parent node (web)
+
+nin = indegree(Htmp);
+newsrc = Htmp.Nodes.Name(nin ~= 1);
+newtar = cell(size(newsrc));
+
+isweb = strcmp(newsrc, 'web');
+for ii = 1:length(newsrc)
+    if ~isweb(ii)
+        pth = shortestpath(Htmp, newsrc{ii}, 'web');
+        idx = find(ismember(pth, newsrc), 2);
+        newtar{ii} = pth{idx(2)};
+    end
+end
+newsrc = newsrc(~isweb);
+newtar = newtar(~isweb);
+
+H = digraph(newsrc, newtar, ones(size(newsrc)));
+
+% Add new nodes to the original graph
+
+newnode = setdiff(H.Nodes.Name, G.Nodes.Name);
 nnew = length(newnode);
 new = table(newnode, zeros(nnew,1), ones(nnew,1)*5, nan(nnew,1), ...
     'variableNames', {'Name', 'B', 'type', 'TL'});
@@ -66,46 +110,21 @@ G = addnode(G, new);
 widx = findnode(G, 'web');
 G.Nodes.type(widx) = 6;
 
-% Trophic group hierarchy adjacency matrix
+% Names for nodes and their parents
 
-ntot = numnodes(G);
-hadj = zeros(ntot);
+[tf, loc] = ismember(G.Nodes.Name, newsrc);
+parent = cell(numnodes(G),1);
+[parent{~tf}] = deal('null');
+parent(tf) = newtar(loc(tf));
 
-cidx = findnode(G, nm1);
-pidx = findnode(G, nm2);
-idx = sub2ind([ntot ntot], cidx, pidx);
-hadj(idx) = 1;
-
-H = digraph(hadj, G.Nodes.Name);
-
-% Add parent fields to original graph nodes
-
-parent = cell(ntot,1);
-parent(cidx) = G.Nodes.Name(pidx);
-isemp = cellfun('isempty', parent);
-[parent{isemp}] = deal('null');
+G.Nodes.parent = parent;
 
 % Add TG field
 
 G.Nodes.TG = zeros(numnodes(G),1);
-G.Nodes.TG(1:length(tg{1})) = tg{1};
-
-% Remove redundant groupers (i.e. grouping nodes with only one leaf node)
-
-[pnode, nleaf] = aggregate(parent, parent, @length);
-unneeded = pnode(cat(1, nleaf{:})  == 1 & ~strcmp(pnode, 'null'));
-[parent{ismember(parent, unneeded)}] = deal('web');
-
-G.Nodes.parent = parent;
-
-G = rmnode(G, unneeded);
+G.Nodes.TG(1:nnode) = tg(:,1);
 
 
-% % Add mass flux links as "imports" field, as needed for d3 layout-parsers
-% 
-% madj = adjacency(G);
-% imports = cell(ntot,1);
-% for ii = 1:ntot
-%     imports{ii} = G.Nodes.Name(madj(:,ii) > 0);
-% end
-% G.Nodes.imports = imports;
+
+
+
