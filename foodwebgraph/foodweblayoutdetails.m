@@ -4,9 +4,8 @@ function [G, Ax] = foodweblayoutdetails(G, C, T, tllim)
 % [G, Ax] = foodweblayoutdetails(G, C, T)
 % [G, Ax] = foodweblayoutdetails(G, C, T, tllim)
 %
-% This function converts the pixel-based details returned by
-% renderfoodwebforce.m in 'extract' mode to a more plotting-friendly
-% coordinate system.
+% This function converts the pixel-based details returned by extractsvg.m
+% to a more plotting-friendly coordinate system. 
 %
 % Input variables:
 %
@@ -31,21 +30,25 @@ function [G, Ax] = foodweblayoutdetails(G, C, T, tllim)
 %
 %   G:      graph object, same as input with the following parameters added
 %           to the Nodes table:
-%           y:  y-coordinate of node center, in trophic level units
-%           x:  x-coordinate of node center, in trophic level units.  The
-%               units in the x-direction are arbitrary, and are kept the
-%               same as the y-units to make plotting of circles simpler.
-%           r:  radius of node, in trophic level units
-%           tx: x-coordinate of node label, in trophic level units
-%           ty: y-coordinate of node label, in trophic level units
-%           th: horizontal alignment of node label
-%           tv: vertical alignment of node label
+%           y:          y-coordinate of node center, in trophic level units
+%           x:          x-coordinate of node center, in trophic level
+%                       units.  The units in the x-direction are arbitrary,
+%                       and are kept the same as the y-units to make
+%                       plotting of circles simpler.
+%           r:          radius of node, in trophic level units
+%           tx:         x-coordinate of node label, in trophic level units
+%           ty:         y-coordinate of node label, in trophic level units
+%           th:         horizontal alignment of node label
+%           tv:         vertical alignment of node label
 %
-%   Ax:     structure holding information about the axis
-%           ylim:   y limits
-%           xlim:   x limits
-%           dy:     height of axis, in pixels
-%           dx:     width of axis, in pixels
+%   Ax:     structure holding information about the axis that are required
+%           to replicate the svg canvas
+%           ylim:       y limits
+%           xlim:       x limits
+%           figpos:     position vector for figure (in pixels)
+%           axpos:      position vector for axis (normalized)
+%           fontsize:   fontsize for text labels
+%           fontname:   fontname for text labels
 
 % Copyright 2016 Kelly Kearney
 

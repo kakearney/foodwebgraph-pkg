@@ -3,20 +3,48 @@
 <head>
     <meta http-equiv="content-Type" content="text/html; charset=utf-8"/>
 		<style>
-		p {
-		    font-family: "Helvetica";
-		    font-size: 8pt;
+		form {
+			margin-left:auto;
+	    margin-right:auto;
+	    max-width: 800px;
+	    background: #FFF;
+	    padding: 20px 30px 20px 30px;
+	    font: 11px "Helvetica Neue", Helvetica, Arial, sans-serif;
+	    color: #888;
+	    text-shadow: 1px 1px 1px #FFF;
+	    border:1px solid #DDD;
+	    border-radius: 5px;
+	    -webkit-border-radius: 5px;
+	    -moz-border-radius: 5px;
 		}
-		h3, h1 {
-			font-family: "Helvetica";
+		h1 {
+		    font: 1em "Helvetica Neue", Helvetica, Arial, sans-serif;
+		    color: #888;
+				text-align: left;
+		}
+		#fwf {
+			margin-left:auto;
+	    margin-right:auto;
+	    border:1px solid #DDD;
+	    border-radius: 5px;
 		}
 		
 		#textparams {
+			margin-left:auto;
+	    margin-right:auto;
+	    max-width: 800px;
+	    background: #FFF;
+			padding: 20px 30px 20px 30px;
 			font-family: monospace;
+	    color: #888;
+	    text-shadow: 1px 1px 1px #FFF;
+	    border:1px solid #DDD;
+	    border-radius: 5px;
+	    -webkit-border-radius: 5px;
+	    -moz-border-radius: 5px;
 		}
 		</style>
-		
-		
+		<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
 </head>
 
 <!--
@@ -27,123 +55,137 @@ Main page
 
 <!-- Parameter entry -->
 
-<div>
+<form class="pure-form">
+	<h1>Input parameters</h1>
 	
-	<h1>Food web layout</h1>
-	<h3>Parameters</h3>
+	<fieldset>
+		<legend>SVG canvas size</legend>
+		
+		<label for="totheight">Height:</label>
+		<input type="number" min="0" max="2000" step="1" value="600" id="totheight" placeholder="height, pixels">
+		
+		<label for="totwidth">Width:</label>
+		<input type="number" min="0" max="2000" step="1" value="800" id="totwidth">
+		
+	</fieldset>
+	<fieldset>
+		<legend>Margin</legend>
+		
+		<label for="marl">Left margin:</label>
+		<input type="number" min="0" max="200" step="1" value="20" id="marl">
 
-		<p>
-			<label for="totheight">SVG height:</label>
-			<input type="number" min="0" max="2000" step="1" value="600" id="totheight">
-		<!-- </p>
-		<p> -->
-			<label for="totwidth">SVG width:</label>
-			<input type="number" min="0" max="2000" step="1" value="800" id="totwidth">
-		<!-- </p>
-		<p> -->
-			<label for="marl">Left margin:</label>
-			<input type="number" min="0" max="200" step="1" value="20" id="marl">
-		<!-- </p>
-		<p> -->
-			<label for="marr">Right margin:</label>
-			<input type="number" min="0" max="200" step="1" value="20" id="marr">
-		<!-- </p>
-		<p> -->
-			<label for="mart">Top margin:</label>
-			<input type="number" min="0" max="200" step="1" value="20" id="mart">
-		<!-- </p>
-		<p> -->
-			<label for="marb">Bottom margin:</label>
-			<input type="number" min="0" max="200" step="1" value="20" id="marb">
-		</p>
-		<p>
-			<label for="padding">Padding:</label>
-			<input type="number" min="0" max="50" step="1" value="10" id="padding">
-		<!-- </p>
-		<p> -->
-			<label for="tlnudge">Trophic nudging:</label>
-			<input type="number" min="0" max="5" step="0.1" value="1.0" id="tlnudge">
-		<!-- </p>
-		<p> -->
-			<label for="linkdist">Link distance:</label>
-			<input type="number" min="0" max="20" step="0.1" value="5" id="linkdist">
-		<!-- </p>
-		<p> -->
-			<label for="charge">Charge:</label>
-			<input type="number" min="-500" max="0" step="1" value="-100" id="charge">
-		<!-- </p>
-		<p> -->
-			<label for="seed">Random seed:</label>
-			<input type="text" id="seed" value="hello">
-		</p>
-		<p>
-			<label for="cpfac">Circle-packing scale factor:</label>
-			<input type="number" min="0" max="1" step="0.1" value="0.5" id="cpfac">
-		<!-- </p>
-		<p> -->
-			<label for="tlmin">Trophic level minimum:</label>
-			<input type="number" min="0" max="5" step="0.01" value="" id="tlmin">
-		<!-- </p>
-		<p> -->
-			<label for="tlmax">Trophic level maximum:</label>
-			<input type="number" min="0" max="5" step="0.01" value="" id="tlmax">
-		</p>
-		<p>
-			<!-- <label for="hlineop">Connector line opacity:</label>
-			<input type="number" min="0" max="1" step="0.1" value="1.0" id="hlineop">
-			<label for="flineop">Flux line opacity:</label>
-			<input type="number" min="0" max="1" step="0.1" value="0.3" id="flineop"> -->
-		<!-- </p>
-		<p> -->
-			<label for="fontsz">Label font size:</label>
-			<input type="number" min="5" max="20" step="1" value="8" id="fontsz">
-		</p>
-		<p>
-			<label for="init">Initial mode:</label>
-			<select id="init">
-			  <option value="cpack">Circle-packing</option>
-			  <option value="coords">Coordinates from file</option>
-			</select>
-			<label for="drawmode">Run mode:</label>
-			<select id="drawmode">
-			  <option value="force">Force layout</option>
-			  <option value="cpack">Circle-packing only</option>
-			</select>
-		</p>
-		<p><input name="updateButton" 
-              type="button" 
-              value="Update" 
-              onclick="update()"/>
-			 <input name="labelButton" 
-              type="button" 
-              value="Label" 
-              onclick="addlabel()"/></p>
-</div>
+		<label for="marr">Right margin:</label>
+		<input type="number" min="0" max="200" step="1" value="20" id="marr">
 
-<hline>
+		<label for="mart">Top margin:</label>
+		<input type="number" min="0" max="200" step="1" value="20" id="mart">
 
-<!-- Opacity sliders -->
+		<label for="marb">Bottom margin:</label>
+		<input type="number" min="0" max="200" step="1" value="20" id="marb">
+		
+	</fieldset>
+  <fieldset>
+		<legend>Trophic level axis</legend>
+		
+		<label for="tlmin">Minimum:</label>
+		<input type="number" min="0" max="5" step="0.01" value="" id="tlmin">
 
-<h3>Adjust line opacity</h3>
+		<label for="tlmax">Maximum:</label>
+		<input type="number" min="0" max="5" step="0.01" value="" id="tlmax">
+		
+		<label for="tlnudge">Strength of nudging:</label>
+		<input type="number" min="0" max="5" step="0.1" value="1.0" id="tlnudge">
+		
+	</fieldset>
+	<fieldset>
+		<legend>Initial position</legend>
+		
+		<label for="cpfac">Circle-packing scale factor:</label>
+		<input type="number" min="0" max="1" step="0.1" value="0.5" id="cpfac">
+		
+		<label for="init">Initial mode:</label>
+		<select id="init">
+		  <option value="cpack">Circle-packing</option>
+		  <option value="coords">Coordinates from file</option>
+		</select>
+		
+	</fieldset>
+	
+	<fieldset>
+		<legend>Run mode</legend>
+		
+		<label for="drawmode">Run mode:</label>
+		<select id="drawmode">
+			<option value="cpack">Circle-packing only</option>
+		  <option value="force">Force layout</option>
+		</select>
+	</fieldset>
+	<fieldset>
+		<legend>Force-simulation parameters</legend>
+		
+		<label for="padding">Padding:</label>
+		<input type="number" min="0" max="50" step="1" value="10" id="padding">
 
+		<label for="linkdist">Link distance:</label>
+		<input type="number" min="0" max="20" step="0.1" value="5" id="linkdist">
 
-<label for="hlineop">Connector line opacity:</label>
-<input type="range" min="0" max="1" step="0.1" value="1.0" id="hlineop">
+		<label for="charge">Charge:</label>
+		<input type="number" min="-500" max="0" step="1" value="-100" id="charge">
 
-<label for="flineop">Flux line opacity:</label>
-<input type="range" min="0" max="1" step="0.1" value="0.3" id="flineop">
+		<label for="seed">Random seed:</label>
+		<input type="text" id="seed" value="hello">
+		
+	</fieldset>
+	
+	<fieldset>
+		<legend>Edge opacity</legend>
+		<label for="hlineop">Grouping edges:</label>
+		<input type="range" min="0" max="1" step="0.1" value="1.0" id="hlineop">
 
-
+		<label for="flineop">Flux edges:</label>
+		<input type="range" min="0" max="1" step="0.1" value="0.3" id="flineop">
+	</fieldset>
+	
+	<fieldset>
+		<legend>Node labeling</legend>
+		
+		<label for="fontsz">Font size:</label>
+		<input type="number" min="0" max="50" step="1" value="10" id="fontsz">
+		
+		<input name="labelButton" 
+	              type="button" 
+	              value="Label" 
+	              onclick="addlabel()"/>
+		
+	</fieldset>
+	
+	<fieldset>
+		<legend>Actions</legend>
+		<input name="updateButton" 
+	              type="button" 
+	              value="Update" 
+	              onclick="update()"/>
+								
+		<label><input type="checkbox" id="donecheck"> All Done!</label>
+		
+	</fieldset>
+	
+	
+	
+	
+</form>
 
 <!-- Location for SVG canvas -->
 
-<h3>Output:</h3>
-<div id="fwf"></div>
+
+<div id="fwf" style="text-align:center; background: #DDD;">
+	<h1 style="font-size:1.5em; color:#FFF">Output:</h1>
+</div>
 
 <!-- Parameter printout -->
 
-<h3>Parameter summary</h3>
 <div id="textparams">
+	<h1 style="font-size:1.5em">Parameter summary</h1>
 </div>
 
 
@@ -167,6 +209,7 @@ function update() {
 	d3.select("svg").remove();
 	
 	d3.select("#textparams").html(
+				"<h1 style=\"font-size:1.5em\">Parameter summary</h1>" +
 		    "marl = "      + marl.value      + "<br>" +
 				"marr = "      + marr.value      + "<br>" +
 				"mart = "      + mart.value      + "<br>" +
@@ -345,6 +388,30 @@ d3.select("#flineop").on("input", function() {
 d3.select("#hlineop").on("input", function() {
   updatehline(+this.valueAsNumber);
 });
+
+d3.select("#donecheck").on("change", function(d){
+	d3.select("#textparams").html(
+				"<h1 style=\"font-size:1.5em\">Parameter summary</h1>" +
+		    "marl = "      + marl.value      + "<br>" +
+				"marr = "      + marr.value      + "<br>" +
+				"mart = "      + mart.value      + "<br>" +
+				"marb = "      + marb.value      + "<br>" +
+				"totwidth = "  + totwidth.value  + "<br>" +
+				"totheight = " + totheight.value + "<br>" +
+				"padding = "   + padding.value   + "<br>" +
+				"tlnudge = "   + tlnudge.value   + "<br>" +
+				"linkdist = "  + linkdist.value  + "<br>" +
+				"charge = "    + charge.value    + "<br>" +
+				"hlineop = "   + hlineop.value   + "<br>" +
+				"fontsz = "    + fontsz.value    + "<br>" +
+				"seed = "      + seed.value      + "<br>" +
+				"cpfac = "     + cpfac.value     + "<br>" +
+				"tlmin = "     + tlmin.value     + "<br>" +
+				"tlmax = "     + tlmax.value     + "<br>" +
+				"<H1>DONE</H1>"
+	);
+});
+
 
 
 function updatefline(val) {

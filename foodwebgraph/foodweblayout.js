@@ -66,7 +66,8 @@ function foodweblayout() {
 			main.append("rect")
 				.attr("width", "100%")
 				.attr("height", "100%")
-				.attr("fill", "#F8F9F9");
+				.attr("fill", "#FFF");
+				// .attr("fill", "#F8F9F9");
 			
 			var svg = main.append("g") // misleading variable name, sorry
 				.attr("id", "g_svg")
@@ -98,10 +99,15 @@ function foodweblayout() {
 
 			// Color
 
-            var c10 = d3.scale.category20();
+            var c10 = d3.scale.ordinal()
+				.domain([0,1,2,3,4,5,6,7,8,9,10,11])
+			.range(["#8dd3c7","#ffffb3","#bebada","#fb8072","#80b1d3","#fdb462","#b3de69","#fccde5","#d9d9d9","#bc80bd","#ccebc5","#ffed6f"]);
+
+            // var c10 = d3.scale.category20();
             var col = d3.scale.ordinal()
 				      .domain([0,1,2,3])
-				      .range(["#AEC7E8", "#98DF8A", "#C49C94", "#FF9896"]);
+					  .range(["white", "green", "yellow", "blue"]);
+				      // .range(["#AEC7E8", "#98DF8A", "#C49C94", "#FF9896"]);
 					  // .range(["rgb(236,237,135)", "rgb(186,222,131)", "rgb(240,180,139)", "rgb(152,222,224)"]);
 
 			switch (drawmode) {
@@ -119,9 +125,11 @@ function foodweblayout() {
 		            .attr('cx', function(d) { return d.x; })
 		            .attr('cy', function(d) { return d.y; })
 		  	        .attr('r', function(d) { return d.r; })
-		  		    .style("fill", function(d) {return d.type >= 4 ? "white" : col(d.type); })
-		  		    .style("stroke", function(d) {return c10(d.TG); })
-					.style("stroke-width", 2)
+		  		    // .style("fill", function(d) {return d.type >= 4 ? "white" : col(d.type); })
+// 		  		    .style("stroke", function(d) {return c10(d.TG); })
+		  		    .style("fill", function(d)   {return d.type >= 4 ? "white" : c10(d.TG-1); })
+		  		    .style("stroke", function(d) {return d.type >= 4 ? "black": col(d.type); })
+					.style("stroke-width", 1)
 				
 				// Add corner reference points (used by 
 				// waitforfoodweb to check that everything is 
@@ -238,10 +246,12 @@ function foodweblayout() {
 	            var circle = node.append("circle")
 	                .attr("class", "node")
 	                .attr("r", function(d) {return d.radius = (d.type >= 4 ? 0 : d.r); })
-	                .style("fill", function(d) {return d.type >= 4 ? "white" : col(d.type); }) 
-	                .style("stroke", function(d) {return d.TG == 0 ? "white" : c10(d.TG-1); })
+		  		    .style("fill", function(d) {return d.type >= 4 ? "white" : c10(d.TG-1); })
+		  		    .style("stroke", function(d) {return d.TG == 0 ? "white" : col(d.type); })
+	                // .style("fill", function(d) {return d.type >= 4 ? "white" : col(d.type); })
+	                // .style("stroke", function(d) {return d.TG == 0 ? "white" : c10(d.TG-1); })
 	                .style("opacity", 0.9)
-				    .style("stroke-width", 2);
+				    .style("stroke-width", 1);
 
 	            circle.append("title")
 	                .text(function(d) { return d.Name; });  
