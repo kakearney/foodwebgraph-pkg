@@ -57,7 +57,8 @@ function G = debundle(G, varargin)
 %                   If edge weights span several orders of magnitude, the
 %                   default linear treatment of edge weights may not be
 %                   ideal.  This can be used to apply a tranformation
-%                   before the (0,1] normalization.
+%                   before the (0,1] normalization.  Default is @(x) x,
+%                   i.e. no transformation.
 %
 % Output variables:
 %
@@ -68,9 +69,10 @@ function G = debundle(G, varargin)
 %                                 coordinates of the edge path 
 %                   y:            n x 1 array, y coordinates of the
 %                                 edge path 
-%                   BundleCompat: 1 x nedge logical vector, true if the
-%                                 edge is compatibile with each other edge
-%                                 for visible edge weighting purposes 
+%                   BundleCompat: 1 x nedge vector, edge compatibility
+%                                 value between this edge and each other
+%                                 one (set to 0 for edges running in
+%                                 opposite directions).
 
 % Copyright 2015 Kelly Kearney
 
@@ -78,18 +80,39 @@ function G = debundle(G, varargin)
 % Parse input
 %---------------------------------------
 
-A.ks = 0.5e-3;
-A.kC = 2.0e4;
-A.l = 25;
-A.s = 35.0; % 30.0
-A.f = 0.8;  % 0.2
-A.solver = 'selassie';
-A.plot = false;
-A.dt = 20; % Selassie uses 40, but my tests are unstable there
-A.compatability = 'all';
-A.edgefun = [];
+p = inputParser;
+p.addParameter('ks', 0.5e-3, @(x) validateattributes(x, {'numeric'}, {'scalar'}));
+p.addParameter('kC', 2.0e4,  @(x) validateattributes(x, {'numeric'}, {'scalar'}));
+p.addParameter('l',  25,     @(x) validateattributes(x, {'numeric'}, {'scalar'}));
+p.addParameter('s',  35.0,   @(x) validateattributes(x, {'numeric'}, {'scalar'}));
+p.addParameter('f',   0.8,   @(x) validateattributes(x, {'numeric'}, {'scalar'}));
+p.addParameter('dt', 20,     @(x) validateattributes(x, {'numeric'}, {'scalar'})); % Selassie uses 40, but my tests are unstable there
 
-A = parsepv(A, varargin);
+p.addParameter('solver',        'selassie',   @(x) validateattributes(x, {'char'}, {}));
+p.addParameter('compatability', 'all',        @(x) validateattributes(x, {'char'}, {}));
+p.addParameter('edgefun',       @(x) x,       @(x) validateattributes(x, {'function_handle'}, {}));
+p.addParameter('plot',          false,        @(x) validateattributes(x, {'logical'}, {'scalar'}));
+
+p.parse(varargin{:});
+A = p.Results;
+
+validateattributes(G, {'digraph'}, {}, 1);
+
+A.solver = validatestring(A.solver, {'selassie', 'leapfrog', 'ode45'}, '', 'solver');
+A.compatability = validatestring(A.compatability, {'all', 'noconnect', 'none'}, '', 'compatability');
+
+% A.ks = 0.5e-3;
+% A.kC = 2.0e4;
+% A.l = 25;
+% A.s = 35.0; % 30.0
+% A.f = 0.8;  % 0.2
+% A.solver = 'selassie';
+% A.plot = false;
+% A.dt = 20; % Selassie uses 40, but my tests are unstable there
+% A.compatability = 'all';
+% A.edgefun = [];
+% 
+% A = parsepv(A, varargin);
 
 %---------------------------------------
 % Setup
@@ -446,8 +469,10 @@ if any(isloop)
     yc = [yc ycl];
     
     n = size(xc,2);
-    bcompat = false(n,n);
-    bcompat(1:nedge,1:nedge) = A.issame & A.compat > 0.05;
+    tmp = A.compat;
+    tmp(~A.issame) = 0;
+    bcompat = zeros(n);
+    bcompat(1:nedge,1:nedge) = tmp;
     
     srctar = [G.Edges.EndNodes; Gloop.Edges.EndNodes];
     order = findedge(Gorig, srctar(:,1), srctar(:,2));
@@ -459,7 +484,8 @@ if any(isloop)
     G = Gorig;
 
 else
-    bcompat = A.issame & (A.compat > 0.05);
+    bcompat = A.compat;
+    bcompat(~A.issame) = 0;
 end
    
 % Assign to graph object

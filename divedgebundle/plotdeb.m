@@ -45,6 +45,9 @@ function [h, Data] = plotdeb(G, varargin)
 %               NaN, the maximum edge width in the graph will be used.
 %               [NaN]
 %
+%   cthresh:    compatability threshold value over which two edges will
+%               show visibly-summed weight [0.05]
+%
 % Output variables:
 %
 %   h:          graphics handle to the patch object
@@ -58,23 +61,45 @@ function [h, Data] = plotdeb(G, varargin)
 % Setup
 %--------------------
 
+validateattributes(G, {'digraph'}, {});
+
 nedge = numedges(G);
 
-Opt.w = 10;
-Opt.p = 1;
-Opt.wmin = 0;
-Opt.ax = [];
-Opt.smooth = false;
-Opt.alpha = 1;
-Opt.initial = false;
-Opt.selfloop = true;
-Opt.rloop = 20;
-Opt.gmax = NaN;
-% Opt.plot = true;
-% Opt.edgefun = [];
-Opt.upsample = [];
+p = inputParser;
+p.addParameter('w',         10, @(x) validateattributes(x, {'numeric'}, {'scalar'}));
+p.addParameter('p',          1, @(x) validateattributes(x, {'numeric'}, {'scalar'}));
+p.addParameter('wmin',       0, @(x) validateattributes(x, {'numeric'}, {'scalar'}));
+p.addParameter('alpha',      1, @(x) validateattributes(x, {'numeric'}, {'scalar'}));
+p.addParameter('rloop',     20, @(x) validateattributes(x, {'numeric'}, {'scalar'}));
+p.addParameter('gmax',     NaN, @(x) validateattributes(x, {'numeric'}, {'scalar'}));
+p.addParameter('cthresh', 0.05, @(x) validateattributes(x, {'numeric'}, {'scalar'}));
 
-Opt = parsepv(Opt, varargin);
+p.addParameter('smooth',  false, @(x) validateattributes(x, {'logical'}, {'scalar'}));
+p.addParameter('initial', false, @(x) validateattributes(x, {'logical'}, {'scalar'}));
+p.addParameter('selfloop', true, @(x) validateattributes(x, {'logical'}, {'scalar'}));
+
+p.addParameter('ax', []);
+p.addParameter('upsample', []);
+
+p.parse(varargin{:});
+Opt = p.Results;
+
+% 
+% Opt.w = 10;
+% Opt.p = 1;
+% Opt.wmin = 0;
+% Opt.ax = [];
+% Opt.smooth = false;
+% Opt.alpha = 1;
+% Opt.initial = false;
+% Opt.selfloop = true;
+% Opt.rloop = 20;
+% Opt.gmax = NaN;
+% % Opt.plot = true;
+% % Opt.edgefun = [];
+% Opt.upsample = [];
+% 
+% Opt = parsepv(Opt, varargin);
 
 if ~Opt.initial && ~all(ismember({'x','y'}, G.Edges.Properties.VariableNames))
     Opt.initial = true;
@@ -156,7 +181,7 @@ else
     
     d1 = (Opt.w.*gedge.^Opt.p)./fac; % Visual weight without bundling
     
-    mask = cell2mat(G.Edges.BundleCompat) & ~eye(nedge);
+    mask = cell2mat(G.Edges.BundleCompat) >= Opt.cthresh & ~eye(nedge);
     npt = size(x,1);
     for ie = 1:nedge
         
