@@ -44,6 +44,10 @@ function [frac, A] = sourcefraction(G, tagnodes)
 nnode = numnodes(G);
 
 bidx = findnode(G, tagnodes);
+if ~all(bidx)
+    str = sprintf('%s,', tagnodes{bidx==0});
+    error('Specified tagged nodes not found (%s)', str(1:end-1));
+end
 
 val = zeros(nnode,1);
 val(bidx) = 1;
