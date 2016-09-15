@@ -35,6 +35,23 @@ function h = plotfoodweb(G, Ax, varargin)
 %               [gradient]
 %
 %   Also accepts all parameters applicable to plotdeb.m
+%
+% Output variables:
+%
+%   h:          scalar structure holding graphics handles:
+%
+%               fig:    1 x 1, handle to figure   
+%
+%               ax:     1 x 1, handle to axis
+%
+%               edg:    1 x 1, handle to edges patch.  Note that all edges
+%                       are one multifaceted patch; each row of the Faces
+%                       property and each column of the XData/YData/CData
+%                       properties correspond to a single edge.
+%
+%               nd:     nnode x 1, handles to node patches
+%
+%               txt:    nnode x 1, handles to node text labels
 
 % Copyright 2016 Kelly Kearney
 
