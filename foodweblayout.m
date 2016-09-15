@@ -90,10 +90,35 @@ fid = fopen(file, 'wt');
 fprintf(fid, '%s', txt);
 fclose(fid);
 
+% Extract the parameter settings set by the user
+
+linemarker = '<div id="textparams">';
+txt = regexp(txt, '\n', 'split');
+isparam = strncmp(txt, linemarker, length(linemarker));
+paramtxt = txt{isparam};
+idx1 = strfind(paramtxt, 'marl');
+idx2 = strfind(paramtxt, '<h1>DONE');
+paramtxt = paramtxt(idx1:(idx2-1));
+pv = regexp(paramtxt, '<br>', 'split');
+isemp = cellfun('isempty', pv);
+pv = pv(~isemp);
+pv = regexp(pv, '=', 'split');
+pv = strtrim(cat(1, pv{:}));
+Param = cell2struct(pv(:,2), pv(:,1));
+
 % Extract relevant details from the html
 
+tlmin = str2double(Param.tlmin);
+tlmax = str2double(Param.tlmax);
+if isnan(tlmin)
+    tlmin = min(G.Nodes.TL);
+end
+if isnan(tlmax)
+    tlmax = max(G.Nodes.TL);
+end 
+
 [C,T] = extractsvg(file);
-[G, Ax] = foodweblayoutdetails(G, C, T);
+[G, Ax] = foodweblayoutdetails(G, C, T, [tlmin tlmax]);
 
 % Subfunction: Parse html and check for DONE marker
 
