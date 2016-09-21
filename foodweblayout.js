@@ -93,7 +93,9 @@ function foodweblayout() {
                 tnodes.forEach(function(d) {
                     d.x = d.xinit;
                     d.y = d.yinit;
-                    d.r = d.rinit;
+                    if ('rinit' in d) {
+                        d.r = d.rinit;
+                    }
                 })
             }
 
