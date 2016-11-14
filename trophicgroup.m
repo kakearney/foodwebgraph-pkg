@@ -102,10 +102,10 @@ function [tgpart, Out, G] = trophicgroup(G, varargin)
 %
 %   Out:        structure with some additional info:
 %
-%               tgmetricMax:    maximum trophic group index value achieved
-%                               by the returned partitioning
-%               tgmetricDetails: structure with additional data, fields
-%                               vary by algorithm
+%               tgmetricMax:        trophic group index value achieved
+%                                   by the returned partitioning
+%               tgmetricDetails:    structure with additional data, fields
+%                                   vary by algorithm
 %
 %                   (Hierarchical)
 %
@@ -358,7 +358,7 @@ switch Opt.method
         
         [tgpart, etrack] = simanpartition(costfun, nnode, cidx, SAopt);
         
-        Out.tgmetricMax = max(etrack(:,2));
+        Out.tgmetricMax = etrack(end,2); %max(etrack(:,2));
         Out.tgmetricDetails = struct('costAtMove', etrack(:,1), 'costAtAcceptedMove', etrack(:,2));
         
 end
