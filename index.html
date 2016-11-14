@@ -6,10 +6,6 @@
 	  stroke: #aaa;
 	}
 
-	/*.glinks line {
-	  stroke: red;
-	}*/
-
 	.nodes circle {
 	  pointer-events: all;
 	  stroke: none;
@@ -27,6 +23,21 @@
     background: #FFF;
     padding: 20px 30px 20px 30px;
     font: 11px "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #888;
+    text-shadow: 1px 1px 1px #FFF;
+    border:1px solid #DDD;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+	}
+	
+	#textparams {
+		margin-left:auto;
+    margin-right:auto;
+    max-width: 800px;
+    background: #FFF;
+		padding: 20px 30px 20px 30px;
+		font-family: monospace;
     color: #888;
     text-shadow: 1px 1px 1px #FFF;
     border:1px solid #DDD;
@@ -212,6 +223,11 @@
 	<h1 style="font-size:1.5em; color:#FFF">Output:</h1>
 </div>
 
+<!-- Parameter printout -->
+
+<div id="textparams">
+	<h1 style="font-size:1.5em">Parameter summary</h1>
+</div>
 
 <!-- Scripts -->
 <script>
@@ -223,7 +239,7 @@ update()
 function update() {
 	d3.select("svg").remove();
 	
-	d3.json("gen37.json", function(data) {
+	d3.json("foodweb.json", function(data) {
 	    d3.select("#foodweb")
 	        .datum(data)
 				.call(foodweblayout()
@@ -263,6 +279,33 @@ function updateglink(val) {
   d3.selectAll(".glinks")
     .style("opacity", val);
 }
+
+// When box is checked, print params
+
+d3.select("#donecheck").on("change", function(d){
+	d3.select("#textparams").html(
+				"<h1 style=\"font-size:1.5em\">Parameter summary</h1>" +
+		    "marl = "      + marl.value      + "<br>" +
+				"marr = "      + marr.value      + "<br>" +
+				"mart = "      + mart.value      + "<br>" +
+				"marb = "      + marb.value      + "<br>" +
+				"totwidth = "  + totwidth.value  + "<br>" +
+				"totheight = " + totheight.value + "<br>" +
+				"nodepad = "   + nodepad.value   + "<br>" +
+		    "strengthflxlink = " + strengthflxlink.value + "<br>" +
+				"strengthgrplink = " + strengthgrplink.value + "<br>" +
+				"strengthtrophic = " + strengthtrophic.value + "<br>" +
+		    "strengthxcenter = " + strengthxcenter.value + "<br>" +
+		    "tlmin = " + tlmin.value + "<br>" +
+				"tlmax = " + tlmax.value + "<br>" +
+		    "rmin = "  + rrmin.value + "<br>" +
+				"rmax = "  + rrmax.value + "<br>" +
+		    "bmin = "  + bbmin.value + "<br>" +
+				"bmax = "  + bbmax.value + "<br>" +
+				"<H1>DONE</H1>"
+	);
+});
+
 
 // Automated label placement
 
@@ -328,6 +371,7 @@ function addlabel() {
                   .data(inlabelarray)
                  .enter()
                  .append("text")
+									.attr("class", "inlabel")
                   .attr("x", function(d) {return d.x})
                   .attr("y", function(d) {return d.y})
                   .attr("text-anchor", "middle")
@@ -346,17 +390,17 @@ function addlabel() {
 		                .start(1000);
 
 	var outlabels = gnode.selectAll(".label2")
-			            .data(labelarray)
+			              .data(labelarray)
 			            .enter()
 			            .append("text")
-			            .attr("class", "label")
-			            .attr('text-anchor', 'start')
-			            .text(function(d) { return d.name; })
-			            .attr("x", function(d) { return (d.x); })
-			            .attr("y", function(d) { return (d.y); })
-	                .attr("font-size", fontsz.valueAsNumber)
-									.attr("font-family", "Arial")
-			            .attr("fill", "black");
+			              .attr("class", "label")
+			              .attr('text-anchor', 'start')
+			              .text(function(d) { return d.name; })
+			              .attr("x", function(d) { return (d.x); })
+			              .attr("y", function(d) { return (d.y); })
+	                  .attr("font-size", fontsz.valueAsNumber)
+									  .attr("font-family", "Arial")
+			              .attr("fill", "black");
 									
 	// Add lines connecting labels to nodes
 

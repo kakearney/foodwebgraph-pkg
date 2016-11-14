@@ -14,19 +14,14 @@ function [C,T] = extractsvg(file)
 %   C:          structure holding details of circle elements found in the
 %               resulting svg image, with the following fields
 %               x:      x-coordinate of nodes, in pixels (measured from
-%                       left to right, with 0 at the left of the main
-%                       grouping element)
+%                       left to right, with 0 at the left of the svg
+%                       canvas)
 %               y:      y-coordinate of nodes, in pixels (measured from top
-%                       to bottom, with 0 at the top of the main grouping
-%                       element) 
-%               xref:   x-coordinate of corner reference dots, in pixels
-%                       (these define the main grouping element)
-%               yref:   y-coordinate of corner reference dots, in pixels
+%                       to bottom, with 0 at the top of the svg canvas) 
 %               r:      radius of nodes, in pixels
 %               label:  node name associated with each x, y, and r value
-%               trans:  transform (i.e. shift left, shift down) from upper
-%                       right of svg canvas to upper right of main grouping
-%                       element 
+%               axpos:  position [left top width height] of the axis
+%                       rectangle
 %               svgsz:  width and height of svg canvas
 %
 %   T:          structure holding details of the text elements found in the
@@ -63,78 +58,72 @@ if ishtml
     fclose(fid);
 end
     
-% Extract size and position of the circle nodes (as well as the corner dots
-% that mark the edge of the "axis" g element.
+% Extract size and position of the circle nodes 
 
 xdoc = xmlread(file);
 circ = xdoc.getElementsByTagName('circle');
 
 n = circ.getLength;
 
-[C.x ,C.y, C.xref, C.yref, C.r] = deal(nan(n,1));
+[C.x, C.y, C.r] = deal(nan(n,1));
 C.label = cell(n,1);
 
 for k = 1:n
     c = circ.item(k-1);
     
     if c.hasAttribute('cx')
-        C.xref(k) = str2double(char(c.getAttribute('cx')));
-        C.yref(k) = str2double(char(c.getAttribute('cy')));
-    else
+        C.x(k) = str2double(char(c.getAttribute('cx')));
+        C.y(k) = str2double(char(c.getAttribute('cy')));
         C.r(k) = str2double(char(c.getAttribute('r')));
-        t = c.getElementsByTagName('title');
-        p = c.getParentNode;
-        
-        C.label{k} = char(t.item(0).getFirstChild.getData);
-        tform = char(p.getAttribute('transform'));
-        
-        xy = regexp(tform, 'translate\(([\d\.-]+),([\d\.-]+)\)', 'tokens', 'once');
-        xy = cellfun(@str2double, xy);
-        C.x(k) = xy(1);
-        C.y(k) = xy(2);
-        
-    end
-        
+        C.label{k} = char(c.getElementsByTagName('title').item(0).getTextContent);
+    end   
 end
-    
-isref = isnan(C.x);
-C.xref = C.xref(isref);
-C.yref = C.yref(isref);
-C.x = C.x(~isref);
-C.y = C.y(~isref);
-C.r = C.r(~isref);
-C.label = C.label(~isref);
 
 % Extract the position, alignment, and font details from the text labels
 
 txt = xdoc.getElementsByTagName('text');
 nt = txt.getLength;
 
-[T.x, T.y] = deal(nan(nt,1));
-[T.label, T.anchor] = deal(cell(nt,1));
+[T.x, T.y, T.fontsize] = deal(nan(nt,1));
+[T.label, T.anchor, T.font, T.class] = deal(cell(nt,1));
 for it = 1:nt
     t = txt.item(it-1);
+
     T.x(it) = str2double(char(t.getAttribute('x')));
     T.y(it) = str2double(char(t.getAttribute('y'))); 
     T.anchor{it} = char(t.getAttribute('text-anchor'));
-    T.fontsize{it} =  str2double(char(t.getAttribute('font-size')));
+    T.fontsize(it) =  str2double(char(t.getAttribute('font-size')));
     T.font{it} = char(t.getAttribute('font-family'));
     if t.getLength > 0
         T.label{it} = char(t.item(0).getData);
     else
         T.label{it} = '';
     end
+    T.class{it} = char(t.getAttribute('class'));
+
 end
 
-% Extract the location and size of the main svg element and "axis" grouping
-% element
+isn = cellfun('isempty', T.class) | (strcmp(T.class, 'label') & cellfun('isempty', T.label));
+T.x = T.x(~isn);
+T.y = T.y(~isn);
+T.label = T.label(~isn);
+T.anchor = T.anchor(~isn);
+T.fontsize = T.fontsize(~isn);
+T.font = T.font(~isn);
 
-g = xdoc.getElementsByTagName('g');
-gmain = g.item(0);
-trans = char(gmain.getAttribute('transform'));
-C.trans = cellfun(@str2double, regexp(trans, 'translate\(([0-9]*),([0-9]*)\)', 'tokens', 'once'));
+% Extract the location and size of the main svg element and "axis"
+% rectangle
+
+rect = xdoc.getElementsByTagName('rect');
+rect = rect.item(0);
+C.axpos = [str2double(char(rect.getAttribute('x'))), ...
+           str2double(char(rect.getAttribute('y'))), ...
+           str2double(char(rect.getAttribute('width'))), ...
+           str2double(char(rect.getAttribute('height')))];
 
 svg = xdoc.getElementsByTagName('svg');
 svg = svg.item(0);
 C.svgsz = [str2double(char(svg.getAttribute('width'))), ...
            str2double(char(svg.getAttribute('height')))];
+       
+

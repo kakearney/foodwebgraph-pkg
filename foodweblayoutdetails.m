@@ -61,10 +61,11 @@ end
 
 % Convert pixel coordinates to trophic level coordinates
 
-m = (tllim(1) - tllim(2))./(C.yref(2)-C.yref(1));
-fun = @(x) m*(x - C.yref(2)) + tllim(1);
+m = (tllim(1) - tllim(2))./C.axpos(4);
+% m = (tllim(1) - tllim(2))./(C.yref(2)-C.yref(1));
+fun = @(x) m*(x - (C.axpos(4)+C.axpos(2))) + tllim(1);
 
-fac = diff(C.yref)./diff(tllim);
+fac = C.axpos(4)./diff(tllim);
 
 if isempty(T.x)
     error('No text object found; did you forget to label?');
@@ -94,14 +95,14 @@ G.Nodes.tv = vert(loc);
 
 % Calculate figure/axis size necessary to get 
 
-Ax.ylim = fun(C.yref([2 1]));
-Ax.xlim = C.xref./fac;
+Ax.ylim = fun([C.axpos(2)+C.axpos(4), C.axpos(2)]);
+Ax.xlim = [C.axpos(1) C.axpos(1)+C.axpos(3)]./fac;
 Ax.figpos = [0 0 C.svgsz];
 
-w = diff(C.xref);
-h = diff(C.yref);
-Ax.axpos = [C.trans(1) C.svgsz(2)-C.trans(2)-h w h]./[C.svgsz C.svgsz];
-Ax.fontsize = T.fontsize{1};
+w = C.axpos(3);
+h = C.axpos(4);
+Ax.axpos = [C.axpos(1) C.svgsz(2)-C.axpos(2)-h w h]./[C.svgsz C.svgsz];
+Ax.fontsize = T.fontsize(1);
 Ax.fontname = T.font{1};
 
 % Ax.dx = diff(C.xref);

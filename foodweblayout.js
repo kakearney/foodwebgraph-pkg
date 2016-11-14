@@ -12,7 +12,7 @@ function foodweblayout() {
 		strengthgrplink = 0.1,
 		strengthtrophic = 0.9,
 		strengthxcenter = 0.05,
-		tllim = [0.5, NaN],
+		tllim = [NaN, NaN],
 		rlim = [1, 50],
 		blim = [NaN, NaN],
 		nodepad = 10,
@@ -54,8 +54,8 @@ function foodweblayout() {
 			// Scales
 
 			tllimdefault = d3.extent(nodedata, function(d) {return d.TL});
-			dtl = tllimdefault[1] - tllimdefault[0]
-			tllimdefault = [tllimdefault[0]-0.1*dtl, tllimdefault[1]+dtl*0.1]
+			// dtl = tllimdefault[1] - tllimdefault[0]
+			// tllimdefault = [tllimdefault[0]-0.1*dtl, tllimdefault[1]+dtl*0.1]
 			
 			if (isNaN(tllim[0])) {
 				tllim[0] = tllimdefault[0]
@@ -64,7 +64,13 @@ function foodweblayout() {
 				tllim[1] = tllimdefault[1]
 			}
 
-			blim = d3.extent(nodedata, function(d) {return d.B});
+			blimdefault = d3.extent(nodedata, function(d) {return d.B});
+			if (isNaN(blim[0])) {
+				blim[0] = blimdefault[0]
+			}
+			if (isNaN(blim[1])) {
+				blim[1] = blimdefault[1]
+			}
 
 			var tl2y = d3.scaleLinear()
 				.domain([tllim[0], tllim[1]])
@@ -84,6 +90,11 @@ function foodweblayout() {
 			var colgrp = d3.scaleOrdinal()
 				.domain([1,2,3,4,5,6,7,8,9,10])
 				.range(d3.schemeCategory10);
+				
+			var colval = d3.scaleLinear()
+				.domain([0,1])
+                .interpolate(d3.interpolateHcl)
+                .range([d3.rgb("#007AFF"), d3.rgb('#FFF500')]);
 				
 		 	// Add axis
 	
@@ -115,7 +126,12 @@ function foodweblayout() {
 		       .enter().append("circle")
 			   	 .attr("class", "nodecircle")
 		         .attr("r", function(d) {return b2r(d.B); })
-			     .style("fill", function(d) {return d.type >= 4 ? "white" : coltype(d.type); })
+			     .style("fill", function(d) {
+					 if('cval' in d) {
+						 return colval(d.cval);
+					 } else
+						 return d.type >= 4 ? "white" : coltype(d.type); 
+					 })
 			   	 .style("stroke", "white")
 			   	 .style("stroke-width", 0.5)
 		         .call(d3.drag()
@@ -128,10 +144,16 @@ function foodweblayout() {
 				 
 		 	// Start nodes with y = trophic level, x = center
 
+			tgmax = d3.max(nodedata, function(d) {return d.TG});
+			dx = totwidth/(tgmax+1);
 		 	for (var i = 0; i < nodedata.length;  i++) {
-		 		nodedata[i].x = totwidth/2;
-		 		nodedata[i].y = tl2y(nodedata[i].TL);
-		 	}
+				if (!('x' in nodedata[i])) {
+			 		// nodedata[i].x = totwidth/2;
+					nodedata[i].x = nodedata[i].TG*dx;
+			 		nodedata[i].y = tl2y(nodedata[i].TL);
+			 	}
+			}
+
 		
 		 	// Add forces to force simulation (in order of priority):
 		 	// trophic = nudge all nodes to y position based on trophic axis
