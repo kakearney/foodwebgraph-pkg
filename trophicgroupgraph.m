@@ -102,11 +102,15 @@ H = digraph(newsrc, newtar, ones(size(newsrc)));
 % Add new nodes to the original graph
 
 newnode = setdiff(H.Nodes.Name, G.Nodes.Name);
-nnew = length(newnode);
-new = table(newnode, zeros(nnew,1), ones(nnew,1)*5, nan(nnew,1), ...
-    'variableNames', {'Name', 'B', 'type', 'TL'});
 
-G = addnode(G, new);
+wstat = warning('off', 'MATLAB:table:RowsAddedExistingVars');
+G = addnode(G, newnode);
+warning(wstat);
+isn = ismember(G.Nodes.Name, newnode);
+G.Nodes.B(isn) = 0;
+G.Nodes.type(isn) = 5;
+G.Nodes.TL(isn) = NaN;
+
 widx = findnode(G, 'web');
 G.Nodes.type(widx) = 6;
 
