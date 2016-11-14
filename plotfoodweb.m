@@ -66,7 +66,8 @@ p.parse(varargin{:});
 
 Opt = p.Results;
 
-Opt.edgecolor = validatestring(Opt.edgecolor, {'gradient', 'byEdge', 'bySource', 'byTarget'});
+Opt.edgecolor = validatestring(Opt.edgecolor, ...
+    {'gradient', 'byEdge', 'bySource', 'byTarget', 'byValue'});
 
 % Assume unmatched options apply to the plotting of edges, and let
 % plotdeb.m throw an error if not
@@ -84,7 +85,7 @@ hold on;
 
 % Plot edges, and alter color if necessary
 
-h.edg = plotdeb(G, debOpt);
+[h.edg, Data] = plotdeb(G, debOpt);
 set(h.edg, 'clipping', 'off');
 
 
@@ -97,6 +98,8 @@ switch Opt.edgecolor
         h.edg.CData = ones(nvert,1)*findnode(G, G.Edges.EndNodes(:,1))';
     case 'byTarget'
         h.edg.CData = ones(nvert,1)*findnode(G, G.Edges.EndNodes(:,2))';
+    case 'byValue'
+        h.edg.CData = Data.w;
 end
 
 
