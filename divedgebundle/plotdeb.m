@@ -275,12 +275,12 @@ dl = max((Opt.w .* gl.^Opt.p)./fac, Opt.wmin./fac);
 % end
 % isloop = strcmp(G.Edges.EndNodes(:,1), G.Edges.EndNodes(:,2));
 
-[xp,yp,cp] = deal(cell(nedge,1));
+[xp,yp,cp,wp] = deal(cell(nedge,1));
 for ii = 1:nedge
     if Opt.selfloop && isloop(ii)
-        [xp{ii},yp{ii},cp{ii}] = line2poly(xl(:,ii), yl(:,ii), dl(:,ii)); 
+        [xp{ii},yp{ii},cp{ii},wp{ii}] = line2poly(xl(:,ii), yl(:,ii), dl(:,ii), gl(:,ii)*Opt.gmax); 
     else
-        [xp{ii},yp{ii},cp{ii}] = line2poly(x(:,ii), y(:,ii), d(:,ii)); 
+        [xp{ii},yp{ii},cp{ii},wp{ii}] = line2poly(x(:,ii), y(:,ii), d(:,ii), gcontrol(:,ii)*Opt.gmax); 
     end
 end
 
@@ -294,7 +294,7 @@ end
 
 hold(Opt.ax, 'on');
 
-[xp,yp,cp] = singlepatch(xp,yp,cp);
+[xp,yp,cp,wp] = singlepatch(xp,yp,cp,wp);
 
 h = patch(xp,yp,cp,'parent', Opt.ax);
 set(h, 'FaceAlpha', 0.4, 'edgecolor', 'none');   
@@ -302,6 +302,7 @@ set(h, 'FaceAlpha', 0.4, 'edgecolor', 'none');
 Data.x = xp;
 Data.y = yp;
 Data.c = cp;
+Data.w = wp;
 
 % h = cellfun(@(x,y,c) patch(x,y,c, 'parent', Opt.ax), x,y,c, 'uni', 0);
 % h = cat(1, h{:});
@@ -311,7 +312,11 @@ Data.c = cp;
 % line2poly
 %--------------------
 
-function [xp,yp,cp] = line2poly(x, y, w)
+function [xp,yp,cp,wp] = line2poly(x, y, w, g)
+% x = x coordinate
+% y = y coordinate
+% w = width
+% g = weight being depicted by that width
 
 nx = length(x);
 p = [x y]';
@@ -427,6 +432,8 @@ cr = cat(1, cr{:});
 xp = [xl; xr(end:-1:1); xl(1)];
 yp = [yl; yr(end:-1:1); yl(1)];
 cp = [cl; cr(end:-1:1); cl(1)];
+
+wp = interp1(dr', g, cp);
 
 function visedgewidth()
 

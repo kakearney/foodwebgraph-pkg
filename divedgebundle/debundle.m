@@ -53,12 +53,13 @@ function G = debundle(G, varargin)
 %                               the ODE (dxdt = v; dvdt = F - vf) 
 %                   'ode45':    uses ode45 solver (dxdt = v; dvdt = F - vf)
 %
-%   edgefun:        function handle for transform function for edge weights.
-%                   If edge weights span several orders of magnitude, the
-%                   default linear treatment of edge weights may not be
-%                   ideal.  This can be used to apply a tranformation
-%                   before the (0,1] normalization.  Default is @(x) x,
-%                   i.e. no transformation.
+%   edgefun:        function handle for transform function for edge
+%                   weights, of the form y = fun(x), where x and y are both
+%                   nedge x 1 vectors. If edge weights span several orders
+%                   of magnitude, the default linear treatment of edge
+%                   weights may not be ideal.  This can be used to apply a
+%                   tranformation before the (0,1] normalization.  Default
+%                   is @(x) x, i.e. no transformation.    
 %
 % Output variables:
 %
