@@ -1,184 +1,225 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <meta http-equiv="content-Type" content="text/html; charset=utf-8"/>
-		<style>
-		form {
-			margin-left:auto;
-	    margin-right:auto;
-	    max-width: 800px;
-	    background: #FFF;
-	    padding: 20px 30px 20px 30px;
-	    font: 11px "Helvetica Neue", Helvetica, Arial, sans-serif;
-	    color: #888;
-	    text-shadow: 1px 1px 1px #FFF;
-	    border:1px solid #DDD;
-	    border-radius: 5px;
-	    -webkit-border-radius: 5px;
-	    -moz-border-radius: 5px;
-		}
-		h1 {
-		    font: 1em "Helvetica Neue", Helvetica, Arial, sans-serif;
-		    color: #888;
-				text-align: left;
-		}
-		#fwf {
-			margin-left:auto;
-	    margin-right:auto;
-	    border:1px solid #DDD;
-	    border-radius: 5px;
-		}
-		
-		#textparams {
-			margin-left:auto;
-	    margin-right:auto;
-	    max-width: 800px;
-	    background: #FFF;
-			padding: 20px 30px 20px 30px;
-			font-family: monospace;
-	    color: #888;
-	    text-shadow: 1px 1px 1px #FFF;
-	    border:1px solid #DDD;
-	    border-radius: 5px;
-	    -webkit-border-radius: 5px;
-	    -moz-border-radius: 5px;
-		}
-		</style>
-		<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
-</head>
+<meta charset="utf-8">
+<style>
 
-<!--
-***************
-Main page
-***************
--->
+	.flinks line {
+	  stroke: #aaa;
+	}
 
-<!-- Parameter entry -->
+	.nodes circle {
+	  pointer-events: all;
+	  stroke: none;
+	  stroke-width: 40px;
+	}
 
-<form class="pure-form">
+	svg {
+  	background-color: lightgray;
+  }
+
+	form {
+		margin-left:auto;
+    margin-right:auto;
+    max-width: 800px;
+    background: #FFF;
+    padding: 20px 30px 20px 30px;
+    font: 11px "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #888;
+    text-shadow: 1px 1px 1px #FFF;
+    border:1px solid #DDD;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+	}
+	
+	#textparams {
+		margin-left:auto;
+    margin-right:auto;
+    max-width: 800px;
+    background: #FFF;
+		padding: 20px 30px 20px 30px;
+		font-family: monospace;
+    color: #888;
+    text-shadow: 1px 1px 1px #FFF;
+    border:1px solid #DDD;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+	}
+
+</style>
+<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<script src="foodweblayout.js"></script>
+<script src="labeler.js"></script>
+
+<!--Parameter entry: set up the svg canvas and axis -->
+
+<form class="pure-form pure-form-stacked">
+
 	<h1>Input parameters</h1>
 	
 	<fieldset>
 		<legend>SVG canvas size</legend>
 		
-		<label for="totheight">Height:</label>
-		<input type="number" min="0" max="2000" step="1" value="600" id="totheight" placeholder="height, pixels">
-		
-		<label for="totwidth">Width:</label>
-		<input type="number" min="0" max="2000" step="1" value="800" id="totwidth">
-		
+		<div class="pure-g">
+			<div class="pure-u-1-4">
+				<label for="totheight">Height:</label>
+				<input type="number" class="pure-u-3-4" min="0" max="2000" step="1" value="600" id="totheight" placeholder="height, pixels">
+			</div>
+			
+			<div class="pure-u-1-4">
+				<label for="totwidth">Width:</label>
+				<input type="number" class="pure-u-3-4" min="0" max="2000" step="1" value="960" id="totwidth">
+			</div>
+		</div>
+	
 	</fieldset>
 	<fieldset>
 		<legend>Margin</legend>
 		
-		<label for="marl">Left margin:</label>
-		<input type="number" min="0" max="200" step="1" value="20" id="marl">
-
-		<label for="marr">Right margin:</label>
-		<input type="number" min="0" max="200" step="1" value="20" id="marr">
-
-		<label for="mart">Top margin:</label>
-		<input type="number" min="0" max="200" step="1" value="20" id="mart">
-
-		<label for="marb">Bottom margin:</label>
-		<input type="number" min="0" max="200" step="1" value="20" id="marb">
-		
-	</fieldset>
-  <fieldset>
-		<legend>Trophic level axis</legend>
-		
-		<label for="tlmin">Minimum:</label>
-		<input type="number" min="0" max="5" step="0.01" value="" id="tlmin">
-
-		<label for="tlmax">Maximum:</label>
-		<input type="number" min="0" max="5" step="0.01" value="" id="tlmax">
-		
-		<label for="tlnudge">Strength of nudging:</label>
-		<input type="number" min="0" max="5" step="0.1" value="1.0" id="tlnudge">
-		
-	</fieldset>
-	<fieldset>
-		<legend>Initial position</legend>
-		
-		<label for="cpfac">Circle-packing scale factor:</label>
-		<input type="number" min="0" max="1" step="0.1" value="0.5" id="cpfac">
-		
-		<label for="init">Initial mode:</label>
-		<select id="init">
-		  <option value="cpack">Circle-packing</option>
-		  <option value="coords">Coordinates from file</option>
-		</select>
-		
-	</fieldset>
-	
-	<fieldset>
-		<legend>Run mode</legend>
-		
-		<label for="drawmode">Run mode:</label>
-		<select id="drawmode">
-			<option value="cpack">Circle-packing only</option>
-		  <option value="force">Force layout</option>
-		</select>
-	</fieldset>
-	<fieldset>
-		<legend>Force-simulation parameters</legend>
-		
-		<label for="padding">Padding:</label>
-		<input type="number" min="0" max="50" step="1" value="10" id="padding">
-
-		<label for="linkdist">Link distance:</label>
-		<input type="number" min="0" max="20" step="0.1" value="5" id="linkdist">
-
-		<label for="charge">Charge:</label>
-		<input type="number" min="-500" max="0" step="1" value="-100" id="charge">
-
-		<label for="seed">Random seed:</label>
-		<input type="text" id="seed" value="hello">
+		<div class="pure-g">
+			<div class="pure-u-1-4">
+				<label for="marl">Left margin:</label>
+				<input class="pure-u-3-4" type="number" min="0" max="200" step="1" value="50" id="marl">
+			</div>
+			<div class="pure-u-1-4">
+				<label for="marr">Right margin:</label>
+				<input class="pure-u-3-4" type="number" min="0" max="200" step="1" value="10" id="marr">
+			</div>
+			<div class="pure-u-1-4">
+				<label for="mart">Top margin:</label>
+				<input class="pure-u-3-4" type="number" min="0" max="200" step="1" value="10" id="mart">
+			</div>
+			<div class="pure-u-1-4">
+				<label for="marb">Bottom margin:</label>
+				<input class="pure-u-3-4" type="number" min="0" max="200" step="1" value="10" id="marb">
+			</div>
+		</div>
 		
 	</fieldset>
 	
 	<fieldset>
 		<legend>Edge opacity</legend>
-		<label for="hlineop">Grouping edges:</label>
-		<input type="range" min="0" max="1" step="0.1" value="1.0" id="hlineop">
-
-		<label for="flineop">Flux edges:</label>
-		<input type="range" min="0" max="1" step="0.1" value="0.3" id="flineop">
+		
+		<div class="pure-g">
+			<div class="pure-u-1-4">
+				<label for="glineop">Grouping edges:</label>
+				<input type="range" min="0" max="1" step="0.1" value="1.0" id="glineop">
+			</div>
+			<div class="pure-u-1-4">
+				<label for="flineop">Flux edges:</label>
+				<input type="range" min="0" max="1" step="0.1" value="1.0" id="flineop">
+			</div>
+		</div>
+	</fieldset>
+	
+	<fieldset>
+		<legend>Scales</legend>
+		
+		<div class="pure-g">
+			<div class="pure-u-1-4">
+				<label for="tlmin">Minimum trophic level:</label>
+				<input class="pure-u-3-4" type="number" min="0" max="10" step="1" value="" id="tlmin" placeholder="default: minimum in input">
+			</div>
+			<div class="pure-u-1-4">
+				<label for="tlmax">Maximum trophic level:</label>
+				<input class="pure-u-3-4" type="number" min="0" max="10" step="1" value="" id="tlmax" placeholder="default: maximum in input">
+			</div>
+		</div>
+		
+		<div class="pure-g">
+			<div class="pure-u-1-4">
+				<label for="bbmin">Minimum biomass:</label>
+				<input class="pure-u-3-4" type="number" min="0" max="10000" step="10" value="" id="bbmin" placeholder="default: minimum in input">
+			</div>
+			<div class="pure-u-1-4">
+				<label for="bbmax">Maximum biomass:</label>
+				<input class="pure-u-3-4" type="number" min="0" max="10000" step="10" value="" id="bbmax" placeholder="default: maximum in input">
+			</div>
+		</div>
+		
+		<div class="pure-g">
+			<div class="pure-u-1-4">
+				<label for="rrmin">Minimum radius (pixels):</label>
+				<input class="pure-u-3-4" type="number" min="0" max="20" step="1" value="1" id="rrmin">
+			</div>
+			<div class="pure-u-1-4">
+				<label for="rrmax">Maximum radius (pixels):</label>
+				<input class="pure-u-3-4" type="number" min="0" max="200" step="5" value="50" id="rrmax">
+			</div>
+		</div>
+		
+	</fieldset>
+	
+	<fieldset>
+		<legend>Force-simulation parameters</legend>
+		
+		<div class="pure-g">
+			<div class="pure-u-1-4">
+				<label for="nodepad">Space between nodes (pixels): </label>
+				<input class="pure-u-3-4" type="number" min="0" max="50" step="1" value="10" id="nodepad"><br>
+			</div>
+			<div class="pure-u-1-4">
+				<label for="strengthflxlink">Flux link strength: </label>
+				<input class="pure-u-3-4" type="number" min="0" max="1" step="0.1" value="0.001" id="strengthflxlink"><br>
+			</div>
+			<div class="pure-u-1-4">
+				<label for="strengthgrplink">Trophic group link strength: </label>
+				<input class="pure-u-3-4" type="number" min="0" max="1" step="0.1" value="0.1" id="strengthgrplink"><br>
+			</div>
+			<div class="pure-u-1-4">
+				<label for="strengthtrophic">Trophic level y-positioning strength: </label>
+				<input class="pure-u-3-4" type="number" min="0" max="1" step="0.1" value="0.9" id="strengthtrophic"><br>
+			</div>
+			<div class="pure-u-1-4">
+				<label for="strengthxcenter">Centering x-positioning strength: </label>
+				<input class="pure-u-3-4" type="number" min="0" max="1" step="0.1" value="0.05" id="strengthxcenter">
+			</div>
+		</div>
+		
 	</fieldset>
 	
 	<fieldset>
 		<legend>Node labeling</legend>
 		
-		<label for="fontsz">Font size:</label>
-		<input type="number" min="0" max="50" step="1" value="10" id="fontsz">
-		
-		<input name="labelButton" 
-	              type="button" 
-	              value="Label" 
-	              onclick="addlabel()"/>
+		<div class="pure-g">
+			<div class="pure-u-1-4">
+				<label for="fontsz">Font size:</label>
+				<input class="pure-u-3-4" type="number" min="0" max="50" step="1" value="10" id="fontsz">
+			</div>
+		</div>
 		
 	</fieldset>
 	
 	<fieldset>
 		<legend>Actions</legend>
-		<input name="updateButton" 
-	              type="button" 
-	              value="Update" 
-	              onclick="update()"/>
-								
-		<label><input type="checkbox" id="donecheck"> All Done!</label>
+		
+		<div class="pure-u-1-4">
+			<input class="pure-button pure-u-3-4"
+		         name="updateButton" 
+	           type="button" 
+	           value="Restart force simulation" 
+	           onclick="update()"/>
+		 </div>
+		<div class="pure-u-1-4">
+			<input class="pure-button pure-u-3-4"
+			       name="labelButton" 
+		         type="button" 
+		         value="Add text labels" 
+		         onclick="addlabel()"/>
+		</div>
+	  <div class="pure-u-1-4">				
+			<label for="donecheck">Check to return to Matlab:</label>
+			<input class="pure-checkbox" type="checkbox" id="donecheck">
+		</div>
 		
 	</fieldset>
-	
-	
-	
 	
 </form>
 
 <!-- Location for SVG canvas -->
 
-
-<div id="fwf" style="text-align:center; background: #DDD;">
+<div id="foodweb" style="text-align:center; background: #DDD;">
 	<h1 style="font-size:1.5em; color:#FFF">Output:</h1>
 </div>
 
@@ -188,206 +229,58 @@ Main page
 	<h1 style="font-size:1.5em">Parameter summary</h1>
 </div>
 
-
-<!--
-***************
-Scripts
-***************
--->
-
-<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
-<script src="packages.js"></script>
-<script src="foodweblayout.js"></script>
-<script src="seedrandom.min.js"></script>
-<script src="labeler.js"></script>
-
+<!-- Scripts -->
 <script>
 
-update();
+update()
+
+// Call foodweblayout using parameters from form
 
 function update() {
 	d3.select("svg").remove();
 	
-	d3.select("#textparams").html(
-				"<h1 style=\"font-size:1.5em\">Parameter summary</h1>" +
-		    "marl = "      + marl.value      + "<br>" +
-				"marr = "      + marr.value      + "<br>" +
-				"mart = "      + mart.value      + "<br>" +
-				"marb = "      + marb.value      + "<br>" +
-				"totwidth = "  + totwidth.value  + "<br>" +
-				"totheight = " + totheight.value + "<br>" +
-				"padding = "   + padding.value   + "<br>" +
-				"tlnudge = "   + tlnudge.value   + "<br>" +
-				"linkdist = "  + linkdist.value  + "<br>" +
-				"charge = "    + charge.value    + "<br>" +
-				"hlineop = "   + hlineop.value   + "<br>" +
-				"fontsz = "    + fontsz.value    + "<br>" +
-				"seed = "      + seed.value      + "<br>" +
-				"cpfac = "     + cpfac.value     + "<br>" +
-				"tlmin = "     + tlmin.value     + "<br>" +
-				"tlmax = "     + tlmax.value     + "<br>"
-	);
-	
 	d3.json("foodweb.json", function(data) {
-	    d3.select("#fwf")
+	    d3.select("#foodweb")
 	        .datum(data)
-	    .call(foodweblayout()
-		    .marl(marl.valueAsNumber)
-		    .marr(marr.valueAsNumber)
-		    .mart(mart.valueAsNumber)
-		    .marb(marb.valueAsNumber)
-		    .totwidth(totwidth.valueAsNumber)
-		    .totheight(totheight.valueAsNumber)
-		    .padding(padding.valueAsNumber)
-		    .tlnudge(tlnudge.valueAsNumber)
-		    .linkdist(linkdist.valueAsNumber)
-		    .charge(charge.valueAsNumber)
-		    .hlineop(hlineop.valueAsNumber)
-				.flineop(flineop.valueAsNumber)
-		    .fontsz(fontsz.valueAsNumber)
-		    .seed(seed.value)
-		    .cpfac(cpfac.valueAsNumber)
-		    .tllim([tlmin.valueAsNumber, tlmax.valueAsNumber])
-	      .init(init.value)
-		    .drawmode(drawmode.value));
-				
-				// Add corner reference points (used by
-				// waitforfoodweb to check that everything is
-				// finished)
-		
-			  svg = d3.select("#g_svg");
-				var width = totwidth.valueAsNumber - marl.valueAsNumber - marr.valueAsNumber;
-				    height = totheight.valueAsNumber - mart.valueAsNumber - marb.valueAsNumber;
-	
-				svg.append("circle").attr("cx",0).attr("cy",0).attr("r",1).attr("class","ref")
-				svg.append("circle").attr("cx",width).attr("cy",height).attr("r",1).attr("class","ref")
+				.call(foodweblayout()
+					.paddingLeft(  marl.valueAsNumber)
+	        .paddingTop(   mart.valueAsNumber)
+					.paddingRight( marr.valueAsNumber)
+					.paddingBottom(marb.valueAsNumber)
+		    	.totwidth(totwidth.valueAsNumber)
+		    	.totheight(totheight.valueAsNumber)
+					.nodepad(nodepad.valueAsNumber)
+					.strengthflxlink(strengthflxlink.valueAsNumber)
+					.strengthgrplink(strengthgrplink.valueAsNumber)
+					.strengthtrophic(strengthtrophic.valueAsNumber)
+					.strengthxcenter(strengthxcenter.valueAsNumber)
+					.tllim([tlmin.valueAsNumber, tlmax.valueAsNumber])
+					.rlim( [rrmin.valueAsNumber, rrmax.valueAsNumber])
+					.blim( [bbmin.valueAsNumber, bbmax.valueAsNumber])
+	       );
 	});
-	
-
-
 }
 
-function addlabel() {
-	svg = d3.select("#g_svg");
-	node = svg.selectAll(".node");
-	
-	var width = totwidth.valueAsNumber - marl.valueAsNumber - marr.valueAsNumber;
-	    height = totheight.valueAsNumber - mart.valueAsNumber - marb.valueAsNumber;
-
-  // *****************
-  // Add labels
-  // *****************
-
-  // Set up label positioning
-
-  var labelshape = [];
-	var labelarray = []
-	    anchorarray = []
-	    inlabelarray = [];
-
-
-  node.each(function(n,i) {
-    if (n.type <= 3) {
-
-      var texttmp = svg.append("svg:text")
-          .attr("x", 100)
-          .attr("y", 100)
-					.attr("font-size", fontsz.valueAsNumber)
-					.attr("font-family", "Arial")
-					.text(n.Name);
-
-      var bbox = texttmp.node().getBBox();
-
-      texttmp.remove();
-
-			if (bbox.width <= n.r*2) {
-					inlabelarray.push({x:      n.x,
-			                       y:      n.y,
-			                       width:  bbox.width,
-			                       height: bbox.height,
-									           name:   n.Name});
-					labelarray.push({  x:      n.x,
-					                   y:      n.y,
-					                   width:  bbox.width,
-					                   height: bbox.height,
-									   				 name:   ""});
-					anchorarray.push({ x:      n.x,
-							               y:      n.y,
-		 											   r:      n.r});
-			} else {
-					labelarray.push({  x:      n.x,
-					                   y:      n.y,
-					                   width:  bbox.width,
-					                   height: bbox.height,
-									   				 name:   n.Name});
-					anchorarray.push({ x:      n.x,
-							               y:      n.y,
-													   r:      n.r});
-			}
-
-	  }
-  })
-
-	// Add labels that fit inside nodes
-
-  var inlabels = svg.selectAll('.label1')
-                  .data(inlabelarray)
-                 .enter()
-                 .append("text")
-                  .attr("x", function(d) {return d.x})
-                  .attr("y", function(d) {return d.y})
-                  .attr("text-anchor", "middle")
-                  .attr("dy", "0.35em")
-                  .attr("font-size", fontsz.valueAsNumber)
-									.attr("font-family", "Arial")
-                  .text(function(d) {return d.name});
-
-	// Use simulated annealing to place the rest of the labels
-
-	var salabels = d3.labeler()
-		                .label(labelarray)
-		                .anchor(anchorarray)
-		                .width(width)
-		                .height(height)
-		                .start(1000);
-
-  var outlabels = svg.selectAll(".label2")
-			            .data(labelarray)
-			            .enter()
-			            .append("text")
-			            .attr("class", "label")
-			            .attr('text-anchor', 'start')
-			            .text(function(d) { return d.name; })
-			            .attr("x", function(d) { return (d.x); })
-			            .attr("y", function(d) { return (d.y); })
-	                .attr("font-size", fontsz.valueAsNumber)
-									.attr("font-family", "Arial")
-			            .attr("fill", "black");
-
-	// Add lines connecting labels to nodes
-
-  var lbllinks = svg.selectAll(".lbllink")
-			            .data(labelarray)
-			            .enter()
-			            .append("line")
-			            .attr("class", "link")
-			            .attr("x1", function(d) { return (d.x); })
-			            .attr("y1", function(d) { return (d.y); })
-			            .attr("x2", function(d,i) { return (anchorarray[i].x); })
-			            .attr("y2", function(d,i) { return (anchorarray[i].y); })
-			            .attr("stroke-width", 0.6)
-			            .attr("stroke", "gray");
-
-	// hlink.remove();
-	
-}
+// Opacity sliders
 
 d3.select("#flineop").on("input", function() {
-  updatefline(+this.valueAsNumber);
+  updateflink(+this.valueAsNumber);
 });
-d3.select("#hlineop").on("input", function() {
-  updatehline(+this.valueAsNumber);
+d3.select("#glineop").on("input", function() {
+  updateglink(+this.valueAsNumber);
 });
+
+function updateflink(val) {
+  d3.selectAll(".flinks")
+    .attr("opacity", val);
+}
+
+function updateglink(val) {
+  d3.selectAll(".glinks")
+    .style("opacity", val);
+}
+
+// When box is checked, print params
 
 d3.select("#donecheck").on("change", function(d){
 	d3.select("#textparams").html(
@@ -398,32 +291,132 @@ d3.select("#donecheck").on("change", function(d){
 				"marb = "      + marb.value      + "<br>" +
 				"totwidth = "  + totwidth.value  + "<br>" +
 				"totheight = " + totheight.value + "<br>" +
-				"padding = "   + padding.value   + "<br>" +
-				"tlnudge = "   + tlnudge.value   + "<br>" +
-				"linkdist = "  + linkdist.value  + "<br>" +
-				"charge = "    + charge.value    + "<br>" +
-				"hlineop = "   + hlineop.value   + "<br>" +
-				"fontsz = "    + fontsz.value    + "<br>" +
-				"seed = "      + seed.value      + "<br>" +
-				"cpfac = "     + cpfac.value     + "<br>" +
-				"tlmin = "     + tlmin.value     + "<br>" +
-				"tlmax = "     + tlmax.value     + "<br>" +
+				"nodepad = "   + nodepad.value   + "<br>" +
+		    "strengthflxlink = " + strengthflxlink.value + "<br>" +
+				"strengthgrplink = " + strengthgrplink.value + "<br>" +
+				"strengthtrophic = " + strengthtrophic.value + "<br>" +
+		    "strengthxcenter = " + strengthxcenter.value + "<br>" +
+		    "tlmin = " + tlmin.value + "<br>" +
+				"tlmax = " + tlmax.value + "<br>" +
+		    "rmin = "  + rrmin.value + "<br>" +
+				"rmax = "  + rrmax.value + "<br>" +
+		    "bmin = "  + bbmin.value + "<br>" +
+				"bmax = "  + bbmax.value + "<br>" +
 				"<H1>DONE</H1>"
 	);
 });
 
 
+// Automated label placement
 
-function updatefline(val) {
-  d3.selectAll(".fluxline") 
-    .attr("opacity", val);
+function addlabel() {
+	
+	var width = totwidth.valueAsNumber - marl.valueAsNumber - marr.valueAsNumber;
+		  height = totheight.valueAsNumber - mart.valueAsNumber - marb.valueAsNumber;
+	
+	var labelshape = []
+			labelarray = []
+			anchorarray = []
+		  inlabelarray = [];
+	
+	nodedata = d3.selectAll(".nodecircle"); //.nodes();
+	nodecircle = d3.selectAll(".nodecircle").nodes();	
+	
+	svg = d3.select("svg")
+	
+	nodedata.each(function(n,i) {
+		
+		var texttmp = svg.append("svg:text")
+		          .attr("x", 100)
+		          .attr("y", 100)
+							.attr("font-size", fontsz.valueAsNumber)
+							.attr("font-family", "Arial")
+							.text(n.id);
+							
+		var bbox = texttmp.node().getBBox();
+    texttmp.remove();
+		
+		cradius = nodecircle[i]["r"].baseVal.value
+		
+		if (bbox.width <= cradius*2) {
+			inlabelarray.push({x:      n.x,
+	                       y:      n.y,
+	                       width:  bbox.width,
+	                       height: bbox.height,
+							           name:   n.id});
+			labelarray.push({  x:      n.x,
+			                   y:      n.y,
+			                   width:  bbox.width,
+			                   height: bbox.height,
+							   				 name:   ""});
+			anchorarray.push({ x:      n.x,
+					               y:      n.y,
+ 											   r:      cradius});
+		} else {
+			labelarray.push({  x:      n.x,
+			                   y:      n.y,
+			                   width:  bbox.width,
+			                   height: bbox.height,
+							   				 name:   n.id});
+			anchorarray.push({ x:      n.x,
+					               y:      n.y,
+											   r:      cradius});
+	  }						
+	})
+	
+	// Add labels that fit inside nodes
+
+  gnode = d3.select(".nodes")
+  var inlabels = gnode.selectAll('.label1')
+                  .data(inlabelarray)
+                 .enter()
+                 .append("text")
+									.attr("class", "inlabel")
+                  .attr("x", function(d) {return d.x})
+                  .attr("y", function(d) {return d.y})
+                  .attr("text-anchor", "middle")
+                  .attr("dy", "0.35em")
+                  .attr("font-size", fontsz.valueAsNumber)
+									.attr("font-family", "Arial")
+                  .text(function(d) {return d.name});
+									
+	// Use simulated annealing to place the rest of the labels
+
+	var salabels = d3.labeler()
+		                .label(labelarray)
+		                .anchor(anchorarray)
+		                .width(width)
+		                .height(height)
+		                .start(1000);
+
+	var outlabels = gnode.selectAll(".label2")
+			              .data(labelarray)
+			            .enter()
+			            .append("text")
+			              .attr("class", "label")
+			              .attr('text-anchor', 'start')
+			              .text(function(d) { return d.name; })
+			              .attr("x", function(d) { return (d.x); })
+			              .attr("y", function(d) { return (d.y); })
+	                  .attr("font-size", fontsz.valueAsNumber)
+									  .attr("font-family", "Arial")
+			              .attr("fill", "black");
+									
+	// Add lines connecting labels to nodes
+
+  var lbllinks = gnode.selectAll(".lbllink")
+			            .data(labelarray)
+			            .enter()
+			            .append("line")
+			            .attr("class", "link")
+			            .attr("x1", function(d) { return (d.x); })
+			            .attr("y1", function(d) { return (d.y); })
+			            .attr("x2", function(d,i) { return (anchorarray[i].x); })
+			            .attr("y2", function(d,i) { return (anchorarray[i].y); })
+			            .attr("stroke-width", 0.6)
+			            .attr("stroke", "gray");
 }
 
-
-function updatehline(val) {
-  d3.selectAll(".link") 
-    .style("opacity", val);
-}
 
 
 </script>

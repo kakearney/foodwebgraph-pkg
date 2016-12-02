@@ -1,4 +1,4 @@
-function [G, Ax] = foodweblayout(G, tg, varargin)
+function [G, Ax, Param, Svg] = foodweblayout(G, tg, varargin)
 %FOODWEBLAYOUT Wrapper to call foodweblayout.js
 %
 % This function provides a wrapper around the foodweblayout.js tool,
@@ -49,6 +49,11 @@ function [G, Ax] = foodweblayout(G, tg, varargin)
 %           axpos:      position vector for axis (normalized)
 %           fontsize:   fontsize for text labels
 %           fontname:   fontname for text labels
+%
+%   Param:  structure with user-set layout parameters
+%
+%   Svg:    structure with details of elements extracted from the svg.  See
+%           extractsvg.m for details.
 
 % Copyright 2016 Kelly Kearney
 
@@ -58,12 +63,13 @@ p.addParameter('folder', tempname, @(x) validateattributes(x, {'char'}, {}));
 p.parse(varargin{:});
 Opt = p.Results;
 
-
 if nargin < 2
     tg = (1:numnodes(G))';
 end
 
-[Htg, Gtg] = trophicgroupgraph(G, tg);
+% % Create JSON file for foodweblayout.js
+% 
+% [Htg, Gtg] = trophicgroupgraph(G, tg);
 
 % Create folder with copies of necessary files
 
@@ -71,7 +77,7 @@ if ~exist(Opt.folder, 'dir')
     mkdir(Opt.folder);
 end
 
-graph2json(Gtg, fullfile(Opt.folder, 'foodweb.json'), true);
+fwgraph2json(G, tg, fullfile(Opt.folder, 'foodweb.json'), true);
 
 [stat, h] = web(fullfile(Opt.folder, 'index.html'));
 
@@ -90,10 +96,37 @@ fid = fopen(file, 'wt');
 fprintf(fid, '%s', txt);
 fclose(fid);
 
+% Extract the parameter settings set by the user
+
+linemarker = '<div id="textparams">';
+txt = regexp(txt, '\n', 'split');
+isparam = strncmp(txt, linemarker, length(linemarker));
+paramtxt = txt{isparam};
+idx1 = strfind(paramtxt, 'marl');
+idx2 = strfind(paramtxt, '<h1>DONE');
+paramtxt = paramtxt(idx1:(idx2-1));
+pv = regexp(paramtxt, '<br>', 'split');
+isemp = cellfun('isempty', pv);
+pv = pv(~isemp);
+pv = regexp(pv, '=', 'split');
+pv = strtrim(cat(1, pv{:}));
+Param = cell2struct(pv(:,2), pv(:,1));
+Param = structfun(@str2double, Param, 'uni', 0);
+
 % Extract relevant details from the html
 
+if isnan(Param.tlmin)
+    Param.tlmin = min(G.Nodes.TL);
+end
+if isnan(Param.tlmax)
+    Param.tlmax = max(G.Nodes.TL);
+end 
+
 [C,T] = extractsvg(file);
-[G, Ax] = foodweblayoutdetails(G, C, T);
+[G, Ax] = foodweblayoutdetails(G, C, T, [Param.tlmin Param.tlmax]);
+
+Svg.C = C;
+Svg.T = T;
 
 % Subfunction: Parse html and check for DONE marker
 

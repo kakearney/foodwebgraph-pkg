@@ -1,490 +1,278 @@
 function foodweblayout() {
+	
+    //----------------------------
+    // Default parameters
+    //----------------------------
+	
+	var paddingLeft = 50,
+		paddingRight = 10, 
+		paddingTop = 10, 
+		paddingBottom = 10,
+		strengthflxlink = 0.0001,
+		strengthgrplink = 0.1,
+		strengthtrophic = 0.9,
+		strengthxcenter = 0.05,
+		tllim = [NaN, NaN],
+		rlim = [1, 50],
+		blim = [NaN, NaN],
+		nodepad = 10,
+		totwidth = 960,
+		totheight = 600;
+		
+    //----------------------------
+    // Main plotting routine
+    //----------------------------
 
-	var marl      = 50,      // left margin for main grouping
-		marr      = 50,      // right margin
-		mart      = 50,      // top margin
-		marb      = 50,      // bottom margin
-        totwidth  = 800,     // Width of the svg canvas
-        totheight = 600,     // Height of the svg canvas
-        padding   = 10,      // separation between nodes
-        tlnudge   = 2.0,     // strength of trophic level nudging
-        linkdist  = 5,       // link distance
-        charge    = -100,    // charge
-	    hlineop   = 0.5,     // opacity for temporary trophic group lines
-	    flineop   = 0.3,     // opacity for flux lines
-        fontsz    = 8,       // font size for labels
-	    seed      = 'hello', // string used to initialize random number generator
-	    cpfac     = 0.8,     // scaling factor for box used to pack circles, compared to svg canvas 
-		drawmode  = 'cpack', // drawing mode: 'cpack' or 'force'
-	    init      = 'cpack', // node initial poisition mode
-		tllim     = [NaN,NaN]; // trophic axis limits
-
-    function chart(selection) {
-        selection.each(function(data, i) {
-
-			//--------------------
-			// Setup
-			//--------------------
-
-			// Seed the random number generator.  Collision-avoidance 
-			// includes a bit of randomness, so this is necessary for 
-			// reproducability
-
-			Math.seedrandom(seed);
-
-			// Width of grouping object to which all plotted things will 
-			// be attached
+	function chart(selection) {
+		selection.each(function(data, i) {
 			
-	        var width = totwidth - marr - marl,
-	            height = totheight - mart - marb;
-
-            // First, reformat node data from flat input to properly-nested
-            // hierarchical format
-
-            var dataMap = data.nodes.reduce(function(map, node) {
-                map[node.Name] = node;
-                return map;
-            	}, {});
-
-            var treeData = [];
-            data.nodes.forEach(function(node) {
-                var parent = dataMap[node.parent];
-                if (parent) {
-                    (parent.children || (parent.children = []))
-                    .push(node);
-                } else {
-                    treeData.push(node);
-                }
-            })
-
-		    // Append SVG to selected DOM object, and append a <g> to
-			// that with a bit of a margin
-
-		    var main = d3.select(this).append("svg")
-		        .attr("width", totwidth)
-			    .attr("height", totheight);
-			main.append("rect")
-				.attr("width", "100%")
-				.attr("height", "100%")
-				.attr("fill", "#FFF");
-				// .attr("fill", "#F8F9F9");
+			// Add SVG canvas
 			
-			var svg = main.append("g") // misleading variable name, sorry
-				.attr("id", "g_svg")
-	            .attr("transform", "translate(" + marl + "," + mart + ")");
+        	var svg = d3.select(this).append("svg")
+              .attr("width", totwidth)
+              .attr("height", totheight);
+			 
+			// Draw rectangle in axis plotting area, for reference
 
-	        // Use circle packing to calculate hierarchy details and
-	        // initialize positions
+			svg.append("rect")
+			  .attr("x", paddingLeft)
+			  .attr("y", paddingTop)
+			  .attr("width", totwidth - paddingLeft - paddingRight)
+			  .attr("height", totheight - paddingTop - paddingBottom)
+			  .attr("fill", "white");
+			  
+		  	// Set up force simulation
+	
+		  	var simulation = d3.forceSimulation();
+		  
+			// Extract data
 
-	        var tree = d3.layout.pack()
-	            .size([width*cpfac,height*cpfac])
-	            .value(function(d) { return Math.max((d.type >= 4 && d.type < 7 ? 0 : d.B), 0.001); })
-				.sort(function(a, b){ return a.TL - b.TL; });
-				
-            // Assign data to the pack layout, and save tree-ified nodes
-		    // for force layout use
+			nodedata = data.nodes[0]
+			flxdata = data.links1[0]
+			grpdata = data.links2[0]
 
-            var tnodes = tree.nodes(treeData[0]),
-                tlinks = tree.links(tnodes);
-				
-			// Custom initial positions, if provided
-				
-			if (init == 'coords') {
-				tnodes.forEach(function(d) {
-					d.x = d.xinit;
-					d.y = d.yinit;
-					d.r = d.rinit;
-				})
+			// Scales
+
+			tllimdefault = d3.extent(nodedata, function(d) {return d.TL});
+			// dtl = tllimdefault[1] - tllimdefault[0]
+			// tllimdefault = [tllimdefault[0]-0.1*dtl, tllimdefault[1]+dtl*0.1]
+			
+			if (isNaN(tllim[0])) {
+				tllim[0] = tllimdefault[0]
+			}
+			if (isNaN(tllim[1])) {
+				tllim[1] = tllimdefault[1]
 			}
 
-			// Color
+			blimdefault = d3.extent(nodedata, function(d) {return d.B});
+			if (isNaN(blim[0])) {
+				blim[0] = blimdefault[0]
+			}
+			if (isNaN(blim[1])) {
+				blim[1] = blimdefault[1]
+			}
 
-            var c10 = d3.scale.ordinal()
-				.domain([0,1,2,3,4,5,6,7,8,9,10,11])
-			.range(["#8dd3c7","#ffffb3","#bebada","#fb8072","#80b1d3","#fdb462","#b3de69","#fccde5","#d9d9d9","#bc80bd","#ccebc5","#ffed6f"]);
+			var tl2y = d3.scaleLinear()
+				.domain([tllim[0], tllim[1]])
+				.range([totheight-paddingBottom, paddingTop]);
 
-            // var c10 = d3.scale.category20();
-            var col = d3.scale.ordinal()
-				      .domain([0,1,2,3])
-					  .range(["white", "green", "yellow", "blue"]);
-				      // .range(["#AEC7E8", "#98DF8A", "#C49C94", "#FF9896"]);
-					  // .range(["rgb(236,237,135)", "rgb(186,222,131)", "rgb(240,180,139)", "rgb(152,222,224)"]);
+			var yAxis = d3.axisLeft(tl2y);
 
-			switch (drawmode) {
+			var b2r = d3.scaleSqrt()
+				.domain(blim)
+				.range(rlim)
+				.clamp(true);
 				
-			//--------------------
-			// Plot initial layout
-			//--------------------
-					
-			case 'cpack': // Only draw the initial positions
+		 	var coltype = d3.scaleOrdinal()
+				.domain([0,1,2,3])
+				.range(["#b3cde3", "#ccebc5", "#fbb4ae", "#decbe4"]);
 				
-		        svg.selectAll('circles')
-		            .data(tnodes)
-		          .enter().append('svg:circle')
-		  	  	    .attr("class", function(d) { return d.children ? "node" : "leaf node"; })
-		            .attr('cx', function(d) { return d.x; })
-		            .attr('cy', function(d) { return d.y; })
-		  	        .attr('r', function(d) { return d.r; })
-		  		    // .style("fill", function(d) {return d.type >= 4 ? "white" : col(d.type); })
-// 		  		    .style("stroke", function(d) {return c10(d.TG); })
-		  		    .style("fill", function(d)   {return d.type >= 4 ? "white" : c10(d.TG-1); })
-		  		    .style("stroke", function(d) {return d.type >= 4 ? "black": col(d.type); })
-					.style("stroke-width", 1)
+			var colgrp = d3.scaleOrdinal()
+				.domain([1,2,3,4,5,6,7,8,9,10])
+				.range(d3.schemeCategory10);
 				
-				// Add corner reference points (used by 
-				// waitforfoodweb to check that everything is 
-				// finished)
-					
-       			svg.append("circle").attr("cx",0).attr("cy",0).attr("r",1).attr("class","ref")
-        		svg.append("circle").attr("cx",width).attr("cy",height).attr("r",1).attr("class","ref")
+			var colval = d3.scaleLinear()
+				.domain([0,1])
+                .interpolate(d3.interpolateHcl)
+                .range([d3.rgb("#007AFF"), d3.rgb('#FFF500')]);
 				
-				
-				break;
-				
-			//--------------------
-			// Run force layout
-			//--------------------	
-				
-			case 'force': // Run the force layout
-				
-	            // Eliminate central-web-links for layout purposes
-                
-	            var tlinks2 = [];
-	            tlinks.forEach(function(lnk) {
-	                if (!(lnk.source.Name == "web" || lnk.target.Name == "web")) {
-	                    tlinks2.push(lnk)
-	                }
-	            })
-				
-	            // Initialize layout for nodes and labels
+		 	// Add axis
+	
+		 	svg.append("g")
+		 	   .attr("class", "y axis")
+		 	   .attr("transform", "translate(" + (paddingLeft) + ", 0)")
+		 	   .call(yAxis); 
+			   
+		   	// Set up node circles and link lines
+	
+		    var flink = svg.append("g")
+		         .attr("class", "flinks")
+		       .selectAll("line")
+		       .data(flxdata)
+		       .enter().append("line");
+		
+		    var glink = svg.append("g")
+		         .attr("class", "glinks")
+		       .selectAll("line")
+		       .data(grpdata)
+		       .enter().append("line")
+			     .attr("stroke", function(d) {return colgrp(d.TG-1); })
+			     .attr("stroke-width", 2);
 
-	            var force = d3.layout.force()  // Nodes positioning
-	                .nodes(tnodes)
-	                .links(tlinks2)
-	                .size([width, height])
-	                .linkDistance(function(d) { return  d.source.Name.substring(0,3)=="lev1" ? linkdist*5 : linkdist; })
-					.charge(charge)
-					.gravity(0.1)
-	                .start();
-					
-			    // Create hierarchical edge lines (for testing) 
-        
-			    var hlink = svg.selectAll(".link")
-			                    .data(tlinks2)
-			                  .enter().append("line")
-			                    .attr("class", "link")
-			                    .style("stroke", "rgb(150,150,150)")
-								.style("opacity", hlineop); 
-								
-
-			    // Container for flux lines, so under nodes
-						
-				fluxdata = data.edges[0];				
-				for(var i = 0, j = fluxdata.length; i < j; i++) {
-				    for(var k = 0, l = tnodes.length; k < l; k++) {
-				        if( fluxdata[i].source == tnodes[k].Name)  {
-				            fluxdata[i].sidx = k;
-				        }
-				        if( fluxdata[i].target == tnodes[k].Name) {
-				            fluxdata[i].tidx = k;
-				        }
-				    }
-				}
+		    var node = svg.append("g")
+		         .attr("class", "nodes")
+		       .selectAll("circle")
+		       .data(nodedata)
+		       .enter().append("circle")
+			   	 .attr("class", "nodecircle")
+		         .attr("r", function(d) {return b2r(d.B); })
+			     .style("fill", function(d) {
+					 if('cval' in d) {
+						 return colval(d.cval);
+					 } else
+						 return d.type >= 4 ? "white" : coltype(d.type); 
+					 })
+			   	 .style("stroke", "white")
+			   	 .style("stroke-width", 0.5)
+		         .call(d3.drag()
+		             .on("start", dragstarted)
+		             .on("drag", dragged)
+		             .on("end", dragended));
 				
-				// Add flux lines
+		    node.append("title")
+		         .text(function(d) { return d.id; });
+				 
+		 	// Start nodes with y = trophic level, x = center
+
+			tgmax = d3.max(nodedata, function(d) {return d.TG});
+			dx = totwidth/(tgmax+1);
+		 	for (var i = 0; i < nodedata.length;  i++) {
+				if (!('x' in nodedata[i])) {
+			 		// nodedata[i].x = totwidth/2;
+					nodedata[i].x = nodedata[i].TG*dx;
+			 		nodedata[i].y = tl2y(nodedata[i].TL);
+			 	}
+			}
+
+		
+		 	// Add forces to force simulation (in order of priority):
+		 	// trophic = nudge all nodes to y position based on trophic axis
+		 	// linkgrp = links between trophic groups, strong
+		 	// linkflx = food web biomass flux links, weak
+		 	// collide = prevent overlap of node circles
+		 	// charge  = default repelling force between nodes 
+		 	// centerx = weak centering force to keep nodes on svg canvas
+		
+		 	simulation		
+		 		.force("linkflx", d3.forceLink().id(function(d) { return d.id; }).strength(strengthflxlink))
+		 	 	.force("linkgrp", d3.forceLink().id(function(d) { return d.id; }).strength(strengthgrplink))
+		 	    .force("charge",  d3.forceManyBody())
+		 	 	.force("centerx", d3.forceX().strength(strengthxcenter).x(totwidth/2))
+		 	 	.force("trophic", d3.forceY().strength(strengthtrophic).y(function (d) {return d.type >= 4 ? totheight/2 : tl2y(d.TL); } ))
+		 		.force("collide", d3.forceCollide().radius(function(d) {return b2r(d.B) + nodepad; }));
+		
+		    simulation
+		    	.nodes(nodedata)
+		       	.on("tick", ticked);
+
+		    simulation.force("linkflx")
+		       	.links(flxdata);
+		
+		    simulation.force("linkgrp")
+		       	.links(grpdata);
+				
+		    // On tick, update lines and circles
+
+		    function ticked() {
+		      flink
+		          .attr("x1", function(d) { return d.source.x; })
+		          .attr("y1", function(d) { return d.source.y; })
+		          .attr("x2", function(d) { return d.target.x; })
+		          .attr("y2", function(d) { return d.target.y; });
 			
-				var fluxlines = svg.selectAll(".fluxline")
-		            .data(fluxdata)
-	            .enter().append("line")
-		            .attr("class", "fluxline")
-		            .attr("x1", function(d) { return (tnodes[d.sidx].x); })
-		            .attr("y1", function(d) { return (tnodes[d.sidx].y); })
-		            .attr("x2", function(d) { return (tnodes[d.tidx].x); })
-		            .attr("y2", function(d) { return (tnodes[d.tidx].y); })
-		            .attr("stroke-width", 1)
-		            .attr("stroke", "#D1D0CE")
-					.attr("opacity", flineop);
-				
-				var fluxg = svg.append("g").selectAll(".fluxline");
-								
-	            // Create container for label-connector edges 
-			    // now so they're layered under the nodes and labels
-                            
-				var lline = svg.append("g").selectAll(".labelline")	
-								
-	            // Add the nodes, with circles
-                
-	            var node = svg.selectAll(".node")
-	                .data(tnodes)
-	                .enter().append("g");
-					
-				var node_drag = d3.behavior.drag()
-				        .on("dragstart", dragstart)
-				        .on("drag", dragmove)
-				        .on("dragend", dragend);
-						
-				function dragstart(d, i) {
-				        force.stop() // stops the force auto positioning before you start dragging
-				    }
+		      glink
+		          .attr("x1", function(d) { return d.source.x; })
+		          .attr("y1", function(d) { return d.source.y; })
+		          .attr("x2", function(d) { return d.target.x; })
+		          .attr("y2", function(d) { return d.target.y; });
 
-			    function dragmove(d, i) {
-			        d.px += d3.event.dx;
-			        // d.py += d3.event.dy;
-			        d.x += d3.event.dx;
-			        // d.y += d3.event.dy;
-			        tick({type: "tick", alpha: 0.00}); // this is the key to make it work together with updating both px,py,x,y on d !
-			    }
-
-			    function dragend(d, i) {
-			        d.fixed = true;
-			        tick({type: "tick", alpha: 0.05});
-			        force.resume();
-			    }
-
-			    node.call(node_drag);
-
-	            var circle = node.append("circle")
-	                .attr("class", "node")
-	                .attr("r", function(d) {return d.radius = (d.type >= 4 ? 0 : d.r); })
-		  		    .style("fill", function(d) {return d.type >= 4 ? "white" : c10(d.TG-1); })
-		  		    .style("stroke", function(d) {return d.TG == 0 ? "white" : col(d.type); })
-	                // .style("fill", function(d) {return d.type >= 4 ? "white" : col(d.type); })
-	                // .style("stroke", function(d) {return d.TG == 0 ? "white" : c10(d.TG-1); })
-	                .style("opacity", 0.9)
-				    .style("stroke-width", 1);
-
-	            circle.append("title")
-	                .text(function(d) { return d.Name; });  
-    
-	            var maxRadius = d3.max(tnodes, function(d) {return d.depth == 0 ? 0 : d.r});
-				
-	            // Scales for node position: 
-	            // y direction corresponds to trophic level
-	            // x is arbitrarty, not currently used
-                
-				if (isNaN(tllim[0])) {
-	            	tllim = d3.extent(tnodes, function(x) {return isNaN(x.TL) ? NaN : x.TL});
-				}
-                
-	            var tlscale = d3.scale.linear()
-	                .range([height, 0])
-	                .domain(tllim); 
-                
-	            var xscale = d3.scale.linear()
-	                .range([0, width])
-	                .domain([0, 1]);
-					
-	            // Set up node/edge repositioners
-            
-	            var updateLink = function() {
-	                this.attr("x1", function(d) {
-	                    return d.source.x;
-	                }).attr("y1", function(d) {
-	                    return d.source.y;
-	                }).attr("x2", function(d) {
-	                    return d.target.x;
-	                }).attr("y2", function(d) {
-	                    return d.target.y;
-	                });
-
-	            }
-				
-	            var updateNode = function() {
-	                this.attr("transform", function(d) {
-	                    d.x = Math.max(0, Math.min(width, d.x))
-	                    return "translate(" + d.x + "," + d.y + ")";
-	                });
-
-	            }
-				
-				var updateFLink = function () {
-	                this.attr("x1", function(d) {
-	                    return tnodes[d.sidx].x;
-	                }).attr("y1", function(d) {
-	                    return tnodes[d.sidx].y;
-	                }).attr("x2", function(d) {
-	                    return tnodes[d.tidx].x;
-	                }).attr("y2", function(d) {
-	                    return tnodes[d.tidx].y;
-	                });
-				}
-				
-				
-				node.call(updateNode);
-				
-				
-	            // While force layout runs...
-                
-				force.on("tick", function(e) {tick(e)});
-				
-				function tick(e) {
-					
-					// Release previously-fixed nodes (custom drags) when nearly cooled
-					
-					if (e.alpha < 0.005) {
-						node.each(function(d) {d.fixed = false}); 
-					}	
-					
-	                // Nudge nodes towards prescribed x/y position
-                
-	                var k = tlnudge * e.alpha;
-                
-	                node.each(function(d,i) {
-	                    if (!isNaN(d.TL)) {
-	                        d.y += (tlscale(d.TL) - d.y) * k;
-	                    }
-	                    if (!isNaN(d.xpos)) {
-	                        d.x += (xscale(d.xpos) - d.x) * k;
-	                    }
-	                })
-                
-	                // Update positions of circles and hierarchical lines
-                
-	                node.call(updateNode);
-	                hlink.call(updateLink);
-					fluxlines.call(updateFLink);
-					
-                
-	                // Collision detection
-                
-	                circle.each(collide(0.5))
-			      
-			    };				
-				
-				break;
-			default: console.log('Unrecognized mode');
-			};
-			
-		    // *****************
-		    // Subfunctions
-		    // *****************
-      
-		    function collide(alpha) {
-		      var quadtree = d3.geom.quadtree(tnodes);
-		      return function(d) {
-		        var r = d.radius + maxRadius + padding,
-		            nx1 = d.x - r,
-		            nx2 = d.x + r,
-		            ny1 = d.y - r,
-		            ny2 = d.y + r;
-		        quadtree.visit(function(quad, x1, y1, x2, y2) {
-		          if (quad.point && (quad.point !== d)) {
-		            var x = d.x - quad.point.x,
-		                y = d.y - quad.point.y,
-		                l = Math.sqrt(x * x + y * y),
-		                r = d.radius + quad.point.radius + padding;
-		            if (l < r) {
-		              l = (l - r) / l * alpha;
-		              d.x -= x *= l;
-		              d.y -= y *= l;
-		              quad.point.x += x;
-		              quad.point.y += y;
-		            }
-		          }
-		          return x1 > nx2 || x2 < nx1 || y1 > ny2 || y2 < ny1;
-		        });
-		      };
+		      node
+		          .attr("cx", function(d) { return d.x; })
+		          .attr("cy", function(d) { return d.y; });
 		    }
+			
+			function dragstarted(d) {
+			  if (!d3.event.active) simulation.alphaTarget(0.3).restart();
+			  d.fx = d.x;
+			  d.fy = d.y;
+			}
 
+			function dragged(d) {
+			  d.fx = d3.event.x;
+			  d.fy = d3.event.y;
+			}
+
+			function dragended(d) {
+			  if (!d3.event.active) simulation.alphaTarget(0);
+			  d.fx = null;
+			  d.fy = null;
+			}
+		  
+		
 		}); // end selection.each
-
-	}; // end chart
+	} // end chart
 	
 	
-    //****************************
+	
+    //----------------------------
     // Fill in user-set variables
-    //****************************
+    //----------------------------
     
-    chart.marl = function(value) {
-        if (!arguments.length) return marl;
-        marl = value;
-        return chart;
-    };
-    chart.marr = function(value) {
-        if (!arguments.length) return marr;
-        marr = value;
-        return chart;
-    };
-    chart.mart = function(value) {
-        if (!arguments.length) return mart;
-        mart = value;
-        return chart;
-    };
-    chart.marb = function(value) {
-        if (!arguments.length) return marb;
-        marb = value;
-        return chart;
-    };
-    
-    chart.totwidth = function(value) {
-        if (!arguments.length) return totwidth;
-        totwidth = value;
-        return chart;
-    };
-    
-    chart.totheight = function(value) {
-        if (!arguments.length) return totheight;
-        totheight = value;
-        return chart;
-    };
-    
-    chart.padding = function(value) {
-        if (!arguments.length) return padding;
-        padding = value;
-        return chart;
-    };
-    
-    chart.tlnudge = function(value) {
-        if (!arguments.length) return tlnudge;
-        tlnudge = value;
-        return chart;
-    };
-    
-    chart.linkdist = function(value) {
-        if (!arguments.length) return linkdist;
-        linkdist = value;
-        return chart;
-    };
-    
-    chart.charge = function(value) {
-        if (!arguments.length) return charge;
-        charge = value;
-        return chart;
-    };
-    
-    chart.hlineop = function(value) {
-        if (!arguments.length) return hlineop;
-        hlineop = value;
+    chart.paddingLeft = function(value) {
+        if (!arguments.length) return paddingLeft;
+        paddingLeft = value;
         return chart;
     };
 	
-    chart.flineop = function(value) {
-        if (!arguments.length) return flineop;
-        flineop = value;
-        return chart;
-    };
-    
-    chart.fontsz = function(value) {
-        if (!arguments.length) return fontsz;
-        fontsz = value;
+    chart.paddingRight = function(value) {
+        if (!arguments.length) return paddingRight;
+        paddingRight = value;
         return chart;
     };
 	
-    chart.seed = function(value) {
-        if (!arguments.length) return seed;
-        seed = value;
+    chart.paddingTop = function(value) {
+        if (!arguments.length) return paddingTop;
+        paddingTop = value;
         return chart;
     };
 	
-    chart.cpfac = function(value) {
-        if (!arguments.length) return cpfac;
-        cpfac = value;
+    chart.paddingBottom = function(value) {
+        if (!arguments.length) return paddingBottom;
+        paddingBottom = value;
         return chart;
     };
 	
-    chart.drawmode = function(value) {
-        if (!arguments.length) return drawmode;
-        drawmode = value;
+    chart.strengthflxlink = function(value) {
+        if (!arguments.length) return strengthflxlink;
+        strengthflxlink = value;
+        return chart;
+    };
+	
+    chart.strengthgrplink = function(value) {
+        if (!arguments.length) return strengthgrplink;
+        strengthgrplink = value;
+        return chart;
+    };
+	
+    chart.strengthtrophic = function(value) {
+        if (!arguments.length) return strengthtrophic;
+        strengthtrophic = value;
+        return chart;
+    };
+	
+    chart.strengthxcenter = function(value) {
+        if (!arguments.length) return strengthxcenter;
+        strengthxcenter = value;
         return chart;
     };
 	
@@ -494,11 +282,38 @@ function foodweblayout() {
         return chart;
     };
 	
-    chart.init = function(value) {
-        if (!arguments.length) return init;
-        init = value;
+    chart.rlim = function(value) {
+        if (!arguments.length) return rlim;
+        rlim = value;
         return chart;
     };
 	
-    return chart;
-}; // end foodweblayout
+    chart.blim = function(value) {
+        if (!arguments.length) return blim;
+        blim = value;
+        return chart;
+    };
+	
+    chart.nodepad = function(value) {
+        if (!arguments.length) return nodepad;
+        nodepad = value;
+        return chart;
+    };
+	
+    chart.totwidth = function(value) {
+        if (!arguments.length) return totwidth;
+        totwidth = value;
+        return chart;
+    };
+	
+    chart.totheight = function(value) {
+        if (!arguments.length) return totheight;
+        totheight = value;
+        return chart;
+    };
+	
+	return chart;
+	
+	
+	
+} // end foodweblayout
