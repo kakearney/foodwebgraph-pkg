@@ -16,6 +16,12 @@ function ecopathmodel2rpath(EM, outbase)
 %               will be saved with this name, plus the extensions
 %               '_model.csv' and '_diet.csv' (and '_stanzas.csv', and
 %               '_stanza_groups.csv', if multi-stanza sets are present).
+%
+%               Note: at this time, the Rpath pedigree table is only a
+%               placeholder, and the values in it are never used by the
+%               rpath or rsim R functions.  Therefore, I do not export
+%               ecopathmodel pedigree values to file.  This may change in
+%               the future as Rpath development continues.
 
 % Copyright 2016 Kelly Kearney
 
@@ -76,7 +82,7 @@ if hasstz
 
     % Stanza group data table
 
-    colname = addquotes({'StGroupNum', 'StanzaGroup', 'nstanzas', 'VGBF_Ksp', 'VGBF_d', 'Wmat', 'RecPower'});
+    colname = addquotes({'StGroupNum', 'StanzaGroup', 'nstanzas', 'VBGF_Ksp', 'VBGF_d', 'Wmat', 'RecPower'});
 
     sid = EM.stanzaindices;
 

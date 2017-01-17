@@ -12,15 +12,15 @@ import os
 def mdbexport(outdir, mdbfile):
 	"""
 	Export tables from a MS Access Database (.mdb) to csv files
-	
+
 	Input arguments:
 	outdir:		name of folder where .csv files will be saved.  
 				If it doesn't exisit, it will be created
 	mdbfile:	name of database file
-	
+
 	The resulting files will be named according to the table
 	names in the database.
-	
+
 	"""
 
 	# Create output folder if necessary
@@ -28,12 +28,17 @@ def mdbexport(outdir, mdbfile):
 	if not os.path.isdir(outdir):
 		os.mkdir(outdir)
 
+    # Look for mdb driver
+
+	DRV = ['{{{}}}'.format(s) for s in pyodbc.drivers() if 'Microsoft Access Driver' in s]
+	if not DRV:
+		raise ValueError('mdbexport did not find a valid Microsoft Access Driver on this computer')
+
 	# Connect to database
 
-	DRV = '{Microsoft Access Driver (*.mdb)}'
 	PWD = 'pw'
 
-	con = pyodbc.connect('DRIVER={};DBQ={};PWD={};CHARSET=UTF8'.format(DRV,mdbfile,PWD))
+	con = pyodbc.connect('DRIVER={};DBQ={};PWD={};CHARSET=UTF8'.format(DRV[0],mdbfile,PWD))            
 	cur = con.cursor()
 
 	# List tables in file, filtering out system tables
@@ -51,13 +56,22 @@ def mdbexport(outdir, mdbfile):
 	# Dump tables to csv
 
 	for tbl in tablenames:
+
+		# Column names
+		
+		cols = [colrow.column_name for colrow in cur.columns(table=tbl)]
+		
+		# Main data
 		
 		SQL = 'SELECT * FROM {}'.format(tbl)
 		rows = cur.execute(SQL).fetchall()
 		
+		# Write to file
+		
 		csvname = os.path.join(outdir, tbl + '.csv')
 		with open(csvname, 'w') as fou:
-			c = csv.writer(fou)
+			c = csv.writer(fou, lineterminator='\n', quoting=csv.QUOTE_NONNUMERIC)
+			c.writerow(cols)
 			c.writerows(rows)
 
 	cur.close()

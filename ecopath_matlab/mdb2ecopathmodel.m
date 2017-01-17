@@ -1,4 +1,4 @@
-function [EM, A] = mdb2ecopathmodel(file)
+function [EM, A, D] = mdb2ecopathmodel(file)
 %MDB2ECOPATHMODEL Create ecopathmodel object from EwE6 data file
 %
 % EM = mdb2ecopathmodel(file)
@@ -11,12 +11,28 @@ function [EM, A] = mdb2ecopathmodel(file)
 % saved with a .ewemdb (or .EwEmdb) file extension, as opposed to older
 % ones that simply carried the .mdb extension.
 %
-% This function relies on the mdbtools utilities to read the MS Access
-% database files (https://github.com/brianb/mdbtools).  Mac users can get
-% it via either MacPorts or Homebrew if they don't want to compile from
-% source. Please make sure this utility is properly compiled prior to
-% calling mdb2ecopathmodel.m.  Windows users: you will need a C compiler (I
-% believe you can get one for free via Visual Studio Express).
+% In order to extract data from an MS Access database, this function needs
+% to use an ODBC database driver.  It does so in one of two ways, depending
+% on your operating system:
+%
+% - Linux/MacOS: mdbtools utilities
+% - Windows: pyodbc python module, using locally-installed ODBC driver
+%
+% See below for installation instructions for either of these options.
+%
+% Please note: This function uses text .csv files as an intermediary when
+% extracting the tables from the .mdb files, necessitating several
+% conversions between ascii and binary storage of numeric data values
+% (ascii input by user in EwE6 GUI, stored as either double or single
+% precision in the EwE6 code and mdb, exported to ascii by csv table write,
+% converted to double when imported to Matlab).  The format written to the
+% CSV file varies between the Linux/Mac and Windows options, so reading the
+% same file on different operating systems may result in values that differ
+% due to this rounding error.  This rounding error is many orders of
+% magnitude less than the error in the actual input data of any Ecopath
+% model, and therefore should not be of concern from a scientific
+% standpoint. However, it may be a problem if you are looking for exact
+% replicability across operating systems.
 %
 % Input variables:
 %
@@ -28,8 +44,52 @@ function [EM, A] = mdb2ecopathmodel(file)
 %
 %   EM:     ecopathmodel object
 %
-%   A:      structure of dataset arrays holding all data from the file in
+%   A:      structure of table arrays holding all data from the file in
 %           its original tables.
+%
+%   D:      Additional data, primarily for debugging purposes
+%
+%           folder:     temporary folder where csv files were saved
+%
+%           readmethod: ntable x 1 array, corresponding to the fields in A,
+%                       indicating which method was used to read in the
+%                       data from csv file.  1 = readtable, 2 = readtext
+%                       then converted to table, 3 = fileread with no table
+%                       conversion
+%
+% External software installation instructions:
+%
+% * Linux:
+% 
+%   The mdbtools source code can be acquired from GitHub:
+%   https://github.com/brianb/mdbtools.  Instructions to compile from
+%   source are included in the download.
+%
+% * MacOS:
+%
+%   Ports of mdbtools are available through either Homebrew or MacPorts. 
+%   Install either Homebrew or MacPorts if you don't already have them on
+%   your system, then run:
+%     brew install mdbtools       <-- from Terminal, Homebrew
+%     port install mdbtools       <-- from Terminal, MacPorts
+%
+% * Windows:
+%
+%   On Windows, first check your computer to make sure you have the MS
+%   Access driver installed (the driver list is buried in the Control
+%   Panel... search ODBC Data Sources as a quick way to find it).  You need
+%   the 'Microsoft Access Driver (*.mdb)'.  Next, you need python 3.x.
+%   There are many options for downloading and installing python if you
+%   don't already have it; I personally like the Anaconda Python
+%   distribution (https://www.continuum.io/downloads) for scientific use.
+%   Finally, download and install the pyodbc module; easy installation can
+%   be done via pip:     
+%     pip install pyodbc   <-- from Command Prompt 
+%   or via conda, if you use Anaconda Python
+%     conda install pyodbc <-- from Command Prompt 
+%   My mdbexport.py script also requires the csv and os modules; these are
+%   installed automatically with most commom python distributions.
+
 
 % Copyright 2016 Kelly Kearney
 
@@ -48,6 +108,8 @@ checkdeps;
 % Dump tables to comma-delimited files
 
 csvfolder = tempname;
+D.folder = csvfolder;
+
 if ~exist(csvfolder, 'dir')
     mkdir(csvfolder);
 end
@@ -115,9 +177,12 @@ end
 % Read all Ecopath table data
 
 err = cell(0,2);
+w = warning('off', 'MATLAB:table:ModifiedVarnames');
+D.readmethod = ones(length(tables),1);
 for it = 1:length(tables)
+    mdbtmp = fullfile(csvfolder, [tables{it} '.csv']);
     try
-        
+   
         A.(tables{it}) = readtable(mdbtmp, 'Delimiter', ',');
         vname = A.(tables{it}).Properties.VariableNames;
         
@@ -147,6 +212,7 @@ for it = 1:length(tables)
             data(s.numberMask) = num2cell(tmp);
             
             A.(tables{it})  = cell2table(data(2:end,:), 'VariableNames', data(1,:));
+            D.readmethod(it) = 2;
             
         catch
             
@@ -156,11 +222,13 @@ for it = 1:length(tables)
             if nargout > 1
                 warning('Ecopathmodel:mdb2ecopathmodel:parse', 'Could not parse table: %s', tables{it});
             end
-            A.(tables{it}) = r;
+            A.(tables{it}) = fileread(mdbtmp);
+            D.readmethod(it) = 3;
             
         end
     end
 end
+warning(w);
 
 %----------------------------
 % Build ecopathmodel object
@@ -428,29 +496,29 @@ if ispc % Windows
             end
         end
     end
-    str = 'Python Error: ImportError: No module named';
+    modnotfound = @(ME) ~isempty(strfind(ME.message, 'No module named'));
     try
-        py.importlib.import_module('pyodbc')
+        py.importlib.import_module('pyodbc');
     catch ME
-        if strncmp(ME.message, str, length(str))
+        if modnotfound(ME)
             error('Could not import pyodbc python module; please make sure it is installed');
         else
             rethrow(ME);
         end
     end
     try
-        py.importlib.import_module('csv')
+        py.importlib.import_module('csv');
     catch ME
-        if strncmp(ME.message, str, length(str))
+        if modnotfound(ME)
             error('Could not import csv python module; please make sure it is installed');
         else
             rethrow(ME);
         end
     end
     try
-        py.importlib.import_module('mdbexport')
+        py.importlib.import_module('mdbexport');
     catch ME
-        if strncmp(ME.message, str, length(str))
+        if modnotfound(ME)
             pth = fileparts(which('mdb2ecopathmodel'));
             mdbpath = fullfile(pth, 'mdbexport', 'mdbexport');
             P = py.sys.path;
@@ -458,7 +526,7 @@ if ispc % Windows
                 insert(P,int32(0),mdbpath);
             end
             try
-                py.importlib.import_module('mdbexport')
+                py.importlib.import_module('mdbexport');
             catch
                 error('Could not import mdbexport python module; please check that you either installed it locally or kept it in its default location in the ecopath_matlab package');
             end
