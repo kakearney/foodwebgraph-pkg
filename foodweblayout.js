@@ -17,7 +17,9 @@ function foodweblayout() {
 		blim = [NaN, NaN],
 		nodepad = 10,
 		totwidth = 960,
-		totheight = 600;
+		totheight = 600,
+		animating = true,
+		animationStep = 0;
 		
     //----------------------------
     // Main plotting routine
@@ -99,7 +101,7 @@ function foodweblayout() {
 		 	// Add axis
 	
 		 	svg.append("g")
-		 	   .attr("class", "y axis")
+		 	   .attr("class", "y-axis")
 		 	   .attr("transform", "translate(" + (paddingLeft) + ", 0)")
 		 	   .call(yAxis); 
 			   
@@ -145,15 +147,13 @@ function foodweblayout() {
 		 	// Start nodes with y = trophic level, x = center
 
 			tgmax = d3.max(nodedata, function(d) {return d.TG});
-			dx = totwidth/(tgmax+1);
+			dx = (totwidth-paddingLeft-paddingRight)/(tgmax+1);
 		 	for (var i = 0; i < nodedata.length;  i++) {
 				if (!('x' in nodedata[i])) {
-			 		// nodedata[i].x = totwidth/2;
-					nodedata[i].x = nodedata[i].TG*dx;
+					nodedata[i].x = nodedata[i].TG*dx + paddingLeft;
 			 		nodedata[i].y = tl2y(nodedata[i].TL);
 			 	}
 			}
-
 		
 		 	// Add forces to force simulation (in order of priority):
 		 	// trophic = nudge all nodes to y position based on trophic axis
@@ -184,6 +184,7 @@ function foodweblayout() {
 		    // On tick, update lines and circles
 
 		    function ticked() {
+					simulation.stop();
 		      flink
 		          .attr("x1", function(d) { return d.source.x; })
 		          .attr("y1", function(d) { return d.source.y; })
@@ -199,6 +200,11 @@ function foodweblayout() {
 		      node
 		          .attr("cx", function(d) { return d.x; })
 		          .attr("cy", function(d) { return d.y; });
+				  
+			  
+			  if (animating) {
+		          setTimeout(function() { simulation.restart(); },animationStep);
+		      }
 		    }
 			
 			function dragstarted(d) {
@@ -309,6 +315,18 @@ function foodweblayout() {
     chart.totheight = function(value) {
         if (!arguments.length) return totheight;
         totheight = value;
+        return chart;
+    };
+	
+    chart.animating = function(value) {
+        if (!arguments.length) return animating;
+        animating = value;
+        return chart;
+    };
+	
+    chart.animationStep = function(value) {
+        if (!arguments.length) return animationStep;
+        animationStep = value;
         return chart;
     };
 	
