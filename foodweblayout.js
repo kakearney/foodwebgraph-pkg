@@ -90,9 +90,9 @@ function foodweblayout() {
 			// without a cval property match the value of their source node.
 
 			var coltype = d3.scaleOrdinal()
-				.domain([0,1,2,3,4])
-				.range(["#b3cde3", "#ccebc5", "#fbb4ae", "#decbe4", "#ffffff"])
-				.clamp(true);
+				.domain([0,1,2,3])
+				.range(["#b3cde3", "#ccebc5", "#fbb4ae", "#decbe4"])
+				.unknown("#ffffff");
 
 			var colgrp = d3.scaleOrdinal()
 				.domain([1,2,3,4,5,6,7,8,9,10])
