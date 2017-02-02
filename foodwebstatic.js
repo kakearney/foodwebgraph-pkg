@@ -212,115 +212,62 @@ function foodwebstatic() {
 			paddingLeft = value;
 			return chart;
 	};
-
 	chart.paddingRight = function(value) {
 			if (!arguments.length) return paddingRight;
 			paddingRight = value;
 			return chart;
 	};
-
 	chart.paddingTop = function(value) {
 			if (!arguments.length) return paddingTop;
 			paddingTop = value;
 			return chart;
 	};
-
 	chart.paddingBottom = function(value) {
 			if (!arguments.length) return paddingBottom;
 			paddingBottom = value;
 			return chart;
 	};
-
-	chart.strengthflxlink = function(value) {
-			if (!arguments.length) return strengthflxlink;
-			strengthflxlink = value;
-			return chart;
-	};
-
-	chart.strengthgrplink = function(value) {
-			if (!arguments.length) return strengthgrplink;
-			strengthgrplink = value;
-			return chart;
-	};
-
-	chart.strengthtrophic = function(value) {
-			if (!arguments.length) return strengthtrophic;
-			strengthtrophic = value;
-			return chart;
-	};
-
-	chart.strengthxcenter = function(value) {
-			if (!arguments.length) return strengthxcenter;
-			strengthxcenter = value;
-			return chart;
-	};
-
 	chart.tllim = function(value) {
 			if (!arguments.length) return tllim;
 			tllim = value;
 			return chart;
 	};
-
 	chart.rlim = function(value) {
 			if (!arguments.length) return rlim;
 			rlim = value;
 			return chart;
 	};
-
 	chart.blim = function(value) {
 			if (!arguments.length) return blim;
 			blim = value;
 			return chart;
 	};
-
-	chart.nodepad = function(value) {
-			if (!arguments.length) return nodepad;
-			nodepad = value;
-			return chart;
-	};
-
 	chart.totwidth = function(value) {
 			if (!arguments.length) return totwidth;
 			totwidth = value;
 			return chart;
 	};
-
 	chart.totheight = function(value) {
 			if (!arguments.length) return totheight;
 			totheight = value;
 			return chart;
 	};
-
-	chart.animating = function(value) {
-			if (!arguments.length) return animating;
-			animating = value;
-			return chart;
-	};
-
-	chart.animationStep = function(value) {
-			if (!arguments.length) return animationStep;
-			animationStep = value;
-			return chart;
-	};
-	
-	chart.lwmax = function(value) {
-			if (!arguments.length) return lwmax;
-			lwmax = value;
-			return chart;
-	};
-	
 	chart.colfun = function(value) {
 			if (!arguments.length) return colfun;
 			colfun = value;
 			return chart;
 	};
-	
+
+	chart.lwmax = function(value) {
+			if (!arguments.length) return lwmax;
+			lwmax = value;
+			return chart;
+	};
 	chart.wmax = function(value) {
 			if (!arguments.length) return wmax;
 			wmax = value;
 			return chart;
 	};
-	
 	chart.pedge = function(value) {
 			if (!arguments.length) return pedge;
 			pedge = value;
@@ -329,4 +276,4 @@ function foodwebstatic() {
 
 	return chart;
 
-} // end foodweblayout
+} // end foodwebstatic
