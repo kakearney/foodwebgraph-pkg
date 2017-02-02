@@ -8,16 +8,17 @@ function foodweblayout() {
 		paddingRight = 10, 
 		paddingTop = 10, 
 		paddingBottom = 10,
+		tllim = [NaN, NaN],
+		rlim = [1, 50],
+		blim = [NaN, NaN],
+		totwidth = 960,
+		totheight = 600,
+		colfun = NaN,
 		strengthflxlink = 0.0001,
 		strengthgrplink = 0.1,
 		strengthtrophic = 0.9,
 		strengthxcenter = 0.05,
-		tllim = [NaN, NaN],
-		rlim = [1, 50],
-		blim = [NaN, NaN],
 		nodepad = 10,
-		totwidth = 960,
-		totheight = 600,
 		animating = true,
 		animationStep = 0;
 		
@@ -56,8 +57,6 @@ function foodweblayout() {
 			// Scales
 
 			tllimdefault = d3.extent(nodedata, function(d) {return d.TL});
-			// dtl = tllimdefault[1] - tllimdefault[0]
-			// tllimdefault = [tllimdefault[0]-0.1*dtl, tllimdefault[1]+dtl*0.1]
 			
 			if (isNaN(tllim[0])) {
 				tllim[0] = tllimdefault[0]
@@ -85,18 +84,51 @@ function foodweblayout() {
 				.range(rlim)
 				.clamp(true);
 				
-		 	var coltype = d3.scaleOrdinal()
-				.domain([0,1,2,3])
-				.range(["#b3cde3", "#ccebc5", "#fbb4ae", "#decbe4"]);
-				
+			// Color scale: If nodes have a cval property, use that with a 
+			// continuous color scale (by default, blue-pink-yellow one on the 
+			// domain of 0-1).  Otherwise, use node type for color.  Flux lines 
+			// without a cval property match the value of their source node.
+			
+			var coltype = d3.scaleOrdinal()
+				.domain([0,1,2,3,4])
+				.range(["#b3cde3", "#ccebc5", "#fbb4ae", "#decbe4", "#ffffff"])
+				.clamp(true);
+
 			var colgrp = d3.scaleOrdinal()
 				.domain([1,2,3,4,5,6,7,8,9,10])
 				.range(d3.schemeCategory10);
-				
+
 			var colval = d3.scaleLinear()
 				.domain([0,1])
-                .interpolate(d3.interpolateHcl)
-                .range([d3.rgb("#007AFF"), d3.rgb('#FFF500')]);
+				.interpolate(d3.interpolateHcl)
+				.range([d3.rgb("#007AFF"), d3.rgb('#FFF500')]);
+			
+			if ('cval' in nodedata[0]) {
+				if (typeof colfun === "number" & isNaN(colfun)) {
+					colfun = colval;
+				}
+			} else {
+				for (var ii = 0; ii < nodedata.length; ii++) {
+					nodedata[ii].cval = nodedata[ii].type;
+				}
+				if (typeof colfun === "number" & isNaN(colfun)) {
+					colfun = coltype;
+				}
+			}
+				
+				
+			// 		 	var coltype = d3.scaleOrdinal()
+			// 	.domain([0,1,2,3])
+			// 	.range(["#b3cde3", "#ccebc5", "#fbb4ae", "#decbe4"]);
+			//
+			// var colgrp = d3.scaleOrdinal()
+			// 	.domain([1,2,3,4,5,6,7,8,9,10])
+			// 	.range(d3.schemeCategory10);
+			//
+			// var colval = d3.scaleLinear()
+			// 	.domain([0,1])
+			//                 .interpolate(d3.interpolateHcl)
+			//                 .range([d3.rgb("#007AFF"), d3.rgb('#FFF500')]);
 				
 		 	// Add axis
 	
@@ -128,12 +160,13 @@ function foodweblayout() {
 		       .enter().append("circle")
 			   	 .attr("class", "nodecircle")
 		         .attr("r", function(d) {return b2r(d.B); })
-			     .style("fill", function(d) {
-					 if('cval' in d) {
-						 return colval(d.cval);
-					 } else
-						 return d.type >= 4 ? "white" : coltype(d.type); 
-					 })
+					 // 			     .style("fill", function(d) {
+					 // if('cval' in d) {
+					 // 						 return colval(d.cval);
+					 // } else
+					 // 						 return d.type >= 4 ? "white" : coltype(d.type);
+					 // })
+					 .style("fill", function(d) {return colfun(d.cval); })
 			   	 .style("stroke", "white")
 			   	 .style("stroke-width", 0.5)
 		         .call(d3.drag()
