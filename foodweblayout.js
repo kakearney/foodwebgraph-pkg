@@ -334,7 +334,5 @@ function foodweblayout() {
 	};
 
 	return chart;
-	
-	
-	
+
 } // end foodweblayout
