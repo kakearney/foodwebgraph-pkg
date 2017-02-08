@@ -42,7 +42,14 @@ idx = findnode(G, G2.Edges.EndNodes(:,1));
 
 J.nodes = table2struct(G.Nodes);
 J.nodes = rmfield(J.nodes, 'Name');
-J.links1 = struct('source', G.Edges.EndNodes(:,1),  'target', G.Edges.EndNodes(:,2));
+if all(ismember({'x','y'}, G.Edges.Properties.VariableNames))
+    xpath = cellfun(@(x) x(:)', G.Edges.x, 'uni', 0);
+    ypath = cellfun(@(x) x(:)', G.Edges.y, 'uni', 0);
+    J.links1 = struct('source', G.Edges.EndNodes(:,1),  'target', G.Edges.EndNodes(:,2), ...
+        'xpath', xpath, 'ypath', ypath, 'Weight', num2cell(G.Edges.Weight));
+else
+    J.links1 = struct('source', G.Edges.EndNodes(:,1),  'target', G.Edges.EndNodes(:,2));
+end
 J.links2 = struct('source', G2.Edges.EndNodes(:,1), 'target', G2.Edges.EndNodes(:,2), 'TG', num2cell(G.Nodes.TG(idx)));
 
 Jopt = struct('Compact', 0, ...
