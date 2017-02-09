@@ -1,0 +1,457 @@
+
+<!DOCTYPE html
+PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+--><title>foodwebgraph.m: Interactive food web diagrams for Ecopath</title><meta name="generator" content="MATLAB 9.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2017-02-09"><meta name="DC.source" content="./readmeExtras/README.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+</style></head><body><div class="content"><h1><tt>foodwebgraph.m</tt>: Interactive food web diagrams for Ecopath</h1><!--introduction--><p>Author: Kelly Kearney</p><p>This repository includes the Matlab code to perform the trophic group calculations, JSON file formatting, and divided edge bundling calculations necessary to plot food webs with the <a href="TODO">d3-foodweb</a> D3 plugin.</p><p>The d3-foodweb plugin, and this accompanying code, is currently a work in progress.  It is being developed alongside the writing of a manuscript describing the underlying algorithms.  Documentation and examples will improve as this manuscript progresses.</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Getting started</a></li><li><a href="#2">Syntax</a></li><li><a href="#3">Examples</a></li><li><a href="#14">Contributions</a></li></ul></div><h2 id="1">Getting started</h2><p><b>Prerequisites</b></p><p>This function requires Matlab R2014b or later.</p><p><b>Downloading and installation</b></p><p>This code can be downloaded from <a href="https://github.com/kakearney/foodwebgraph-pkg/">Github</a>.</p><p><b>Matlab Search Path</b></p><p>The following folders need to be added to your Matlab Search path (via <tt>addpath</tt>, <tt>pathtool</tt>, etc.):</p><pre class="language-matlab">foodwebgraph-pkg/ConsoleProgressBar
+foodwebgraph-pkg/InterPointDistanceMatrix
+foodwebgraph-pkg/PARTITIONS
+foodwebgraph-pkg/aggregate
+foodwebgraph-pkg/catuneven
+foodwebgraph-pkg/cellstr2
+foodwebgraph-pkg/cprintf
+foodwebgraph-pkg/divedgebundle
+foodwebgraph-pkg/ecopath_matlab
+foodwebgraph-pkg/foodwebgraph
+foodwebgraph-pkg/gauzensgroup
+foodwebgraph-pkg/interparc
+foodwebgraph-pkg/jsonlab-1.0
+foodwebgraph-pkg/legendflex
+foodwebgraph-pkg/mergestruct
+foodwebgraph-pkg/minmax
+foodwebgraph-pkg/readtext
+foodwebgraph-pkg/regexpfound
+foodwebgraph-pkg/setgetpos_V1.2
+foodwebgraph-pkg/singlepatch
+foodwebgraph-pkg/vlookup
+foodwebgraph-pkg/wraptext
+</pre><h2 id="2">Syntax</h2><p>This package includes a number of Matlab functions.  The primary ones of interest are:</p><div><ul><li>trophicgroup: Cluster food web nodes based on trophic similarity</li><li>fwgraph2json: Export graph to JSON format for use with d3-foodweb</li><li>foodweblayout: Interactive food web layout tool</li><li>plotfoodweb: Plot food web in Matlab</li></ul></div><p>Please see the help headers (viewable via the <tt>help</tt> command from the Matlab Command Window) for each function for a description of calling syntax, input variables, and output variables.</p><h2 id="3">Examples</h2><p>This example will demonstrate the entire food web graph process, using the Generic_37 Ecopath model (this model is included with the <a href="http://ecopath.org/">Ecopath with Ecosim)</a> software, and represents a generic pelagic fisheries ecosystem).</p><p><b>Step 1:</b> Read an Ecopath model into Matlab.</p><pre class="codeinput">epfile = <span class="string">'examples/Generic_37.EwEmdb'</span>;
+
+w = warning(<span class="string">'off'</span>);                <span class="comment">% turning off warnings</span>
+EM = mdb2ecopathmodel(epfile);     <span class="comment">% since this spits out a lot...</span>
+warning(w);                        <span class="comment">% ...and back on</span>
+</pre><p><b>Step 2:</b> Isolate trophic groups in the food web</p><p>The simulated annealing algorithm does a pretty good job optimizing the trophic groups, but its inherent randomness means it doesn't always find the global optimum, especially when dealing with food webs, like this one, whose functional groups are already grouped at a high level (as opposed to webs with lots of individual species groups).</p><p>You can run the algorithm multiple times in order to try to ensure a "best" grouping.  In this example, I'll simply seed the random number generator to ensure replicability; this is only for example purposes, and a one-time optimized result is sufficient.</p><pre class="codeinput">rng(8);
+
+[tg, Stmp, G] = trophicgroup(EM, <span class="string">'method'</span>, <span class="string">'simulatedannealing'</span>, <span class="keyword">...</span>
+<span class="string">'verbose'</span>, false);
+</pre><p><b>Step 3:</b> Sort trophic groups.</p><p>The layout tool used in the next step assigns an initial vertical (y-axis) position to each node based on its trophic level.  The horizontal dimension doesn't have an equivalent restriction, so for initialization the nodes are simply placed left to right according to their trophic group number.  The <tt>trophicgroup</tt> algorithm assigns numbers to the groups it finds randomly, so this means the initial horizontal position of each group of nodes is random.  If we instead want initial placement to reflect some characteristic of the food web, we can sort these numbers based on that characteristic.</p><pre class="codeinput"><span class="comment">% Sort based on fraction of input originating from detritus</span>
+
+detfrac = sourcefraction(EM.graph(<span class="string">'oos'</span>, false, <span class="string">'det'</span>, false), {<span class="string">'Detritus'</span>});
+
+dfracavg = accumarray(tg, detfrac, [max(tg) 1], @mean);
+[~,isrt] = sort(dfracavg);
+[~, tgsorted] = ismember(tg, isrt);
+</pre><p><b>Step 4:</b> Save graph to JSON format</p><p>This step isn't necessary if you're planning to do all your plotting from within Matlab, using the foodweblayout function.  However, if you plan to do anything with this food web outside of Matlab (e.g. add a plot to a webpage), you will want to save graph to a JSON file.  At this stage in the process, the data will include all properties necessary to run d3.foodweblayout.</p><pre class="codeinput">fwgraph2json(G, tgsorted, fullfile(<span class="string">'examples'</span>, <span class="string">'gen37.json'</span>));
+</pre><p><b>Step 5:</b> Run the layout tool</p><p>Now it's time to set the positions for the nodes.  The <tt>foodweblayout</tt> function provides a wrapper around d3.foodweblayout, launching an web page in the Matlab browser that lets you play around with the various parameters and make manual adjustments to node position.  When you're done, click the checkbox in the lower left; this will close the browser and the function will retrieve the information from the visualization (node location, node radius, text label location) and add it to the Node table in the returned graph object.</p><pre>[Gpos, Ax, P] = foodweblayout(G, tgsorted);</pre><p>Here are the parameters I chose for this food web:</p><pre class="codeinput">P
+</pre><pre class="codeoutput">
+P = 
+
+struct with fields:
+
+marl: 50
+marr: 10
+mart: 10
+marb: 60
+totwidth: 500
+totheight: 500
+nodepad: 10
+strengthflxlink: 0.001
+strengthgrplink: 0.1
+strengthtrophic: 1.5
+strengthxcenter: 0.03
+tlmin: 1
+tlmax: 5
+rmin: 1
+rmax: 50
+bmin: NaN
+bmax: NaN
+
+</pre><p>At this point, we can plot the food web using straight line edges.  We can do this in Matab:</p><pre class="codeinput">h = plotfoodweb(Gpos, Ax, <span class="string">'p'</span>, 1/3, <span class="string">'w'</span>, 50, <span class="string">'rloop'</span>, 40, <span class="keyword">...</span>
+<span class="string">'edgecolor'</span>, <span class="string">'byValue'</span>, <span class="string">'initial'</span>, true, <span class="string">'gmax'</span>, 500);
+
+<span class="comment">% Color edges by log of weight</span>
+
+h.edg.CData = log10(h.edg.CData);
+set(h.ax, <span class="string">'clim'</span>, [-5 4]);
+colormap(flipud(parula));
+
+<span class="comment">% Add a colorbar for reference</span>
+
+h.cb = colorbar(<span class="string">'north'</span>);
+setpos(h.cb, <span class="string">'# 0.93 0.25 0.02'</span>);
+title(h.cb, <span class="string">'log_{10} Biomass flux (t ww/km^2/yr)'</span>);
+set(h.cb, <span class="string">'fontsize'</span>, 8);
+
+<span class="comment">% Outline nodes in white, for clarity</span>
+
+set(h.nd, <span class="string">'edgecolor'</span>, <span class="string">'w'</span>);
+</pre><img vspace="5" hspace="5" src="./readmeExtras/README_01.png" alt=""> <p>We could also save the graph data to a JSON file, and create an interactive web plot using d3.foodwebstatic.</p><pre class="codeinput">fwgraph2json(Gpos, tgsorted, fullfile(<span class="string">'examples'</span>, <span class="string">'gen37_postlayout.json'</span>));
+</pre><p><b>Step 6:</b> Edge bundling</p><p>The edge bundling algorithm calculates new bundled pathways for each edge.  This process highlights the major pathways of biomass through the food web, and can often make a cluttered spaghetti diagram much more informative.</p><p>For most food webs, you'll want to apply some sort of scaling to the edge weight values.  I find that a logarithmic transform works well for most food webs.  Keep in mind that the final edge weights returned by the function must remain positive.</p><pre class="codeinput"><span class="comment">% Scale edges</span>
+
+wlim = minmax(log10(Gpos.Edges.Weight), <span class="string">'expand'</span>, 0.01);
+wtfun = @(x) log10(x) - wlim(1);
+
+<span class="comment">% Bundle edges</span>
+
+Gbdl = debundle(Gpos, <span class="string">'edgefun'</span>, wtfun, <span class="string">'l'</span>, 100);
+</pre><pre class="codeoutput">Preprocessing...
+100% [=================================================&gt;]  176/ 176
+Elapsed time is 0.784118 seconds.
+Bundling...
+Pass 1
+100% [=================================================&gt;] Pass 1: 29 of 29
+Elapsed time is 0.497114 seconds.
+Pass 2
+100% [=================================================&gt;] Pass 2: 29 of 29
+Elapsed time is 1.512034 seconds.
+Pass 3
+100% [=================================================&gt;] Pass 3: 29 of 29
+Elapsed time is 3.280410 seconds.
+Pass 4
+100% [=================================================&gt;] Pass 4: 29 of 29
+Elapsed time is 7.013710 seconds.
+Pass 5
+100% [=================================================&gt;] Pass 5: 29 of 29
+Elapsed time is 14.314822 seconds.
+Postprocessing...
+Done
+</pre><p>We can save a new version of the JSON file, now containing edge path coordinates.</p><pre class="codeinput">fwgraph2json(Gbdl, tg, fullfile(<span class="string">'examples'</span>, <span class="string">'gen37_postbundle'</span>));
+</pre><p>We can also plot as we did in the previous example, now using those path coordinates for the edges.</p><pre class="codeinput">h = plotfoodweb(Gbdl, Ax, <span class="string">'p'</span>, 1/3, <span class="string">'w'</span>, 50, <span class="string">'rloop'</span>, 40, <span class="keyword">...</span>
+<span class="string">'edgecolor'</span>, <span class="string">'byValue'</span>, <span class="string">'gmax'</span>, 500, <span class="string">'cthresh'</span>, 0.5);
+
+<span class="comment">% Color edges by log of weight</span>
+
+h.edg.CData = log10(h.edg.CData);
+set(h.ax, <span class="string">'clim'</span>, [-5 4]);
+colormap(flipud(parula));
+
+<span class="comment">% Add a colorbar for reference</span>
+
+h.cb = colorbar(<span class="string">'north'</span>);
+setpos(h.cb, <span class="string">'# 0.93 0.25 0.02'</span>);
+title(h.cb, <span class="string">'log_{10} Biomass flux (t ww/km^2/yr)'</span>);
+set(h.cb, <span class="string">'fontsize'</span>, 8);
+
+<span class="comment">% Outline nodes in white, for clarity</span>
+
+set(h.nd, <span class="string">'edgecolor'</span>, <span class="string">'w'</span>);
+</pre><img vspace="5" hspace="5" src="./readmeExtras/README_02.png" alt=""> <h2 id="14">Contributions</h2><p>Community contributions to this package are welcome!</p><p>To report bugs, please submit <a href="https://github.com/kakearney/foodwebgraph-pkg/issues">an issue</a> on GitHub and include:</p><div><ul><li>your operating system</li><li>your version of Matlab and all relevant toolboxes (type <tt>ver</tt> at the Matlab command line to get this info)</li><li>code/data to reproduce the error or buggy behavior, and the full text of any error messages received</li></ul></div><p>Please also feel free to submit enhancement requests, or to send pull requests (via GitHub) for bug fixes or new features.</p><p>I do monitor the MatlabCentral FileExchange entry for any issues raised in the comments, but would prefer to track issues on GitHub.</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016b</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% |foodwebgraph.m|: Interactive food web diagrams for Ecopath
+% Author: Kelly Kearney
+%
+% This repository includes the Matlab code to perform the trophic 
+% group calculations, JSON file formatting, and divided edge bundling 
+% calculations necessary to plot food webs with the <TODO d3-foodweb> D3 
+% plugin.
+%
+% The d3-foodweb plugin, and this accompanying code, is currently a work 
+% in progress.  It is being developed alongside the writing of a 
+% manuscript describing the underlying algorithms.  Documentation and 
+% examples will improve as this manuscript progresses.
+
+%% Getting started
+%
+% *Prerequisites*
+%
+% This function requires Matlab R2014b or later.
+%
+% *Downloading and installation*
+%
+% This code can be downloaded from <https://github.com/kakearney/foodwebgraph-pkg/ Github>. 
+%
+% *Matlab Search Path*
+%
+% The following folders need to be added to your Matlab Search path (via
+% |addpath|, |pathtool|, etc.):
+%
+%   foodwebgraph-pkg/ConsoleProgressBar
+%   foodwebgraph-pkg/InterPointDistanceMatrix
+%   foodwebgraph-pkg/PARTITIONS
+%   foodwebgraph-pkg/aggregate
+%   foodwebgraph-pkg/catuneven
+%   foodwebgraph-pkg/cellstr2
+%   foodwebgraph-pkg/cprintf
+%   foodwebgraph-pkg/divedgebundle
+%   foodwebgraph-pkg/ecopath_matlab
+%   foodwebgraph-pkg/foodwebgraph
+%   foodwebgraph-pkg/gauzensgroup
+%   foodwebgraph-pkg/interparc
+%   foodwebgraph-pkg/jsonlab-1.0
+%   foodwebgraph-pkg/legendflex
+%   foodwebgraph-pkg/mergestruct
+%   foodwebgraph-pkg/minmax
+%   foodwebgraph-pkg/readtext
+%   foodwebgraph-pkg/regexpfound
+%   foodwebgraph-pkg/setgetpos_V1.2
+%   foodwebgraph-pkg/singlepatch
+%   foodwebgraph-pkg/vlookup
+%   foodwebgraph-pkg/wraptext
+
+%% Syntax
+%
+% This package includes a number of Matlab functions.  The primary ones of
+% interest are:
+%
+% * trophicgroup: Cluster food web nodes based on trophic similarity
+% * fwgraph2json: Export graph to JSON format for use with d3-foodweb
+% * foodweblayout: Interactive food web layout tool
+% * plotfoodweb: Plot food web in Matlab
+%
+% Please see the help headers (viewable via the |help| command from the Matlab
+% Command Window) for each function for a description of calling syntax,
+% input variables, and output variables.
+
+%% Examples
+%
+% This example will demonstrate the entire food web graph process, using
+% the Generic_37 Ecopath model (this model is included with the
+% <http://ecopath.org/ Ecopath with Ecosim)> software, and represents a
+% generic pelagic fisheries ecosystem). 
+%
+% *Step 1:* Read an Ecopath model into Matlab.
+
+epfile = 'examples/Generic_37.EwEmdb';
+
+w = warning('off');                % turning off warnings 
+EM = mdb2ecopathmodel(epfile);     % since this spits out a lot...
+warning(w);                        % ...and back on
+
+%% 
+% *Step 2:* Isolate trophic groups in the food web
+%
+% The simulated annealing algorithm does a pretty good job optimizing the
+% trophic groups, but its inherent randomness means it doesn't always find
+% the global optimum, especially when dealing with food webs, like this
+% one, whose functional groups are already grouped at a high level (as
+% opposed to webs with lots of individual species groups).  
+%
+% You can run the algorithm multiple times in order to try to ensure a
+% "best" grouping.  In this example, I'll simply seed the random number
+% generator to ensure replicability; this is only for example
+% purposes, and a one-time optimized result is sufficient.
+
+rng(8);
+
+[tg, Stmp, G] = trophicgroup(EM, 'method', 'simulatedannealing', ...
+'verbose', false);
+
+%%
+% *Step 3:* Sort trophic groups.
+%
+% The layout tool used in the next step
+% assigns an initial vertical (y-axis) position to each node based on its
+% trophic level.  The horizontal dimension doesn't have an equivalent
+% restriction, so for initialization the nodes are simply placed left to
+% right according to their trophic group number.  The |trophicgroup|
+% algorithm assigns numbers to the groups it finds randomly, so this means
+% the initial horizontal position of each group of nodes is random.  If we
+% instead want initial placement to reflect some characteristic of the food
+% web, we can sort these numbers based on that characteristic. 
+
+% Sort based on fraction of input originating from detritus
+
+detfrac = sourcefraction(EM.graph('oos', false, 'det', false), {'Detritus'});
+
+dfracavg = accumarray(tg, detfrac, [max(tg) 1], @mean);
+[~,isrt] = sort(dfracavg);
+[~, tgsorted] = ismember(tg, isrt);
+
+%%
+% *Step 4:* Save graph to JSON format
+%
+% This step isn't necessary if you're planning to do all your plotting from
+% within Matlab, using the foodweblayout function.  However, if you plan to
+% do anything with this food web outside of Matlab (e.g. add a plot to a
+% webpage), you will want to save graph to a JSON file.  At this stage in
+% the process, the data will include all properties necessary to run
+% d3.foodweblayout.
+
+fwgraph2json(G, tgsorted, fullfile('examples', 'gen37.json'));
+
+%%
+% *Step 5:* Run the layout tool
+%
+% Now it's time to set the positions for the nodes.  The |foodweblayout| function
+% provides a wrapper around d3.foodweblayout, launching an web page in the
+% Matlab browser that lets you play around with the various parameters and
+% make manual adjustments to node position.  When you're done, click the
+% checkbox in the lower left; this will close the browser and the function
+% will retrieve the information from the visualization (node location, node
+% radius, text label location) and add it to the Node table in the
+% returned graph object. 
+%
+%  [Gpos, Ax, P] = foodweblayout(G, tgsorted);
+
+%%
+% Here are the parameters I chose for this food web:
+
+P
+
+%%
+% At this point, we can plot the food web using straight line edges.  We
+% can do this in Matab:
+
+h = plotfoodweb(Gpos, Ax, 'p', 1/3, 'w', 50, 'rloop', 40, ...
+'edgecolor', 'byValue', 'initial', true, 'gmax', 500);
+
+% Color edges by log of weight
+
+h.edg.CData = log10(h.edg.CData);
+set(h.ax, 'clim', [-5 4]);
+colormap(flipud(parula));
+
+% Add a colorbar for reference
+
+h.cb = colorbar('north');
+setpos(h.cb, '# 0.93 0.25 0.02');
+title(h.cb, 'log_{10} Biomass flux (t ww/km^2/yr)');
+set(h.cb, 'fontsize', 8);
+
+% Outline nodes in white, for clarity
+
+set(h.nd, 'edgecolor', 'w');
+
+%%
+% We could also save the graph data to a JSON file, and create an
+% interactive web plot using d3.foodwebstatic.
+
+fwgraph2json(Gpos, tgsorted, fullfile('examples', 'gen37_postlayout.json'));
+
+%%
+% *Step 6:* Edge bundling
+%
+% The edge bundling algorithm calculates new bundled pathways for each
+% edge.  This process highlights the major pathways of biomass through the
+% food web, and can often make a cluttered spaghetti diagram much more
+% informative.
+%
+% For most food webs, you'll want to apply some sort of scaling to the edge
+% weight values.  I find that a logarithmic transform works well for most
+% food webs.  Keep in mind that the final edge weights returned by the
+% function must remain positive.
+
+% Scale edges
+
+wlim = minmax(log10(Gpos.Edges.Weight), 'expand', 0.01);
+wtfun = @(x) log10(x) - wlim(1);
+
+% Bundle edges
+
+Gbdl = debundle(Gpos, 'edgefun', wtfun, 'l', 100);
+
+%%
+% We can save a new version of the JSON file, now containing edge path
+% coordinates.
+
+fwgraph2json(Gbdl, tg, fullfile('examples', 'gen37_postbundle'));
+
+%%
+% We can also plot as we did in the previous example, now using those path
+% coordinates for the edges.
+
+h = plotfoodweb(Gbdl, Ax, 'p', 1/3, 'w', 50, 'rloop', 40, ...
+'edgecolor', 'byValue', 'gmax', 500, 'cthresh', 0.5);
+
+% Color edges by log of weight
+
+h.edg.CData = log10(h.edg.CData);
+set(h.ax, 'clim', [-5 4]);
+colormap(flipud(parula));
+
+% Add a colorbar for reference
+
+h.cb = colorbar('north');
+setpos(h.cb, '# 0.93 0.25 0.02');
+title(h.cb, 'log_{10} Biomass flux (t ww/km^2/yr)');
+set(h.cb, 'fontsize', 8);
+
+% Outline nodes in white, for clarity
+
+set(h.nd, 'edgecolor', 'w');
+
+%% Contributions
+%
+% Community contributions to this package are welcome!
+% 
+% To report bugs, please submit
+% <https://github.com/kakearney/foodwebgraph-pkg/issues an issue> on GitHub and
+% include:  
+% 
+% * your operating system
+% * your version of Matlab and all relevant toolboxes (type |ver| at the Matlab command line to get this info)  
+% * code/data to reproduce the error or buggy behavior, and the full text of any error messages received 
+% 
+% Please also feel free to submit enhancement requests, or to send pull
+% requests (via GitHub) for bug fixes or new features. 
+% 
+% I do monitor the MatlabCentral FileExchange entry for any issues raised
+% in the comments, but would prefer to track issues on GitHub. 
+% 
+
+
+##### SOURCE END #####
+--></body></html>

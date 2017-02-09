@@ -1,0 +1,1348 @@
+{
+	"nodes": [
+		[
+			{
+				"B": 0.00100000005,
+				"type": 0,
+				"TL": 3.499434938,
+				"id": "BaleenWhales",
+				"TG": 4
+			},
+			{
+				"B": 0.00200000009,
+				"type": 0,
+				"TL": 4.182959753,
+				"id": "ToothedWhales",
+				"TG": 4
+			},
+			{
+				"B": 0.00300000003,
+				"type": 0,
+				"TL": 4.457682456,
+				"id": "Seals",
+				"TG": 4
+			},
+			{
+				"B": 0.00100000005,
+				"type": 0,
+				"TL": 3.816617023,
+				"id": "Birds",
+				"TG": 7
+			},
+			{
+				"B": 0.100000001,
+				"type": 0,
+				"TL": 4.38218162,
+				"id": "Sharks_Large",
+				"TG": 7
+			},
+			{
+				"B": 0.300000012,
+				"type": 0,
+				"TL": 4.035045768,
+				"id": "Sharks_SmallMedium",
+				"TG": 7
+			},
+			{
+				"B": 0.100000001,
+				"type": 0,
+				"TL": 3.829900235,
+				"id": "Rays_Large",
+				"TG": 7
+			},
+			{
+				"B": 0.300000012,
+				"type": 0,
+				"TL": 3.868934254,
+				"id": "Rays_SmallMedium",
+				"TG": 11
+			},
+			{
+				"B": 0.400000006,
+				"type": 0,
+				"TL": 4.343752505,
+				"id": "Pelagics_Large",
+				"TG": 4
+			},
+			{
+				"B": 1.20000005,
+				"type": 0,
+				"TL": 3.784283622,
+				"id": "Pelagics_Medium",
+				"TG": 4
+			},
+			{
+				"B": 5,
+				"type": 0,
+				"TL": 3.07894737,
+				"id": "Pelagics_Small_Carniv_",
+				"TG": 3
+			},
+			{
+				"B": 2.5,
+				"type": 0,
+				"TL": 2.222222232,
+				"id": "Pelagics_Small_Herbiv_",
+				"TG": 3
+			},
+			{
+				"B": 0.200000003,
+				"type": 0,
+				"TL": 3.717611177,
+				"id": "Benthopelagics_Large",
+				"TG": 7
+			},
+			{
+				"B": 0.400000006,
+				"type": 0,
+				"TL": 3.792415331,
+				"id": "Benthopelagics_SmallMedium",
+				"TG": 7
+			},
+			{
+				"B": 0.5,
+				"type": 0,
+				"TL": 4.22840905,
+				"id": "Demersals_Large",
+				"TG": 7
+			},
+			{
+				"B": 2,
+				"type": 0,
+				"TL": 4.21287076,
+				"id": "Demersals_Medium",
+				"TG": 11
+			},
+			{
+				"B": 5,
+				"type": 0,
+				"TL": 3.623265311,
+				"id": "Demersals_Small",
+				"TG": 12
+			},
+			{
+				"B": 0.100000001,
+				"type": 0,
+				"TL": 4.227199321,
+				"id": "Reeffish_Large",
+				"TG": 7
+			},
+			{
+				"B": 0.5,
+				"type": 0,
+				"TL": 3.816868409,
+				"id": "Reeffish_Medium",
+				"TG": 11
+			},
+			{
+				"B": 0.100000001,
+				"type": 0,
+				"TL": 4.179489338,
+				"id": "Flatfish_Large",
+				"TG": 11
+			},
+			{
+				"B": 1,
+				"type": 0,
+				"TL": 3.748192755,
+				"id": "Flatfish_SmallMedium",
+				"TG": 11
+			},
+			{
+				"B": 1,
+				"type": 0,
+				"TL": 3.094502923,
+				"id": "Reeffish_Small",
+				"TG": 5
+			},
+			{
+				"B": 0.5,
+				"type": 0,
+				"TL": 3.11357341,
+				"id": "Bathypelagics",
+				"TG": 5
+			},
+			{
+				"B": 0.200000003,
+				"type": 0,
+				"TL": 3.481799741,
+				"id": "Bathydemersals",
+				"TG": 6
+			},
+			{
+				"B": 1,
+				"type": 0,
+				"TL": 2.836734689,
+				"id": "Jellyfish",
+				"TG": 5
+			},
+			{
+				"B": 0.5,
+				"type": 0,
+				"TL": 2.991959063,
+				"id": "Cephalopods",
+				"TG": 4
+			},
+			{
+				"B": 2,
+				"type": 0,
+				"TL": 2.15555556,
+				"id": "Shrimps",
+				"TG": 12
+			},
+			{
+				"B": 0.5,
+				"type": 0,
+				"TL": 3.176417223,
+				"id": "Lobsters_Crabs",
+				"TG": 12
+			},
+			{
+				"B": 10,
+				"type": 0,
+				"TL": 2.993197295,
+				"id": "Macrobenthos",
+				"TG": 12
+			},
+			{
+				"B": 15,
+				"type": 0,
+				"TL": 2.55555555,
+				"id": "Meiobenthos",
+				"TG": 6
+			},
+			{
+				"B": 0.100000001,
+				"type": 1,
+				"TL": 1.555000006,
+				"id": "Corals",
+				"TG": 9
+			},
+			{
+				"B": 2,
+				"type": 0,
+				"TL": 2.499999996,
+				"id": "Softcorals_Sponges_Etc",
+				"TG": 8
+			},
+			{
+				"B": 1,
+				"type": 0,
+				"TL": 2.789473676,
+				"id": "Krill",
+				"TG": 3
+			},
+			{
+				"B": 10,
+				"type": 0,
+				"TL": 2,
+				"id": "Zooplankton_Other",
+				"TG": 6
+			},
+			{
+				"B": 15,
+				"type": 1,
+				"TL": 1,
+				"id": "Phytoplankton",
+				"TG": 1
+			},
+			{
+				"B": 2,
+				"type": 1,
+				"TL": 1,
+				"id": "BenthicPlants",
+				"TG": 2
+			},
+			{
+				"B": 100,
+				"type": 2,
+				"TL": 1,
+				"id": "Detritus",
+				"TG": 13
+			},
+			{
+				"B": 3.407000032,
+				"type": 3,
+				"TL": 4.648655012,
+				"id": "Fleet1",
+				"TG": 10
+			}
+		]
+	],
+	"links1": [
+		[
+			{
+				"source": "Seals",
+				"target": "ToothedWhales"
+			},
+			{
+				"source": "Sharks_Large",
+				"target": "Fleet1"
+			},
+			{
+				"source": "Sharks_SmallMedium",
+				"target": "Sharks_Large"
+			},
+			{
+				"source": "Sharks_SmallMedium",
+				"target": "Fleet1"
+			},
+			{
+				"source": "Rays_Large",
+				"target": "Fleet1"
+			},
+			{
+				"source": "Rays_SmallMedium",
+				"target": "Fleet1"
+			},
+			{
+				"source": "Pelagics_Large",
+				"target": "ToothedWhales"
+			},
+			{
+				"source": "Pelagics_Large",
+				"target": "Fleet1"
+			},
+			{
+				"source": "Pelagics_Medium",
+				"target": "BaleenWhales"
+			},
+			{
+				"source": "Pelagics_Medium",
+				"target": "ToothedWhales"
+			},
+			{
+				"source": "Pelagics_Medium",
+				"target": "Seals"
+			},
+			{
+				"source": "Pelagics_Medium",
+				"target": "Sharks_Large"
+			},
+			{
+				"source": "Pelagics_Medium",
+				"target": "Pelagics_Large"
+			},
+			{
+				"source": "Pelagics_Medium",
+				"target": "Fleet1"
+			},
+			{
+				"source": "Pelagics_Small_Carniv_",
+				"target": "BaleenWhales"
+			},
+			{
+				"source": "Pelagics_Small_Carniv_",
+				"target": "ToothedWhales"
+			},
+			{
+				"source": "Pelagics_Small_Carniv_",
+				"target": "Seals"
+			},
+			{
+				"source": "Pelagics_Small_Carniv_",
+				"target": "Birds"
+			},
+			{
+				"source": "Pelagics_Small_Carniv_",
+				"target": "Sharks_Large"
+			},
+			{
+				"source": "Pelagics_Small_Carniv_",
+				"target": "Sharks_SmallMedium"
+			},
+			{
+				"source": "Pelagics_Small_Carniv_",
+				"target": "Pelagics_Large"
+			},
+			{
+				"source": "Pelagics_Small_Carniv_",
+				"target": "Pelagics_Medium"
+			},
+			{
+				"source": "Pelagics_Small_Carniv_",
+				"target": "Benthopelagics_Large"
+			},
+			{
+				"source": "Pelagics_Small_Carniv_",
+				"target": "Benthopelagics_SmallMedium"
+			},
+			{
+				"source": "Pelagics_Small_Carniv_",
+				"target": "Demersals_Large"
+			},
+			{
+				"source": "Pelagics_Small_Carniv_",
+				"target": "Reeffish_Large"
+			},
+			{
+				"source": "Pelagics_Small_Carniv_",
+				"target": "Cephalopods"
+			},
+			{
+				"source": "Pelagics_Small_Carniv_",
+				"target": "Fleet1"
+			},
+			{
+				"source": "Pelagics_Small_Herbiv_",
+				"target": "BaleenWhales"
+			},
+			{
+				"source": "Pelagics_Small_Herbiv_",
+				"target": "ToothedWhales"
+			},
+			{
+				"source": "Pelagics_Small_Herbiv_",
+				"target": "Seals"
+			},
+			{
+				"source": "Pelagics_Small_Herbiv_",
+				"target": "Birds"
+			},
+			{
+				"source": "Pelagics_Small_Herbiv_",
+				"target": "Sharks_Large"
+			},
+			{
+				"source": "Pelagics_Small_Herbiv_",
+				"target": "Sharks_SmallMedium"
+			},
+			{
+				"source": "Pelagics_Small_Herbiv_",
+				"target": "Rays_Large"
+			},
+			{
+				"source": "Pelagics_Small_Herbiv_",
+				"target": "Pelagics_Large"
+			},
+			{
+				"source": "Pelagics_Small_Herbiv_",
+				"target": "Pelagics_Medium"
+			},
+			{
+				"source": "Pelagics_Small_Herbiv_",
+				"target": "Benthopelagics_Large"
+			},
+			{
+				"source": "Pelagics_Small_Herbiv_",
+				"target": "Benthopelagics_SmallMedium"
+			},
+			{
+				"source": "Pelagics_Small_Herbiv_",
+				"target": "Demersals_Large"
+			},
+			{
+				"source": "Pelagics_Small_Herbiv_",
+				"target": "Reeffish_Large"
+			},
+			{
+				"source": "Pelagics_Small_Herbiv_",
+				"target": "Cephalopods"
+			},
+			{
+				"source": "Pelagics_Small_Herbiv_",
+				"target": "Fleet1"
+			},
+			{
+				"source": "Benthopelagics_Large",
+				"target": "Fleet1"
+			},
+			{
+				"source": "Benthopelagics_SmallMedium",
+				"target": "Fleet1"
+			},
+			{
+				"source": "Demersals_Large",
+				"target": "Fleet1"
+			},
+			{
+				"source": "Demersals_Medium",
+				"target": "Seals"
+			},
+			{
+				"source": "Demersals_Medium",
+				"target": "Sharks_Large"
+			},
+			{
+				"source": "Demersals_Medium",
+				"target": "Sharks_SmallMedium"
+			},
+			{
+				"source": "Demersals_Medium",
+				"target": "Pelagics_Large"
+			},
+			{
+				"source": "Demersals_Medium",
+				"target": "Demersals_Large"
+			},
+			{
+				"source": "Demersals_Medium",
+				"target": "Flatfish_Large"
+			},
+			{
+				"source": "Demersals_Medium",
+				"target": "Fleet1"
+			},
+			{
+				"source": "Demersals_Small",
+				"target": "Seals"
+			},
+			{
+				"source": "Demersals_Small",
+				"target": "Birds"
+			},
+			{
+				"source": "Demersals_Small",
+				"target": "Sharks_Large"
+			},
+			{
+				"source": "Demersals_Small",
+				"target": "Sharks_SmallMedium"
+			},
+			{
+				"source": "Demersals_Small",
+				"target": "Rays_Large"
+			},
+			{
+				"source": "Demersals_Small",
+				"target": "Pelagics_Large"
+			},
+			{
+				"source": "Demersals_Small",
+				"target": "Benthopelagics_Large"
+			},
+			{
+				"source": "Demersals_Small",
+				"target": "Benthopelagics_SmallMedium"
+			},
+			{
+				"source": "Demersals_Small",
+				"target": "Demersals_Large"
+			},
+			{
+				"source": "Demersals_Small",
+				"target": "Demersals_Medium"
+			},
+			{
+				"source": "Demersals_Small",
+				"target": "Reeffish_Large"
+			},
+			{
+				"source": "Demersals_Small",
+				"target": "Reeffish_Medium"
+			},
+			{
+				"source": "Demersals_Small",
+				"target": "Flatfish_Large"
+			},
+			{
+				"source": "Demersals_Small",
+				"target": "Flatfish_SmallMedium"
+			},
+			{
+				"source": "Reeffish_Large",
+				"target": "Fleet1"
+			},
+			{
+				"source": "Reeffish_Medium",
+				"target": "Reeffish_Large"
+			},
+			{
+				"source": "Reeffish_Medium",
+				"target": "Fleet1"
+			},
+			{
+				"source": "Flatfish_Large",
+				"target": "Fleet1"
+			},
+			{
+				"source": "Flatfish_SmallMedium",
+				"target": "Seals"
+			},
+			{
+				"source": "Flatfish_SmallMedium",
+				"target": "Flatfish_Large"
+			},
+			{
+				"source": "Flatfish_SmallMedium",
+				"target": "Fleet1"
+			},
+			{
+				"source": "Reeffish_Small",
+				"target": "Sharks_Large"
+			},
+			{
+				"source": "Reeffish_Small",
+				"target": "Reeffish_Large"
+			},
+			{
+				"source": "Reeffish_Small",
+				"target": "Reeffish_Medium"
+			},
+			{
+				"source": "Bathypelagics",
+				"target": "Bathypelagics"
+			},
+			{
+				"source": "Bathydemersals",
+				"target": "Bathydemersals"
+			},
+			{
+				"source": "Jellyfish",
+				"target": "Jellyfish"
+			},
+			{
+				"source": "Cephalopods",
+				"target": "ToothedWhales"
+			},
+			{
+				"source": "Cephalopods",
+				"target": "Seals"
+			},
+			{
+				"source": "Cephalopods",
+				"target": "Pelagics_Medium"
+			},
+			{
+				"source": "Cephalopods",
+				"target": "Flatfish_Large"
+			},
+			{
+				"source": "Cephalopods",
+				"target": "Fleet1"
+			},
+			{
+				"source": "Shrimps",
+				"target": "Sharks_SmallMedium"
+			},
+			{
+				"source": "Shrimps",
+				"target": "Rays_Large"
+			},
+			{
+				"source": "Shrimps",
+				"target": "Rays_SmallMedium"
+			},
+			{
+				"source": "Shrimps",
+				"target": "Benthopelagics_Large"
+			},
+			{
+				"source": "Shrimps",
+				"target": "Benthopelagics_SmallMedium"
+			},
+			{
+				"source": "Shrimps",
+				"target": "Demersals_Large"
+			},
+			{
+				"source": "Shrimps",
+				"target": "Demersals_Medium"
+			},
+			{
+				"source": "Shrimps",
+				"target": "Demersals_Small"
+			},
+			{
+				"source": "Shrimps",
+				"target": "Reeffish_Medium"
+			},
+			{
+				"source": "Shrimps",
+				"target": "Flatfish_Large"
+			},
+			{
+				"source": "Shrimps",
+				"target": "Flatfish_SmallMedium"
+			},
+			{
+				"source": "Shrimps",
+				"target": "Reeffish_Small"
+			},
+			{
+				"source": "Shrimps",
+				"target": "Fleet1"
+			},
+			{
+				"source": "Lobsters_Crabs",
+				"target": "Sharks_SmallMedium"
+			},
+			{
+				"source": "Lobsters_Crabs",
+				"target": "Rays_Large"
+			},
+			{
+				"source": "Lobsters_Crabs",
+				"target": "Rays_SmallMedium"
+			},
+			{
+				"source": "Lobsters_Crabs",
+				"target": "Demersals_Medium"
+			},
+			{
+				"source": "Lobsters_Crabs",
+				"target": "Fleet1"
+			},
+			{
+				"source": "Macrobenthos",
+				"target": "Birds"
+			},
+			{
+				"source": "Macrobenthos",
+				"target": "Sharks_Large"
+			},
+			{
+				"source": "Macrobenthos",
+				"target": "Sharks_SmallMedium"
+			},
+			{
+				"source": "Macrobenthos",
+				"target": "Rays_Large"
+			},
+			{
+				"source": "Macrobenthos",
+				"target": "Rays_SmallMedium"
+			},
+			{
+				"source": "Macrobenthos",
+				"target": "Benthopelagics_Large"
+			},
+			{
+				"source": "Macrobenthos",
+				"target": "Benthopelagics_SmallMedium"
+			},
+			{
+				"source": "Macrobenthos",
+				"target": "Demersals_Large"
+			},
+			{
+				"source": "Macrobenthos",
+				"target": "Demersals_Medium"
+			},
+			{
+				"source": "Macrobenthos",
+				"target": "Demersals_Small"
+			},
+			{
+				"source": "Macrobenthos",
+				"target": "Reeffish_Large"
+			},
+			{
+				"source": "Macrobenthos",
+				"target": "Reeffish_Medium"
+			},
+			{
+				"source": "Macrobenthos",
+				"target": "Flatfish_Large"
+			},
+			{
+				"source": "Macrobenthos",
+				"target": "Flatfish_SmallMedium"
+			},
+			{
+				"source": "Macrobenthos",
+				"target": "Bathydemersals"
+			},
+			{
+				"source": "Macrobenthos",
+				"target": "Lobsters_Crabs"
+			},
+			{
+				"source": "Macrobenthos",
+				"target": "Macrobenthos"
+			},
+			{
+				"source": "Macrobenthos",
+				"target": "Fleet1"
+			},
+			{
+				"source": "Meiobenthos",
+				"target": "Demersals_Small"
+			},
+			{
+				"source": "Meiobenthos",
+				"target": "Reeffish_Medium"
+			},
+			{
+				"source": "Meiobenthos",
+				"target": "Flatfish_SmallMedium"
+			},
+			{
+				"source": "Meiobenthos",
+				"target": "Bathydemersals"
+			},
+			{
+				"source": "Meiobenthos",
+				"target": "Shrimps"
+			},
+			{
+				"source": "Meiobenthos",
+				"target": "Lobsters_Crabs"
+			},
+			{
+				"source": "Meiobenthos",
+				"target": "Macrobenthos"
+			},
+			{
+				"source": "Meiobenthos",
+				"target": "Meiobenthos"
+			},
+			{
+				"source": "Corals",
+				"target": "Reeffish_Medium"
+			},
+			{
+				"source": "Softcorals_Sponges_Etc",
+				"target": "Reeffish_Medium"
+			},
+			{
+				"source": "Krill",
+				"target": "BaleenWhales"
+			},
+			{
+				"source": "Krill",
+				"target": "ToothedWhales"
+			},
+			{
+				"source": "Krill",
+				"target": "Birds"
+			},
+			{
+				"source": "Krill",
+				"target": "Pelagics_Large"
+			},
+			{
+				"source": "Krill",
+				"target": "Pelagics_Medium"
+			},
+			{
+				"source": "Krill",
+				"target": "Pelagics_Small_Carniv_"
+			},
+			{
+				"source": "Krill",
+				"target": "Benthopelagics_Large"
+			},
+			{
+				"source": "Krill",
+				"target": "Reeffish_Small"
+			},
+			{
+				"source": "Krill",
+				"target": "Bathypelagics"
+			},
+			{
+				"source": "Krill",
+				"target": "Cephalopods"
+			},
+			{
+				"source": "Krill",
+				"target": "Krill"
+			},
+			{
+				"source": "Zooplankton_Other",
+				"target": "BaleenWhales"
+			},
+			{
+				"source": "Zooplankton_Other",
+				"target": "Birds"
+			},
+			{
+				"source": "Zooplankton_Other",
+				"target": "Rays_SmallMedium"
+			},
+			{
+				"source": "Zooplankton_Other",
+				"target": "Pelagics_Small_Carniv_"
+			},
+			{
+				"source": "Zooplankton_Other",
+				"target": "Pelagics_Small_Herbiv_"
+			},
+			{
+				"source": "Zooplankton_Other",
+				"target": "Benthopelagics_Large"
+			},
+			{
+				"source": "Zooplankton_Other",
+				"target": "Benthopelagics_SmallMedium"
+			},
+			{
+				"source": "Zooplankton_Other",
+				"target": "Demersals_Small"
+			},
+			{
+				"source": "Zooplankton_Other",
+				"target": "Reeffish_Medium"
+			},
+			{
+				"source": "Zooplankton_Other",
+				"target": "Flatfish_Large"
+			},
+			{
+				"source": "Zooplankton_Other",
+				"target": "Flatfish_SmallMedium"
+			},
+			{
+				"source": "Zooplankton_Other",
+				"target": "Reeffish_Small"
+			},
+			{
+				"source": "Zooplankton_Other",
+				"target": "Bathypelagics"
+			},
+			{
+				"source": "Zooplankton_Other",
+				"target": "Bathydemersals"
+			},
+			{
+				"source": "Zooplankton_Other",
+				"target": "Jellyfish"
+			},
+			{
+				"source": "Zooplankton_Other",
+				"target": "Cephalopods"
+			},
+			{
+				"source": "Zooplankton_Other",
+				"target": "Macrobenthos"
+			},
+			{
+				"source": "Zooplankton_Other",
+				"target": "Meiobenthos"
+			},
+			{
+				"source": "Zooplankton_Other",
+				"target": "Corals"
+			},
+			{
+				"source": "Zooplankton_Other",
+				"target": "Softcorals_Sponges_Etc"
+			},
+			{
+				"source": "Zooplankton_Other",
+				"target": "Krill"
+			},
+			{
+				"source": "Phytoplankton",
+				"target": "Pelagics_Small_Herbiv_"
+			},
+			{
+				"source": "Phytoplankton",
+				"target": "Meiobenthos"
+			},
+			{
+				"source": "Phytoplankton",
+				"target": "Corals"
+			},
+			{
+				"source": "Phytoplankton",
+				"target": "Softcorals_Sponges_Etc"
+			},
+			{
+				"source": "Phytoplankton",
+				"target": "Krill"
+			},
+			{
+				"source": "Phytoplankton",
+				"target": "Zooplankton_Other"
+			},
+			{
+				"source": "BenthicPlants",
+				"target": "Macrobenthos"
+			},
+			{
+				"source": "Detritus",
+				"target": "Bathypelagics"
+			},
+			{
+				"source": "Detritus",
+				"target": "Bathydemersals"
+			},
+			{
+				"source": "Detritus",
+				"target": "Jellyfish"
+			},
+			{
+				"source": "Detritus",
+				"target": "Cephalopods"
+			},
+			{
+				"source": "Detritus",
+				"target": "Shrimps"
+			},
+			{
+				"source": "Detritus",
+				"target": "Lobsters_Crabs"
+			},
+			{
+				"source": "Detritus",
+				"target": "Macrobenthos"
+			},
+			{
+				"source": "Detritus",
+				"target": "Meiobenthos"
+			},
+			{
+				"source": "Detritus",
+				"target": "Corals"
+			},
+			{
+				"source": "Detritus",
+				"target": "Softcorals_Sponges_Etc"
+			},
+			{
+				"source": "Detritus",
+				"target": "Krill"
+			},
+			{
+				"source": "Detritus",
+				"target": "Zooplankton_Other"
+			}
+		]
+	],
+	"links2": [
+		[
+			{
+				"source": "BaleenWhales",
+				"target": "ToothedWhales",
+				"TG": 4
+			},
+			{
+				"source": "BaleenWhales",
+				"target": "Seals",
+				"TG": 4
+			},
+			{
+				"source": "BaleenWhales",
+				"target": "Pelagics_Large",
+				"TG": 4
+			},
+			{
+				"source": "BaleenWhales",
+				"target": "Pelagics_Medium",
+				"TG": 4
+			},
+			{
+				"source": "BaleenWhales",
+				"target": "Cephalopods",
+				"TG": 4
+			},
+			{
+				"source": "ToothedWhales",
+				"target": "Seals",
+				"TG": 4
+			},
+			{
+				"source": "ToothedWhales",
+				"target": "Pelagics_Large",
+				"TG": 4
+			},
+			{
+				"source": "ToothedWhales",
+				"target": "Pelagics_Medium",
+				"TG": 4
+			},
+			{
+				"source": "ToothedWhales",
+				"target": "Cephalopods",
+				"TG": 4
+			},
+			{
+				"source": "Seals",
+				"target": "Pelagics_Large",
+				"TG": 4
+			},
+			{
+				"source": "Seals",
+				"target": "Pelagics_Medium",
+				"TG": 4
+			},
+			{
+				"source": "Seals",
+				"target": "Cephalopods",
+				"TG": 4
+			},
+			{
+				"source": "Birds",
+				"target": "Sharks_Large",
+				"TG": 7
+			},
+			{
+				"source": "Birds",
+				"target": "Sharks_SmallMedium",
+				"TG": 7
+			},
+			{
+				"source": "Birds",
+				"target": "Rays_Large",
+				"TG": 7
+			},
+			{
+				"source": "Birds",
+				"target": "Benthopelagics_Large",
+				"TG": 7
+			},
+			{
+				"source": "Birds",
+				"target": "Benthopelagics_SmallMedium",
+				"TG": 7
+			},
+			{
+				"source": "Birds",
+				"target": "Demersals_Large",
+				"TG": 7
+			},
+			{
+				"source": "Birds",
+				"target": "Reeffish_Large",
+				"TG": 7
+			},
+			{
+				"source": "Sharks_Large",
+				"target": "Sharks_SmallMedium",
+				"TG": 7
+			},
+			{
+				"source": "Sharks_Large",
+				"target": "Rays_Large",
+				"TG": 7
+			},
+			{
+				"source": "Sharks_Large",
+				"target": "Benthopelagics_Large",
+				"TG": 7
+			},
+			{
+				"source": "Sharks_Large",
+				"target": "Benthopelagics_SmallMedium",
+				"TG": 7
+			},
+			{
+				"source": "Sharks_Large",
+				"target": "Demersals_Large",
+				"TG": 7
+			},
+			{
+				"source": "Sharks_Large",
+				"target": "Reeffish_Large",
+				"TG": 7
+			},
+			{
+				"source": "Sharks_SmallMedium",
+				"target": "Rays_Large",
+				"TG": 7
+			},
+			{
+				"source": "Sharks_SmallMedium",
+				"target": "Benthopelagics_Large",
+				"TG": 7
+			},
+			{
+				"source": "Sharks_SmallMedium",
+				"target": "Benthopelagics_SmallMedium",
+				"TG": 7
+			},
+			{
+				"source": "Sharks_SmallMedium",
+				"target": "Demersals_Large",
+				"TG": 7
+			},
+			{
+				"source": "Sharks_SmallMedium",
+				"target": "Reeffish_Large",
+				"TG": 7
+			},
+			{
+				"source": "Rays_Large",
+				"target": "Benthopelagics_Large",
+				"TG": 7
+			},
+			{
+				"source": "Rays_Large",
+				"target": "Benthopelagics_SmallMedium",
+				"TG": 7
+			},
+			{
+				"source": "Rays_Large",
+				"target": "Demersals_Large",
+				"TG": 7
+			},
+			{
+				"source": "Rays_Large",
+				"target": "Reeffish_Large",
+				"TG": 7
+			},
+			{
+				"source": "Rays_SmallMedium",
+				"target": "Demersals_Medium",
+				"TG": 11
+			},
+			{
+				"source": "Rays_SmallMedium",
+				"target": "Reeffish_Medium",
+				"TG": 11
+			},
+			{
+				"source": "Rays_SmallMedium",
+				"target": "Flatfish_Large",
+				"TG": 11
+			},
+			{
+				"source": "Rays_SmallMedium",
+				"target": "Flatfish_SmallMedium",
+				"TG": 11
+			},
+			{
+				"source": "Pelagics_Large",
+				"target": "Pelagics_Medium",
+				"TG": 4
+			},
+			{
+				"source": "Pelagics_Large",
+				"target": "Cephalopods",
+				"TG": 4
+			},
+			{
+				"source": "Pelagics_Medium",
+				"target": "Cephalopods",
+				"TG": 4
+			},
+			{
+				"source": "Pelagics_Small_Carniv_",
+				"target": "Pelagics_Small_Herbiv_",
+				"TG": 3
+			},
+			{
+				"source": "Pelagics_Small_Carniv_",
+				"target": "Krill",
+				"TG": 3
+			},
+			{
+				"source": "Pelagics_Small_Herbiv_",
+				"target": "Krill",
+				"TG": 3
+			},
+			{
+				"source": "Benthopelagics_Large",
+				"target": "Benthopelagics_SmallMedium",
+				"TG": 7
+			},
+			{
+				"source": "Benthopelagics_Large",
+				"target": "Demersals_Large",
+				"TG": 7
+			},
+			{
+				"source": "Benthopelagics_Large",
+				"target": "Reeffish_Large",
+				"TG": 7
+			},
+			{
+				"source": "Benthopelagics_SmallMedium",
+				"target": "Demersals_Large",
+				"TG": 7
+			},
+			{
+				"source": "Benthopelagics_SmallMedium",
+				"target": "Reeffish_Large",
+				"TG": 7
+			},
+			{
+				"source": "Demersals_Large",
+				"target": "Reeffish_Large",
+				"TG": 7
+			},
+			{
+				"source": "Demersals_Medium",
+				"target": "Reeffish_Medium",
+				"TG": 11
+			},
+			{
+				"source": "Demersals_Medium",
+				"target": "Flatfish_Large",
+				"TG": 11
+			},
+			{
+				"source": "Demersals_Medium",
+				"target": "Flatfish_SmallMedium",
+				"TG": 11
+			},
+			{
+				"source": "Demersals_Small",
+				"target": "Shrimps",
+				"TG": 12
+			},
+			{
+				"source": "Demersals_Small",
+				"target": "Lobsters_Crabs",
+				"TG": 12
+			},
+			{
+				"source": "Demersals_Small",
+				"target": "Macrobenthos",
+				"TG": 12
+			},
+			{
+				"source": "Reeffish_Medium",
+				"target": "Flatfish_Large",
+				"TG": 11
+			},
+			{
+				"source": "Reeffish_Medium",
+				"target": "Flatfish_SmallMedium",
+				"TG": 11
+			},
+			{
+				"source": "Flatfish_Large",
+				"target": "Flatfish_SmallMedium",
+				"TG": 11
+			},
+			{
+				"source": "Reeffish_Small",
+				"target": "Bathypelagics",
+				"TG": 5
+			},
+			{
+				"source": "Reeffish_Small",
+				"target": "Jellyfish",
+				"TG": 5
+			},
+			{
+				"source": "Bathypelagics",
+				"target": "Jellyfish",
+				"TG": 5
+			},
+			{
+				"source": "Bathydemersals",
+				"target": "Meiobenthos",
+				"TG": 6
+			},
+			{
+				"source": "Bathydemersals",
+				"target": "Zooplankton_Other",
+				"TG": 6
+			},
+			{
+				"source": "Shrimps",
+				"target": "Lobsters_Crabs",
+				"TG": 12
+			},
+			{
+				"source": "Shrimps",
+				"target": "Macrobenthos",
+				"TG": 12
+			},
+			{
+				"source": "Lobsters_Crabs",
+				"target": "Macrobenthos",
+				"TG": 12
+			},
+			{
+				"source": "Meiobenthos",
+				"target": "Zooplankton_Other",
+				"TG": 6
+			}
+		]
+	]
+}
