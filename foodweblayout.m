@@ -1,7 +1,7 @@
 function [G, Ax, Param, Svg] = foodweblayout(G, tg, varargin)
 %FOODWEBLAYOUT Wrapper to call foodweblayout.js
 %
-% This function provides a wrapper around the foodweblayout.js tool,
+% This function provides a wrapper around the d3-foodweb foodweblayouttool,
 % preparing the input .json file and then extracting details from the
 % user-configured food web.
 %
@@ -67,10 +67,6 @@ if nargin < 2
     tg = (1:numnodes(G))';
 end
 
-% % Create JSON file for foodweblayout.js
-% 
-% [Htg, Gtg] = trophicgroupgraph(G, tg);
-
 % Create folder with copies of necessary files
 
 if ~exist(Opt.folder, 'dir')
@@ -84,8 +80,15 @@ fwgraph2json(G, tg, fullfile(Opt.folder, 'foodweb.json'), true);
 % Wait for the user to check the DONE box, then dump the html from the
 % browser into a file
 
-while ~checkstatus(h)
-    pause(1);
+tobj = timer('TimerFcn', {@checkstatus, h}, ...
+             'ExecutionMode', 'fixedRate', ...
+             'StartDelay', 1, ...
+             'TasksToExecute', 3600);
+start(tobj);
+wait(tobj);
+
+if strcmp(get(tobj, 'UserData'), 'browserclosed')
+    error('Web browser closed prematurely');
 end
 
 txt = get(h, 'HtmlText');
@@ -98,9 +101,9 @@ fclose(fid);
 
 % Extract the parameter settings set by the user
 
-linemarker = '<div id="textparams">';
+linemarker = '<div id="textparams"';
 txt = regexp(txt, '\n', 'split');
-isparam = strncmp(txt, linemarker, length(linemarker));
+isparam = strncmp(strtrim(txt), linemarker, length(linemarker));
 paramtxt = txt{isparam};
 idx1 = strfind(paramtxt, 'marl');
 idx2 = strfind(paramtxt, '<h1>DONE');
@@ -130,13 +133,13 @@ Svg.T = T;
 
 % Subfunction: Parse html and check for DONE marker
 
-function isdone = checkstatus(h)
-
-txt = get(h, 'HtmlText');
+function checkstatus(obj, ev, hweb)
+txt = get(hweb, 'HtmlText');
 if isempty(txt)
-    isdone = false;
+    set(obj, 'UserData', 'browserclosed');
+    isdone = true;
 else
-    idx1 = strfind(txt, '<div id="textparams">');
+    idx1 = strfind(txt, '<div id="textparams"');
     if isempty(idx1)
         isdone = false;
     else
@@ -146,8 +149,9 @@ else
         isdone = ~isempty(strfind(divtext, 'DONE'));
     end
 end
-
-
+if isdone
+    stop(obj);
+end
 
 
 
