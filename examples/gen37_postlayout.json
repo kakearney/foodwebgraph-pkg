@@ -5,11 +5,11 @@
 				"B": 0.00100000005,
 				"type": 0,
 				"TL": 3.499434938,
-				"x": 1.224850653,
-				"y": 3.540007952,
+				"x": 1.22484999,
+				"y": 3.540007976,
 				"r": 0.009302325581,
-				"tx": 1.236131519,
-				"ty": 3.540415443,
+				"tx": 1.244061096,
+				"ty": 3.553924444,
 				"th": "left",
 				"tv": "base",
 				"id": "BaleenWhales",
@@ -19,11 +19,11 @@
 				"B": 0.00200000009,
 				"type": 0,
 				"TL": 4.182959753,
-				"x": 1.086192111,
-				"y": 4.149423189,
+				"x": 1.086191323,
+				"y": 4.149423172,
 				"r": 0.009901271312,
-				"tx": 1.096332224,
-				"ty": 4.151271434,
+				"tx": 1.098295921,
+				"ty": 4.163118288,
 				"th": "left",
 				"tv": "base",
 				"id": "ToothedWhales",
@@ -33,11 +33,11 @@
 				"B": 0.00300000003,
 				"type": 0,
 				"TL": 4.457682456,
-				"x": 1.458913783,
-				"y": 4.420885764,
+				"x": 1.458913111,
+				"y": 4.420885738,
 				"r": 0.01036085849,
-				"tx": 1.4735572,
-				"ty": 4.430488746,
+				"tx": 1.474727394,
+				"ty": 4.434239266,
 				"th": "left",
 				"tv": "base",
 				"id": "Seals",
@@ -47,11 +47,11 @@
 				"B": 0.00100000005,
 				"type": 0,
 				"TL": 3.816617023,
-				"x": 2.017853031,
-				"y": 3.859186006,
+				"x": 2.01785165,
+				"y": 3.859186082,
 				"r": 0.009302325581,
-				"tx": 2.036156791,
-				"ty": 3.862322203,
+				"tx": 2.031907556,
+				"ty": 3.864210266,
 				"th": "left",
 				"tv": "base",
 				"id": "Birds",
@@ -61,11 +61,11 @@
 				"B": 0.100000001,
 				"type": 0,
 				"TL": 4.38218162,
-				"x": 2.317879224,
-				"y": 4.385447106,
+				"x": 2.317878029,
+				"y": 4.385447119,
 				"r": 0.02231617155,
-				"tx": 2.341196785,
-				"ty": 4.388977939,
+				"tx": 2.342078716,
+				"ty": 4.387680128,
 				"th": "left",
 				"tv": "base",
 				"id": "Sharks_Large",
@@ -75,11 +75,11 @@
 				"B": 0.300000012,
 				"type": 0,
 				"TL": 4.035045768,
-				"x": 2.323793272,
-				"y": 4.047509676,
+				"x": 2.323791852,
+				"y": 4.0475097,
 				"r": 0.03290150135,
-				"tx": 2.375090164,
-				"ty": 4.055299902,
+				"tx": 2.358021909,
+				"ty": 4.048186676,
 				"th": "left",
 				"tv": "base",
 				"id": "Sharks_SmallMedium",
@@ -89,11 +89,11 @@
 				"B": 0.100000001,
 				"type": 0,
 				"TL": 3.829900235,
-				"x": 2.669648749,
-				"y": 3.858300998,
+				"x": 2.669647638,
+				"y": 3.858301044,
 				"r": 0.02231617155,
-				"tx": 2.686699861,
-				"ty": 3.907374262,
+				"tx": 2.679333067,
+				"ty": 3.908298185,
 				"th": "left",
 				"tv": "base",
 				"id": "Rays_Large",
@@ -103,11 +103,11 @@
 				"B": 0.300000012,
 				"type": 0,
 				"TL": 3.868934254,
-				"x": 3.336332793,
-				"y": 3.896339641,
+				"x": 3.336332089,
+				"y": 3.896339697,
 				"r": 0.03290150135,
-				"tx": 3.351674959,
-				"ty": 3.951364157,
+				"tx": 3.369768818,
+				"ty": 3.936448569,
 				"th": "left",
 				"tv": "base",
 				"id": "Rays_SmallMedium",
@@ -117,11 +117,11 @@
 				"B": 0.400000006,
 				"type": 0,
 				"TL": 4.343752505,
-				"x": 1.252715398,
-				"y": 4.311997241,
+				"x": 1.252714742,
+				"y": 4.311997187,
 				"r": 0.03677600052,
-				"tx": 1.290027811,
-				"ty": 4.318672305,
+				"tx": 1.292665201,
+				"ty": 4.315018188,
 				"th": "left",
 				"tv": "base",
 				"id": "Pelagics_Large",
@@ -131,11 +131,11 @@
 				"B": 1.20000005,
 				"type": 0,
 				"TL": 3.784283622,
-				"x": 1.307280579,
-				"y": 3.802217593,
+				"x": 1.307279818,
+				"y": 3.802217572,
 				"r": 0.05794666007,
-				"tx": 1.372596677,
-				"ty": 3.812035789,
+				"tx": 1.368419483,
+				"ty": 3.80531729,
 				"th": "left",
 				"tv": "base",
 				"id": "Pelagics_Medium",
@@ -145,11 +145,11 @@
 				"B": 5,
 				"type": 0,
 				"TL": 3.07894737,
-				"x": 0.9977486806,
-				"y": 3.054578205,
+				"x": 0.9977481969,
+				"y": 3.054578187,
 				"r": 0.1101027728,
-				"tx": 0.9756020033,
-				"ty": 2.878013292,
+				"tx": 1.110028117,
+				"ty": 2.991364876,
 				"th": "left",
 				"tv": "base",
 				"id": "Pelagics_Small_Carniv_",
@@ -159,11 +159,11 @@
 				"B": 2.5,
 				"type": 0,
 				"TL": 2.222222232,
-				"x": 1.229358933,
-				"y": 2.231690124,
+				"x": 1.229358445,
+				"y": 2.231690132,
 				"r": 0.08015548675,
-				"tx": 1.31564198,
-				"ty": 2.24143433,
+				"tx": 1.311138937,
+				"ty": 2.246085992,
 				"th": "left",
 				"tv": "base",
 				"id": "Pelagics_Small_Herbiv_",
@@ -173,11 +173,11 @@
 				"B": 0.200000003,
 				"type": 0,
 				"TL": 3.717611177,
-				"x": 2.194776502,
-				"y": 3.722367365,
+				"x": 2.194775185,
+				"y": 3.722367286,
 				"r": 0.02830562884,
-				"tx": 2.176364511,
-				"ty": 3.62646004,
+				"tx": 2.22637016,
+				"ty": 3.709843719,
 				"th": "left",
 				"tv": "base",
 				"id": "Benthopelagics_Large",
@@ -187,11 +187,11 @@
 				"B": 0.400000006,
 				"type": 0,
 				"TL": 3.792415331,
-				"x": 2.428508346,
-				"y": 3.81420836,
+				"x": 2.428506993,
+				"y": 3.814208371,
 				"r": 0.03677600052,
-				"tx": 2.493430056,
-				"ty": 3.823456907,
+				"tx": 2.471279568,
+				"ty": 3.823430235,
 				"th": "left",
 				"tv": "base",
 				"id": "Benthopelagics_SmallMedium",
@@ -201,11 +201,11 @@
 				"B": 0.5,
 				"type": 0,
 				"TL": 4.22840905,
-				"x": 2.510751176,
-				"y": 4.228671481,
+				"x": 2.510749933,
+				"y": 4.228671427,
 				"r": 0.04018950284,
-				"tx": 2.553339094,
-				"ty": 4.248634226,
+				"tx": 2.551057563,
+				"ty": 4.20779068,
 				"th": "left",
 				"tv": "base",
 				"id": "Demersals_Large",
@@ -215,11 +215,11 @@
 				"B": 2,
 				"type": 0,
 				"TL": 4.21287076,
-				"x": 3.252609355,
-				"y": 4.223642447,
+				"x": 3.252608585,
+				"y": 4.223642445,
 				"r": 0.07252266302,
-				"tx": 3.325856355,
-				"ty": 4.235300387,
+				"tx": 3.257824241,
+				"ty": 4.316614232,
 				"th": "left",
 				"tv": "base",
 				"id": "Demersals_Medium",
@@ -229,11 +229,11 @@
 				"B": 5,
 				"type": 0,
 				"TL": 3.623265311,
-				"x": 3.767125884,
-				"y": 3.561159693,
+				"x": 3.767125463,
+				"y": 3.561159668,
 				"r": 0.1101027728,
-				"tx": 3.87815663,
-				"ty": 3.566264673,
+				"tx": 3.763392667,
+				"ty": 3.38562688,
 				"th": "left",
 				"tv": "base",
 				"id": "Demersals_Small",
@@ -243,11 +243,11 @@
 				"B": 0.100000001,
 				"type": 0,
 				"TL": 4.227199321,
-				"x": 2.150064001,
-				"y": 4.227172716,
+				"x": 2.15006285,
+				"y": 4.227172675,
 				"r": 0.02231617155,
-				"tx": 1.902577819,
-				"ty": 4.13917088,
+				"tx": 2.169974594,
+				"ty": 4.29201057,
 				"th": "left",
 				"tv": "base",
 				"id": "Reeffish_Large",
@@ -257,11 +257,11 @@
 				"B": 0.5,
 				"type": 0,
 				"TL": 3.816868409,
-				"x": 3.590845356,
-				"y": 3.847601581,
+				"x": 3.590845062,
+				"y": 3.847601634,
 				"r": 0.04018950284,
-				"tx": 3.631621766,
-				"ty": 3.847638309,
+				"tx": 3.634345722,
+				"ty": 3.851300079,
 				"th": "left",
 				"tv": "base",
 				"id": "Reeffish_Medium",
@@ -271,11 +271,11 @@
 				"B": 0.100000001,
 				"type": 0,
 				"TL": 4.179489338,
-				"x": 3.531415496,
-				"y": 4.189529205,
+				"x": 3.531414727,
+				"y": 4.189529201,
 				"r": 0.02231617155,
-				"tx": 3.51302036,
-				"ty": 4.101921901,
+				"tx": 3.557900387,
+				"ty": 4.19278704,
 				"th": "left",
 				"tv": "base",
 				"id": "Flatfish_Large",
@@ -285,11 +285,11 @@
 				"B": 1,
 				"type": 0,
 				"TL": 3.748192755,
-				"x": 3.105646278,
-				"y": 3.751231319,
+				"x": 3.105645403,
+				"y": 3.751231311,
 				"r": 0.0535823363,
-				"tx": 3.16038235,
-				"ty": 3.737094396,
+				"tx": 3.16112143,
+				"ty": 3.727359727,
 				"th": "left",
 				"tv": "base",
 				"id": "Flatfish_SmallMedium",
@@ -299,11 +299,11 @@
 				"B": 1,
 				"type": 0,
 				"TL": 3.094502923,
-				"x": 2.177457756,
-				"y": 3.080428872,
+				"x": 2.177457845,
+				"y": 3.080428878,
 				"r": 0.0535823363,
-				"tx": 2.234346667,
-				"ty": 3.08173569,
+				"tx": 2.236589762,
+				"ty": 3.081707868,
 				"th": "left",
 				"tv": "base",
 				"id": "Reeffish_Small",
@@ -313,11 +313,11 @@
 				"B": 0.5,
 				"type": 0,
 				"TL": 3.11357341,
-				"x": 1.803837566,
-				"y": 3.102544594,
+				"x": 1.8038377,
+				"y": 3.102544581,
 				"r": 0.04018950284,
-				"tx": 1.81063121,
-				"ty": 3.171467687,
+				"tx": 1.842818819,
+				"ty": 3.180058868,
 				"th": "left",
 				"tv": "base",
 				"id": "Bathypelagics",
@@ -327,11 +327,11 @@
 				"B": 0.200000003,
 				"type": 0,
 				"TL": 3.481799741,
-				"x": 2.485592117,
-				"y": 3.411091107,
+				"x": 2.48559448,
+				"y": 3.411091112,
 				"r": 0.02830562884,
-				"tx": 2.513865038,
-				"ty": 3.414548228,
+				"tx": 2.515977609,
+				"ty": 3.422186956,
 				"th": "left",
 				"tv": "base",
 				"id": "Bathydemersals",
@@ -341,11 +341,11 @@
 				"B": 1,
 				"type": 0,
 				"TL": 2.836734689,
-				"x": 1.953726238,
-				"y": 2.816079529,
+				"x": 1.953726361,
+				"y": 2.816079522,
 				"r": 0.0535823363,
-				"tx": 2.007876938,
-				"ty": 2.821985413,
+				"tx": 2.009672573,
+				"ty": 2.816108998,
 				"th": "left",
 				"tv": "base",
 				"id": "Jellyfish",
@@ -355,11 +355,11 @@
 				"B": 0.5,
 				"type": 0,
 				"TL": 2.991959063,
-				"x": 1.331282974,
-				"y": 3.097921661,
+				"x": 1.33128248,
+				"y": 3.097921719,
 				"r": 0.04018950284,
-				"tx": 1.345774107,
-				"ty": 3.163653363,
+				"tx": 1.348244488,
+				"ty": 3.163791881,
 				"th": "left",
 				"tv": "base",
 				"id": "Cephalopods",
@@ -369,11 +369,11 @@
 				"B": 2,
 				"type": 0,
 				"TL": 2.15555556,
-				"x": 3.629425075,
-				"y": 2.21576605,
+				"x": 3.629424817,
+				"y": 2.215766074,
 				"r": 0.07252266302,
-				"tx": 3.705958868,
-				"ty": 2.222359941,
+				"tx": 3.706822925,
+				"ty": 2.228755864,
 				"th": "left",
 				"tv": "base",
 				"id": "Shrimps",
@@ -383,11 +383,11 @@
 				"B": 0.5,
 				"type": 0,
 				"TL": 3.176417223,
-				"x": 3.870544075,
-				"y": 3.155234734,
+				"x": 3.870543806,
+				"y": 3.155234749,
 				"r": 0.04018950284,
-				"tx": 3.913900859,
-				"ty": 3.169212041,
+				"tx": 3.914332372,
+				"ty": 3.161232197,
 				"th": "left",
 				"tv": "base",
 				"id": "Lobsters_Crabs",
@@ -397,11 +397,11 @@
 				"B": 10,
 				"type": 0,
 				"TL": 2.993197295,
-				"x": 3.536965606,
-				"y": 2.975980696,
+				"x": 3.536965341,
+				"y": 2.975980704,
 				"r": 0.1524546308,
-				"tx": 3.689866261,
-				"ty": 2.990157405,
+				"tx": 3.690699955,
+				"ty": 2.976351732,
 				"th": "left",
 				"tv": "base",
 				"id": "Macrobenthos",
@@ -411,11 +411,11 @@
 				"B": 15,
 				"type": 0,
 				"TL": 2.55555555,
-				"x": 2.470184948,
-				"y": 2.548046896,
+				"x": 2.470186482,
+				"y": 2.548046912,
 				"r": 0.1849523545,
-				"tx": 2.655935637,
-				"ty": 2.583673641,
+				"tx": 2.474924369,
+				"ty": 2.752787112,
 				"th": "left",
 				"tv": "base",
 				"id": "Meiobenthos",
@@ -425,11 +425,11 @@
 				"B": 0.100000001,
 				"type": 1,
 				"TL": 1.555000006,
-				"x": 2.550096287,
-				"y": 1.538969056,
+				"x": 2.550093515,
+				"y": 1.538969007,
 				"r": 0.02231617155,
-				"tx": 2.577939138,
-				"ty": 1.539116128,
+				"tx": 2.577516942,
+				"ty": 1.554325542,
 				"th": "left",
 				"tv": "base",
 				"id": "Corals",
@@ -439,11 +439,11 @@
 				"B": 2,
 				"type": 0,
 				"TL": 2.499999996,
-				"x": 2.958437358,
-				"y": 2.481420107,
+				"x": 2.958438334,
+				"y": 2.481420111,
 				"r": 0.07252266302,
-				"tx": 3.038319447,
-				"ty": 2.497168647,
+				"tx": 3.037438916,
+				"ty": 2.488770839,
 				"th": "left",
 				"tv": "base",
 				"id": "Softcorals_Sponges_Etc",
@@ -453,11 +453,11 @@
 				"B": 1,
 				"type": 0,
 				"TL": 2.789473676,
-				"x": 1.193589121,
-				"y": 2.76420915,
+				"x": 1.193588753,
+				"y": 2.764209147,
 				"r": 0.0535823363,
-				"tx": 1.249058883,
-				"ty": 2.769877386,
+				"tx": 1.253319372,
+				"ty": 2.778254065,
 				"th": "left",
 				"tv": "base",
 				"id": "Krill",
@@ -467,11 +467,11 @@
 				"B": 10,
 				"type": 0,
 				"TL": 2,
-				"x": 2.385969401,
-				"y": 2.025982118,
+				"x": 2.385971279,
+				"y": 2.02598216,
 				"r": 0.1524546308,
-				"tx": 2.540017219,
-				"ty": 2.033878712,
+				"tx": 2.539320727,
+				"ty": 2.046144279,
 				"th": "left",
 				"tv": "base",
 				"id": "Zooplankton_Other",
@@ -481,11 +481,11 @@
 				"B": 15,
 				"type": 1,
 				"TL": 1,
-				"x": 1.599182786,
-				"y": 0.9810034704,
+				"x": 1.599185164,
+				"y": 0.9810034556,
 				"r": 0.1849523545,
-				"tx": 1.602047,
-				"ty": 0.98100378,
+				"tx": 1.601394406,
+				"ty": 0.9810034556,
 				"th": "left",
 				"tv": "base",
 				"id": "Phytoplankton",
@@ -495,11 +495,11 @@
 				"B": 2,
 				"type": 1,
 				"TL": 1,
-				"x": 2.083196816,
-				"y": 0.9770976415,
+				"x": 2.083199306,
+				"y": 0.977097622,
 				"r": 0.07252266302,
-				"tx": 2.083173744,
-				"ty": 0.977098049,
+				"tx": 2.08165643,
+				"ty": 0.977097622,
 				"th": "left",
 				"tv": "base",
 				"id": "BenthicPlants",
@@ -509,11 +509,11 @@
 				"B": 100,
 				"type": 2,
 				"TL": 1,
-				"x": 2.927597893,
-				"y": 0.981235741,
+				"x": 2.927595181,
+				"y": 0.9812357332,
 				"r": 0.4651162791,
-				"tx": 2.927654493,
-				"ty": 0.9812359045,
+				"tx": 2.927595188,
+				"ty": 0.9812357332,
 				"th": "center",
 				"tv": "middle",
 				"id": "Detritus",
@@ -523,11 +523,11 @@
 				"B": 3.407000032,
 				"type": 3,
 				"TL": 4.648655012,
-				"x": 2.929558916,
-				"y": 4.678615323,
+				"x": 2.929557616,
+				"y": 4.678615321,
 				"r": 0.09225765908,
-				"tx": 3.025032048,
-				"ty": 4.704101288,
+				"tx": 3.022947227,
+				"ty": 4.688050742,
 				"th": "left",
 				"tv": "base",
 				"id": "Fleet1",
@@ -539,731 +539,913 @@
 		[
 			{
 				"source": "Seals",
-				"target": "ToothedWhales"
+				"target": "ToothedWhales",
+				"Weight": 8.00000076e-05
 			},
 			{
 				"source": "Sharks_Large",
-				"target": "Fleet1"
+				"target": "Fleet1",
+				"Weight": 0.00999999978
 			},
 			{
 				"source": "Sharks_SmallMedium",
-				"target": "Sharks_Large"
+				"target": "Sharks_Large",
+				"Weight": 0.01999999752
 			},
 			{
 				"source": "Sharks_SmallMedium",
-				"target": "Fleet1"
+				"target": "Fleet1",
+				"Weight": 0.0399999991
 			},
 			{
 				"source": "Rays_Large",
-				"target": "Fleet1"
+				"target": "Fleet1",
+				"Weight": 0.0120000001
 			},
 			{
 				"source": "Rays_SmallMedium",
-				"target": "Fleet1"
+				"target": "Fleet1",
+				"Weight": 0.0199999996
 			},
 			{
 				"source": "Pelagics_Large",
-				"target": "ToothedWhales"
+				"target": "ToothedWhales",
+				"Weight": 0.007200001204
 			},
 			{
 				"source": "Pelagics_Large",
-				"target": "Fleet1"
+				"target": "Fleet1",
+				"Weight": 0.0500000007
 			},
 			{
 				"source": "Pelagics_Medium",
-				"target": "BaleenWhales"
+				"target": "BaleenWhales",
+				"Weight": 0.000900000024
 			},
 			{
 				"source": "Pelagics_Medium",
-				"target": "ToothedWhales"
+				"target": "ToothedWhales",
+				"Weight": 0.01599999976
 			},
 			{
 				"source": "Pelagics_Medium",
-				"target": "Seals"
+				"target": "Seals",
+				"Weight": 0.0150000003
 			},
 			{
 				"source": "Pelagics_Medium",
-				"target": "Sharks_Large"
+				"target": "Sharks_Large",
+				"Weight": 0.039999995
 			},
 			{
 				"source": "Pelagics_Medium",
-				"target": "Pelagics_Large"
+				"target": "Pelagics_Large",
+				"Weight": 0.1800000144
 			},
 			{
 				"source": "Pelagics_Medium",
-				"target": "Fleet1"
+				"target": "Fleet1",
+				"Weight": 0.400000006
 			},
 			{
 				"source": "Pelagics_Small_Carniv_",
-				"target": "BaleenWhales"
+				"target": "BaleenWhales",
+				"Weight": 0.00300000018
 			},
 			{
 				"source": "Pelagics_Small_Carniv_",
-				"target": "ToothedWhales"
+				"target": "ToothedWhales",
+				"Weight": 0.02471999991
 			},
 			{
 				"source": "Pelagics_Small_Carniv_",
-				"target": "Seals"
+				"target": "Seals",
+				"Weight": 0.03000000075
 			},
 			{
 				"source": "Pelagics_Small_Carniv_",
-				"target": "Birds"
+				"target": "Birds",
+				"Weight": 0.0399999996
 			},
 			{
 				"source": "Pelagics_Small_Carniv_",
-				"target": "Sharks_Large"
+				"target": "Sharks_Large",
+				"Weight": 0.01999999752
 			},
 			{
 				"source": "Pelagics_Small_Carniv_",
-				"target": "Sharks_SmallMedium"
+				"target": "Sharks_SmallMedium",
+				"Weight": 0.09000000675
 			},
 			{
 				"source": "Pelagics_Small_Carniv_",
-				"target": "Pelagics_Large"
+				"target": "Pelagics_Large",
+				"Weight": 0.1800000144
 			},
 			{
 				"source": "Pelagics_Small_Carniv_",
-				"target": "Pelagics_Medium"
+				"target": "Pelagics_Medium",
+				"Weight": 1.440000118
 			},
 			{
 				"source": "Pelagics_Small_Carniv_",
-				"target": "Benthopelagics_Large"
+				"target": "Benthopelagics_Large",
+				"Weight": 0.07200000684
 			},
 			{
 				"source": "Pelagics_Small_Carniv_",
-				"target": "Benthopelagics_SmallMedium"
+				"target": "Benthopelagics_SmallMedium",
+				"Weight": 0.1920000134
 			},
 			{
 				"source": "Pelagics_Small_Carniv_",
-				"target": "Demersals_Large"
+				"target": "Demersals_Large",
+				"Weight": 0.0500000007
 			},
 			{
 				"source": "Pelagics_Small_Carniv_",
-				"target": "Reeffish_Large"
+				"target": "Reeffish_Large",
+				"Weight": 0.01000000024
 			},
 			{
 				"source": "Pelagics_Small_Carniv_",
-				"target": "Cephalopods"
+				"target": "Cephalopods",
+				"Weight": 0.01666666563
 			},
 			{
 				"source": "Pelagics_Small_Carniv_",
-				"target": "Fleet1"
+				"target": "Fleet1",
+				"Weight": 0.100000001
 			},
 			{
 				"source": "Pelagics_Small_Herbiv_",
-				"target": "BaleenWhales"
+				"target": "BaleenWhales",
+				"Weight": 0.00300000018
 			},
 			{
 				"source": "Pelagics_Small_Herbiv_",
-				"target": "ToothedWhales"
+				"target": "ToothedWhales",
+				"Weight": 0.00799999988
 			},
 			{
 				"source": "Pelagics_Small_Herbiv_",
-				"target": "Seals"
+				"target": "Seals",
+				"Weight": 0.0150000003
 			},
 			{
 				"source": "Pelagics_Small_Herbiv_",
-				"target": "Birds"
+				"target": "Birds",
+				"Weight": 0.0199999998
 			},
 			{
 				"source": "Pelagics_Small_Herbiv_",
-				"target": "Sharks_Large"
+				"target": "Sharks_Large",
+				"Weight": 0.01999999752
 			},
 			{
 				"source": "Pelagics_Small_Herbiv_",
-				"target": "Sharks_SmallMedium"
+				"target": "Sharks_SmallMedium",
+				"Weight": 0.09000000675
 			},
 			{
 				"source": "Pelagics_Small_Herbiv_",
-				"target": "Rays_Large"
+				"target": "Rays_Large",
+				"Weight": 0.0200000004
 			},
 			{
 				"source": "Pelagics_Small_Herbiv_",
-				"target": "Pelagics_Large"
+				"target": "Pelagics_Large",
+				"Weight": 0.05999999436
 			},
 			{
 				"source": "Pelagics_Small_Herbiv_",
-				"target": "Pelagics_Medium"
+				"target": "Pelagics_Medium",
+				"Weight": 0.8640001051
 			},
 			{
 				"source": "Pelagics_Small_Herbiv_",
-				"target": "Benthopelagics_Large"
+				"target": "Benthopelagics_Large",
+				"Weight": 0.02400000156
 			},
 			{
 				"source": "Pelagics_Small_Herbiv_",
-				"target": "Benthopelagics_SmallMedium"
+				"target": "Benthopelagics_SmallMedium",
+				"Weight": 0.09600000624
 			},
 			{
 				"source": "Pelagics_Small_Herbiv_",
-				"target": "Demersals_Large"
+				"target": "Demersals_Large",
+				"Weight": 0.0500000007
 			},
 			{
 				"source": "Pelagics_Small_Herbiv_",
-				"target": "Reeffish_Large"
+				"target": "Reeffish_Large",
+				"Weight": 0.01000000024
 			},
 			{
 				"source": "Pelagics_Small_Herbiv_",
-				"target": "Cephalopods"
+				"target": "Cephalopods",
+				"Weight": 0.01666666563
 			},
 			{
 				"source": "Pelagics_Small_Herbiv_",
-				"target": "Fleet1"
+				"target": "Fleet1",
+				"Weight": 0.100000001
 			},
 			{
 				"source": "Benthopelagics_Large",
-				"target": "Fleet1"
+				"target": "Fleet1",
+				"Weight": 0.0500000007
 			},
 			{
 				"source": "Benthopelagics_SmallMedium",
-				"target": "Fleet1"
+				"target": "Fleet1",
+				"Weight": 0.200000003
 			},
 			{
 				"source": "Demersals_Large",
-				"target": "Fleet1"
+				"target": "Fleet1",
+				"Weight": 0.129999995
 			},
 			{
 				"source": "Demersals_Medium",
-				"target": "Seals"
+				"target": "Seals",
+				"Weight": 0.03000000075
 			},
 			{
 				"source": "Demersals_Medium",
-				"target": "Sharks_Large"
+				"target": "Sharks_Large",
+				"Weight": 0.01999999752
 			},
 			{
 				"source": "Demersals_Medium",
-				"target": "Sharks_SmallMedium"
+				"target": "Sharks_SmallMedium",
+				"Weight": 0.09000000675
 			},
 			{
 				"source": "Demersals_Medium",
-				"target": "Pelagics_Large"
+				"target": "Pelagics_Large",
+				"Weight": 0.05999999436
 			},
 			{
 				"source": "Demersals_Medium",
-				"target": "Demersals_Large"
+				"target": "Demersals_Large",
+				"Weight": 0.100000001
 			},
 			{
 				"source": "Demersals_Medium",
-				"target": "Flatfish_Large"
+				"target": "Flatfish_Large",
+				"Weight": 0.01000000024
 			},
 			{
 				"source": "Demersals_Medium",
-				"target": "Fleet1"
+				"target": "Fleet1",
+				"Weight": 0.800000012
 			},
 			{
 				"source": "Demersals_Small",
-				"target": "Seals"
+				"target": "Seals",
+				"Weight": 0.03000000075
 			},
 			{
 				"source": "Demersals_Small",
-				"target": "Birds"
+				"target": "Birds",
+				"Weight": 0.0099999999
 			},
 			{
 				"source": "Demersals_Small",
-				"target": "Sharks_Large"
+				"target": "Sharks_Large",
+				"Weight": 0.01999999752
 			},
 			{
 				"source": "Demersals_Small",
-				"target": "Sharks_SmallMedium"
+				"target": "Sharks_SmallMedium",
+				"Weight": 0.09000000675
 			},
 			{
 				"source": "Demersals_Small",
-				"target": "Rays_Large"
+				"target": "Rays_Large",
+				"Weight": 0.0200000004
 			},
 			{
 				"source": "Demersals_Small",
-				"target": "Pelagics_Large"
+				"target": "Pelagics_Large",
+				"Weight": 0.05999999436
 			},
 			{
 				"source": "Demersals_Small",
-				"target": "Benthopelagics_Large"
+				"target": "Benthopelagics_Large",
+				"Weight": 0.02400000156
 			},
 			{
 				"source": "Demersals_Small",
-				"target": "Benthopelagics_SmallMedium"
+				"target": "Benthopelagics_SmallMedium",
+				"Weight": 0.1920000134
 			},
 			{
 				"source": "Demersals_Small",
-				"target": "Demersals_Large"
+				"target": "Demersals_Large",
+				"Weight": 0.5
 			},
 			{
 				"source": "Demersals_Small",
-				"target": "Demersals_Medium"
+				"target": "Demersals_Medium",
+				"Weight": 3.600000234
 			},
 			{
 				"source": "Demersals_Small",
-				"target": "Reeffish_Large"
+				"target": "Reeffish_Large",
+				"Weight": 0.0200000004
 			},
 			{
 				"source": "Demersals_Small",
-				"target": "Reeffish_Medium"
+				"target": "Reeffish_Medium",
+				"Weight": 0.1500000052
 			},
 			{
 				"source": "Demersals_Small",
-				"target": "Flatfish_Large"
+				"target": "Flatfish_Large",
+				"Weight": 0.0500000005
 			},
 			{
 				"source": "Demersals_Small",
-				"target": "Flatfish_SmallMedium"
+				"target": "Flatfish_SmallMedium",
+				"Weight": 0.1600000046
 			},
 			{
 				"source": "Reeffish_Large",
-				"target": "Fleet1"
+				"target": "Fleet1",
+				"Weight": 0.0199999996
 			},
 			{
 				"source": "Reeffish_Medium",
-				"target": "Reeffish_Large"
+				"target": "Reeffish_Large",
+				"Weight": 0.040000001
 			},
 			{
 				"source": "Reeffish_Medium",
-				"target": "Fleet1"
+				"target": "Fleet1",
+				"Weight": 0.200000003
 			},
 			{
 				"source": "Flatfish_Large",
-				"target": "Fleet1"
+				"target": "Fleet1",
+				"Weight": 0.0250000004
 			},
 			{
 				"source": "Flatfish_SmallMedium",
-				"target": "Seals"
+				"target": "Seals",
+				"Weight": 0.0150000003
 			},
 			{
 				"source": "Flatfish_SmallMedium",
-				"target": "Flatfish_Large"
+				"target": "Flatfish_Large",
+				"Weight": 0.040000001
 			},
 			{
 				"source": "Flatfish_SmallMedium",
-				"target": "Fleet1"
+				"target": "Fleet1",
+				"Weight": 0.5
 			},
 			{
 				"source": "Reeffish_Small",
-				"target": "Sharks_Large"
+				"target": "Sharks_Large",
+				"Weight": 0.01999999752
 			},
 			{
 				"source": "Reeffish_Small",
-				"target": "Reeffish_Large"
+				"target": "Reeffish_Large",
+				"Weight": 0.080000002
 			},
 			{
 				"source": "Reeffish_Small",
-				"target": "Reeffish_Medium"
+				"target": "Reeffish_Medium",
+				"Weight": 0.600000024
 			},
 			{
 				"source": "Bathypelagics",
-				"target": "Bathypelagics"
+				"target": "Bathypelagics",
+				"Weight": 0.0500000007
 			},
 			{
 				"source": "Bathydemersals",
-				"target": "Bathydemersals"
+				"target": "Bathydemersals",
+				"Weight": 0.006666666693
 			},
 			{
 				"source": "Jellyfish",
-				"target": "Jellyfish"
+				"target": "Jellyfish",
+				"Weight": 0.799999984
 			},
 			{
 				"source": "Cephalopods",
-				"target": "ToothedWhales"
+				"target": "ToothedWhales",
+				"Weight": 0.00799999988
 			},
 			{
 				"source": "Cephalopods",
-				"target": "Seals"
+				"target": "Seals",
+				"Weight": 0.0150000003
 			},
 			{
 				"source": "Cephalopods",
-				"target": "Pelagics_Medium"
+				"target": "Pelagics_Medium",
+				"Weight": 0.2880000264
 			},
 			{
 				"source": "Cephalopods",
-				"target": "Flatfish_Large"
+				"target": "Flatfish_Large",
+				"Weight": 0.0200000004
 			},
 			{
 				"source": "Cephalopods",
-				"target": "Fleet1"
+				"target": "Fleet1",
+				"Weight": 0.100000001
 			},
 			{
 				"source": "Shrimps",
-				"target": "Sharks_SmallMedium"
+				"target": "Sharks_SmallMedium",
+				"Weight": 0.09000000675
 			},
 			{
 				"source": "Shrimps",
-				"target": "Rays_Large"
+				"target": "Rays_Large",
+				"Weight": 0.040000001
 			},
 			{
 				"source": "Shrimps",
-				"target": "Rays_SmallMedium"
+				"target": "Rays_SmallMedium",
+				"Weight": 0.09000000675
 			},
 			{
 				"source": "Shrimps",
-				"target": "Benthopelagics_Large"
+				"target": "Benthopelagics_Large",
+				"Weight": 0.04800000336
 			},
 			{
 				"source": "Shrimps",
-				"target": "Benthopelagics_SmallMedium"
+				"target": "Benthopelagics_SmallMedium",
+				"Weight": 0.1920000134
 			},
 			{
 				"source": "Shrimps",
-				"target": "Demersals_Large"
+				"target": "Demersals_Large",
+				"Weight": 0.200000003
 			},
 			{
 				"source": "Shrimps",
-				"target": "Demersals_Medium"
+				"target": "Demersals_Medium",
+				"Weight": 1.200000048
 			},
 			{
 				"source": "Shrimps",
-				"target": "Demersals_Small"
+				"target": "Demersals_Small",
+				"Weight": 2.00000002
 			},
 			{
 				"source": "Shrimps",
-				"target": "Reeffish_Medium"
+				"target": "Reeffish_Medium",
+				"Weight": 0.1500000052
 			},
 			{
 				"source": "Shrimps",
-				"target": "Flatfish_Large"
+				"target": "Flatfish_Large",
+				"Weight": 0.0200000004
 			},
 			{
 				"source": "Shrimps",
-				"target": "Flatfish_SmallMedium"
+				"target": "Flatfish_SmallMedium",
+				"Weight": 0.320000008
 			},
 			{
 				"source": "Shrimps",
-				"target": "Reeffish_Small"
+				"target": "Reeffish_Small",
+				"Weight": 0.400000004
 			},
 			{
 				"source": "Shrimps",
-				"target": "Fleet1"
+				"target": "Fleet1",
+				"Weight": 0.200000003
 			},
 			{
 				"source": "Lobsters_Crabs",
-				"target": "Sharks_SmallMedium"
+				"target": "Sharks_SmallMedium",
+				"Weight": 0.04500000356
 			},
 			{
 				"source": "Lobsters_Crabs",
-				"target": "Rays_Large"
+				"target": "Rays_Large",
+				"Weight": 0.0200000004
 			},
 			{
 				"source": "Lobsters_Crabs",
-				"target": "Rays_SmallMedium"
+				"target": "Rays_SmallMedium",
+				"Weight": 0.04500000356
 			},
 			{
 				"source": "Lobsters_Crabs",
-				"target": "Demersals_Medium"
+				"target": "Demersals_Medium",
+				"Weight": 0.3000000117
 			},
 			{
 				"source": "Lobsters_Crabs",
-				"target": "Fleet1"
+				"target": "Fleet1",
+				"Weight": 0.400000006
 			},
 			{
 				"source": "Macrobenthos",
-				"target": "Birds"
+				"target": "Birds",
+				"Weight": 0.0099999999
 			},
 			{
 				"source": "Macrobenthos",
-				"target": "Sharks_Large"
+				"target": "Sharks_Large",
+				"Weight": 0.039999995
 			},
 			{
 				"source": "Macrobenthos",
-				"target": "Sharks_SmallMedium"
+				"target": "Sharks_SmallMedium",
+				"Weight": 0.4050000155
 			},
 			{
 				"source": "Macrobenthos",
-				"target": "Rays_Large"
+				"target": "Rays_Large",
+				"Weight": 0.100000001
 			},
 			{
 				"source": "Macrobenthos",
-				"target": "Rays_SmallMedium"
+				"target": "Rays_SmallMedium",
+				"Weight": 0.7200000576
 			},
 			{
 				"source": "Macrobenthos",
-				"target": "Benthopelagics_Large"
+				"target": "Benthopelagics_Large",
+				"Weight": 0.02400000156
 			},
 			{
 				"source": "Macrobenthos",
-				"target": "Benthopelagics_SmallMedium"
+				"target": "Benthopelagics_SmallMedium",
+				"Weight": 0.1920000134
 			},
 			{
 				"source": "Macrobenthos",
-				"target": "Demersals_Large"
+				"target": "Demersals_Large",
+				"Weight": 0.100000001
 			},
 			{
 				"source": "Macrobenthos",
-				"target": "Demersals_Medium"
+				"target": "Demersals_Medium",
+				"Weight": 0.9000000585
 			},
 			{
 				"source": "Macrobenthos",
-				"target": "Demersals_Small"
+				"target": "Demersals_Small",
+				"Weight": 10
 			},
 			{
 				"source": "Macrobenthos",
-				"target": "Reeffish_Large"
+				"target": "Reeffish_Large",
+				"Weight": 0.040000001
 			},
 			{
 				"source": "Macrobenthos",
-				"target": "Reeffish_Medium"
+				"target": "Reeffish_Medium",
+				"Weight": 0.2250000146
 			},
 			{
 				"source": "Macrobenthos",
-				"target": "Flatfish_Large"
+				"target": "Flatfish_Large",
+				"Weight": 0.040000001
 			},
 			{
 				"source": "Macrobenthos",
-				"target": "Flatfish_SmallMedium"
+				"target": "Flatfish_SmallMedium",
+				"Weight": 1.920000106
 			},
 			{
 				"source": "Macrobenthos",
-				"target": "Bathydemersals"
+				"target": "Bathydemersals",
+				"Weight": 0.066666666
 			},
 			{
 				"source": "Macrobenthos",
-				"target": "Lobsters_Crabs"
+				"target": "Lobsters_Crabs",
+				"Weight": 0.66666665
 			},
 			{
 				"source": "Macrobenthos",
-				"target": "Macrobenthos"
+				"target": "Macrobenthos",
+				"Weight": 1.333333253
 			},
 			{
 				"source": "Macrobenthos",
-				"target": "Fleet1"
+				"target": "Fleet1",
+				"Weight": 0.0500000007
 			},
 			{
 				"source": "Meiobenthos",
-				"target": "Demersals_Small"
+				"target": "Demersals_Small",
+				"Weight": 4.00000006
 			},
 			{
 				"source": "Meiobenthos",
-				"target": "Reeffish_Medium"
+				"target": "Reeffish_Medium",
+				"Weight": 0.1500000052
 			},
 			{
 				"source": "Meiobenthos",
-				"target": "Flatfish_SmallMedium"
+				"target": "Flatfish_SmallMedium",
+				"Weight": 0.320000008
 			},
 			{
 				"source": "Meiobenthos",
-				"target": "Bathydemersals"
+				"target": "Bathydemersals",
+				"Weight": 0.0266666668
 			},
 			{
 				"source": "Meiobenthos",
-				"target": "Shrimps"
+				"target": "Shrimps",
+				"Weight": 1.666666617
 			},
 			{
 				"source": "Meiobenthos",
-				"target": "Lobsters_Crabs"
+				"target": "Lobsters_Crabs",
+				"Weight": 1.6666666
 			},
 			{
 				"source": "Meiobenthos",
-				"target": "Macrobenthos"
+				"target": "Macrobenthos",
+				"Weight": 40
 			},
 			{
 				"source": "Meiobenthos",
-				"target": "Meiobenthos"
+				"target": "Meiobenthos",
+				"Weight": 49.9999985
 			},
 			{
 				"source": "Corals",
-				"target": "Reeffish_Medium"
+				"target": "Reeffish_Medium",
+				"Weight": 0.04500000007
 			},
 			{
 				"source": "Softcorals_Sponges_Etc",
-				"target": "Reeffish_Medium"
+				"target": "Reeffish_Medium",
+				"Weight": 0.03000000015
 			},
 			{
 				"source": "Krill",
-				"target": "BaleenWhales"
+				"target": "BaleenWhales",
+				"Weight": 0.01200000078
 			},
 			{
 				"source": "Krill",
-				"target": "ToothedWhales"
+				"target": "ToothedWhales",
+				"Weight": 0.01599999976
 			},
 			{
 				"source": "Krill",
-				"target": "Birds"
+				"target": "Birds",
+				"Weight": 0.0099999999
 			},
 			{
 				"source": "Krill",
-				"target": "Pelagics_Large"
+				"target": "Pelagics_Large",
+				"Weight": 0.05999999436
 			},
 			{
 				"source": "Krill",
-				"target": "Pelagics_Medium"
+				"target": "Pelagics_Medium",
+				"Weight": 0.2880000264
 			},
 			{
 				"source": "Krill",
-				"target": "Pelagics_Small_Carniv_"
+				"target": "Pelagics_Small_Carniv_",
+				"Weight": 1.20000006
 			},
 			{
 				"source": "Krill",
-				"target": "Benthopelagics_Large"
+				"target": "Benthopelagics_Large",
+				"Weight": 0.02400000156
 			},
 			{
 				"source": "Krill",
-				"target": "Reeffish_Small"
+				"target": "Reeffish_Small",
+				"Weight": 0.400000004
 			},
 			{
 				"source": "Krill",
-				"target": "Bathypelagics"
+				"target": "Bathypelagics",
+				"Weight": 0.200000003
 			},
 			{
 				"source": "Krill",
-				"target": "Cephalopods"
+				"target": "Cephalopods",
+				"Weight": 0.1666666617
 			},
 			{
 				"source": "Krill",
-				"target": "Krill"
+				"target": "Krill",
+				"Weight": 1.000000014
 			},
 			{
 				"source": "Zooplankton_Other",
-				"target": "BaleenWhales"
+				"target": "BaleenWhales",
+				"Weight": 0.01110000071
 			},
 			{
 				"source": "Zooplankton_Other",
-				"target": "Birds"
+				"target": "Birds",
+				"Weight": 0.0099999999
 			},
 			{
 				"source": "Zooplankton_Other",
-				"target": "Rays_SmallMedium"
+				"target": "Rays_SmallMedium",
+				"Weight": 0.04500000356
 			},
 			{
 				"source": "Zooplankton_Other",
-				"target": "Pelagics_Small_Carniv_"
+				"target": "Pelagics_Small_Carniv_",
+				"Weight": 10.80000014
 			},
 			{
 				"source": "Zooplankton_Other",
-				"target": "Pelagics_Small_Herbiv_"
+				"target": "Pelagics_Small_Herbiv_",
+				"Weight": 1.333333487
 			},
 			{
 				"source": "Zooplankton_Other",
-				"target": "Benthopelagics_Large"
+				"target": "Benthopelagics_Large",
+				"Weight": 0.02400000156
 			},
 			{
 				"source": "Zooplankton_Other",
-				"target": "Benthopelagics_SmallMedium"
+				"target": "Benthopelagics_SmallMedium",
+				"Weight": 0.09600000624
 			},
 			{
 				"source": "Zooplankton_Other",
-				"target": "Demersals_Small"
+				"target": "Demersals_Small",
+				"Weight": 4.00000006
 			},
 			{
 				"source": "Zooplankton_Other",
-				"target": "Reeffish_Medium"
+				"target": "Reeffish_Medium",
+				"Weight": 0.1500000052
 			},
 			{
 				"source": "Zooplankton_Other",
-				"target": "Flatfish_Large"
+				"target": "Flatfish_Large",
+				"Weight": 0.0200000004
 			},
 			{
 				"source": "Zooplankton_Other",
-				"target": "Flatfish_SmallMedium"
+				"target": "Flatfish_SmallMedium",
+				"Weight": 0.4800000264
 			},
 			{
 				"source": "Zooplankton_Other",
-				"target": "Reeffish_Small"
+				"target": "Reeffish_Small",
+				"Weight": 3.200000048
 			},
 			{
 				"source": "Zooplankton_Other",
-				"target": "Bathypelagics"
+				"target": "Bathypelagics",
+				"Weight": 0.649999976
 			},
 			{
 				"source": "Zooplankton_Other",
-				"target": "Bathydemersals"
+				"target": "Bathydemersals",
+				"Weight": 0.006666666693
 			},
 			{
 				"source": "Zooplankton_Other",
-				"target": "Jellyfish"
+				"target": "Jellyfish",
+				"Weight": 32.00000048
 			},
 			{
 				"source": "Zooplankton_Other",
-				"target": "Cephalopods"
+				"target": "Cephalopods",
+				"Weight": 1.2999999
 			},
 			{
 				"source": "Zooplankton_Other",
-				"target": "Macrobenthos"
+				"target": "Macrobenthos",
+				"Weight": 1.333333253
 			},
 			{
 				"source": "Zooplankton_Other",
-				"target": "Meiobenthos"
+				"target": "Meiobenthos",
+				"Weight": 199.999995
 			},
 			{
 				"source": "Zooplankton_Other",
-				"target": "Corals"
+				"target": "Corals",
+				"Weight": 0.07500000075
 			},
 			{
 				"source": "Zooplankton_Other",
-				"target": "Softcorals_Sponges_Etc"
+				"target": "Softcorals_Sponges_Etc",
+				"Weight": 0.66666665
 			},
 			{
 				"source": "Zooplankton_Other",
-				"target": "Krill"
+				"target": "Krill",
+				"Weight": 13.99999976
 			},
 			{
 				"source": "Phytoplankton",
-				"target": "Pelagics_Small_Herbiv_"
+				"target": "Pelagics_Small_Herbiv_",
+				"Weight": 4.666666933
 			},
 			{
 				"source": "Phytoplankton",
-				"target": "Meiobenthos"
+				"target": "Meiobenthos",
+				"Weight": 99.9999975
 			},
 			{
 				"source": "Phytoplankton",
-				"target": "Corals"
+				"target": "Corals",
+				"Weight": 0.0150000003
 			},
 			{
 				"source": "Phytoplankton",
-				"target": "Softcorals_Sponges_Etc"
+				"target": "Softcorals_Sponges_Etc",
+				"Weight": 0.1333333313
 			},
 			{
 				"source": "Phytoplankton",
-				"target": "Krill"
+				"target": "Krill",
+				"Weight": 2.00000002
 			},
 			{
 				"source": "Phytoplankton",
-				"target": "Zooplankton_Other"
+				"target": "Zooplankton_Other",
+				"Weight": 1079.999971
 			},
 			{
 				"source": "BenthicPlants",
-				"target": "Macrobenthos"
+				"target": "Macrobenthos",
+				"Weight": 0.6666666253
 			},
 			{
 				"source": "Detritus",
-				"target": "Bathypelagics"
+				"target": "Bathypelagics",
+				"Weight": 0.100000001
 			},
 			{
 				"source": "Detritus",
-				"target": "Bathydemersals"
+				"target": "Bathydemersals",
+				"Weight": 0.0266666668
 			},
 			{
 				"source": "Detritus",
-				"target": "Jellyfish"
+				"target": "Jellyfish",
+				"Weight": 7.20000028
 			},
 			{
 				"source": "Detritus",
-				"target": "Cephalopods"
+				"target": "Cephalopods",
+				"Weight": 0.1666666617
 			},
 			{
 				"source": "Detritus",
-				"target": "Shrimps"
+				"target": "Shrimps",
+				"Weight": 14.999999
 			},
 			{
 				"source": "Detritus",
-				"target": "Lobsters_Crabs"
+				"target": "Lobsters_Crabs",
+				"Weight": 1
 			},
 			{
 				"source": "Detritus",
-				"target": "Macrobenthos"
+				"target": "Macrobenthos",
+				"Weight": 23.333332
 			},
 			{
 				"source": "Detritus",
-				"target": "Meiobenthos"
+				"target": "Meiobenthos",
+				"Weight": 150
 			},
 			{
 				"source": "Detritus",
-				"target": "Corals"
+				"target": "Corals",
+				"Weight": 0.0600000015
 			},
 			{
 				"source": "Detritus",
-				"target": "Softcorals_Sponges_Etc"
+				"target": "Softcorals_Sponges_Etc",
+				"Weight": 0.533333328
 			},
 			{
 				"source": "Detritus",
-				"target": "Krill"
+				"target": "Krill",
+				"Weight": 3.00000012
 			},
 			{
 				"source": "Detritus",
-				"target": "Zooplankton_Other"
+				"target": "Zooplankton_Other",
+				"Weight": 120.0000012
 			}
 		]
 	],

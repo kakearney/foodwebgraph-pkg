@@ -1,14 +1,17 @@
 
-# foodwebgraph.m: Interactive food web diagrams for Ecopath
+# Interactive food web diagrams for Ecopath
 
 
 Author: Kelly Kearney
 
 
-This repository includes the Matlab code to perform the trophic group calculations, JSON file formatting, and divided edge bundling calculations necessary to plot food webs with the [d3-foodweb](TODO) D3 plugin.
+This repository includes the Matlab code to perform the trophic group calculations, JSON file formatting, and divided edge bundling calculations necessary to plot food webs with the [d3-foodweb](https://github.com/kakearney/d3-foodweb) D3 plugin.
 
 
 The d3-foodweb plugin, and this accompanying code, is currently a work in progress.  It is being developed alongside the writing of a manuscript describing the underlying algorithms.  Documentation and examples will improve as this manuscript progresses.
+
+
+This code was written to work with food web models designed for [Ecopath](http://ecopath.org/), a software suite commonly used in fisheries ecosystem modeling.  To import an Ecopath model from either Ecopath with Ecosim, Rpath, or EwE-F into Matlab, you will need the [ecopath_matlab](https://github.com/kakearney/ecopath_matlab-pkg) toolbox.
 
 
 
@@ -43,28 +46,17 @@ The following folders need to be added to your Matlab Search path (via `addpath`
 
 
 ```matlab
-foodwebgraph-pkg/ConsoleProgressBar
 foodwebgraph-pkg/InterPointDistanceMatrix
-foodwebgraph-pkg/PARTITIONS
 foodwebgraph-pkg/aggregate
 foodwebgraph-pkg/catuneven
-foodwebgraph-pkg/cellstr2
-foodwebgraph-pkg/cprintf
 foodwebgraph-pkg/divedgebundle
-foodwebgraph-pkg/ecopath_matlab
 foodwebgraph-pkg/foodwebgraph
-foodwebgraph-pkg/gauzensgroup
 foodwebgraph-pkg/interparc
 foodwebgraph-pkg/jsonlab-1.0
-foodwebgraph-pkg/legendflex
 foodwebgraph-pkg/mergestruct
 foodwebgraph-pkg/minmax
-foodwebgraph-pkg/readtext
-foodwebgraph-pkg/regexpfound
-foodwebgraph-pkg/setgetpos_V1.2
 foodwebgraph-pkg/singlepatch
 foodwebgraph-pkg/vlookup
-foodwebgraph-pkg/wraptext
 ```
 
 
@@ -76,10 +68,10 @@ This package includes a number of Matlab functions.  The primary ones of interes
 
 
 
-- trophicgroup: Cluster food web nodes based on trophic similarity
-- fwgraph2json: Export graph to JSON format for use with d3-foodweb
-- foodweblayout: Interactive food web layout tool
-- plotfoodweb: Plot food web in Matlab
+- `trophicgroup.m`: Cluster food web nodes based on trophic similarity
+- `fwgraph2json.m`: Export graph to JSON format for use with d3-foodweb
+- `foodweblayout.m`: Interactive food web layout tool
+- `plotfoodweb.m`: Plot food web in Matlab
 
 Please see the help headers (viewable via the `help` command from the Matlab Command Window) for each function for a description of calling syntax, input variables, and output variables.
 
@@ -91,7 +83,7 @@ Please see the help headers (viewable via the `help` command from the Matlab Com
 This example will demonstrate the entire food web graph process, using the Generic_37 Ecopath model (this model is included with the [Ecopath with Ecosim)](http://ecopath.org/) software, and represents a generic pelagic fisheries ecosystem).
 
 
-**Step 1:** Read an Ecopath model into Matlab.
+**Step 1:** Read an Ecopath model into Matlab.  This step requires the [ecopath_matlab](https://github.com/kakearney/ecopath_matlab-pkg) code to run.
 
 
 
@@ -159,7 +151,7 @@ Now it's time to set the positions for the nodes.  The `foodweblayout` function 
 
 
 
-```
+```matlab
 [Gpos, Ax, P] = foodweblayout(G, tgsorted);
 ```
 
@@ -268,23 +260,23 @@ Gbdl = debundle(Gpos, 'edgefun', wtfun, 'l', 100);
 ```
 Preprocessing...
 100% [=================================================&gt;]  176/ 176
-Elapsed time is 0.780372 seconds.
+Elapsed time is 0.780323 seconds.
 Bundling...
 Pass 1
 100% [=================================================&gt;] Pass 1: 29 of 29
-Elapsed time is 0.510903 seconds.
+Elapsed time is 0.478734 seconds.
 Pass 2
 100% [=================================================&gt;] Pass 2: 29 of 29
-Elapsed time is 1.403186 seconds.
+Elapsed time is 1.373600 seconds.
 Pass 3
 100% [=================================================&gt;] Pass 3: 29 of 29
-Elapsed time is 3.242223 seconds.
+Elapsed time is 3.196537 seconds.
 Pass 4
 100% [=================================================&gt;] Pass 4: 29 of 29
-Elapsed time is 6.960158 seconds.
+Elapsed time is 6.798004 seconds.
 Pass 5
 100% [=================================================&gt;] Pass 5: 29 of 29
-Elapsed time is 14.266604 seconds.
+Elapsed time is 14.025783 seconds.
 Postprocessing...
 Done
 

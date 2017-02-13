@@ -6,7 +6,7 @@ PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
---><title>foodwebgraph.m: Interactive food web diagrams for Ecopath</title><meta name="generator" content="MATLAB 9.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2017-02-09"><meta name="DC.source" content="./readmeExtras/README.m"><style type="text/css">
+--><title>Interactive food web diagrams for Ecopath</title><meta name="generator" content="MATLAB 9.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2017-02-13"><meta name="DC.source" content="./readmeExtras/README.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -66,29 +66,18 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-</style></head><body><div class="content"><h1><tt>foodwebgraph.m</tt>: Interactive food web diagrams for Ecopath</h1><!--introduction--><p>Author: Kelly Kearney</p><p>This repository includes the Matlab code to perform the trophic group calculations, JSON file formatting, and divided edge bundling calculations necessary to plot food webs with the <a href="TODO">d3-foodweb</a> D3 plugin.</p><p>The d3-foodweb plugin, and this accompanying code, is currently a work in progress.  It is being developed alongside the writing of a manuscript describing the underlying algorithms.  Documentation and examples will improve as this manuscript progresses.</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Getting started</a></li><li><a href="#2">Syntax</a></li><li><a href="#3">Examples</a></li><li><a href="#14">Contributions</a></li></ul></div><h2 id="1">Getting started</h2><p><b>Prerequisites</b></p><p>This function requires Matlab R2014b or later.</p><p><b>Downloading and installation</b></p><p>This code can be downloaded from <a href="https://github.com/kakearney/foodwebgraph-pkg/">Github</a>.</p><p><b>Matlab Search Path</b></p><p>The following folders need to be added to your Matlab Search path (via <tt>addpath</tt>, <tt>pathtool</tt>, etc.):</p><pre class="language-matlab">foodwebgraph-pkg/ConsoleProgressBar
-foodwebgraph-pkg/InterPointDistanceMatrix
-foodwebgraph-pkg/PARTITIONS
+</style></head><body><div class="content"><h1>Interactive food web diagrams for Ecopath</h1><!--introduction--><p>Author: Kelly Kearney</p><p>This repository includes the Matlab code to perform the trophic group calculations, JSON file formatting, and divided edge bundling calculations necessary to plot food webs with the <a href="https://github.com/kakearney/d3-foodweb">d3-foodweb</a> D3 plugin.</p><p>The d3-foodweb plugin, and this accompanying code, is currently a work in progress.  It is being developed alongside the writing of a manuscript describing the underlying algorithms.  Documentation and examples will improve as this manuscript progresses.</p><p>This code was written to work with food web models designed for <a href="http://ecopath.org/">Ecopath</a>, a software suite commonly used in fisheries ecosystem modeling.  To import an Ecopath model from either Ecopath with Ecosim, Rpath, or EwE-F into Matlab, you will need the <a href="https://github.com/kakearney/ecopath_matlab-pkg">ecopath_matlab</a> toolbox.</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Getting started</a></li><li><a href="#2">Syntax</a></li><li><a href="#3">Examples</a></li><li><a href="#14">Contributions</a></li></ul></div><h2 id="1">Getting started</h2><p><b>Prerequisites</b></p><p>This function requires Matlab R2014b or later.</p><p><b>Downloading and installation</b></p><p>This code can be downloaded from <a href="https://github.com/kakearney/foodwebgraph-pkg/">Github</a>.</p><p><b>Matlab Search Path</b></p><p>The following folders need to be added to your Matlab Search path (via <tt>addpath</tt>, <tt>pathtool</tt>, etc.):</p><pre class="language-matlab">foodwebgraph-pkg/InterPointDistanceMatrix
 foodwebgraph-pkg/aggregate
 foodwebgraph-pkg/catuneven
-foodwebgraph-pkg/cellstr2
-foodwebgraph-pkg/cprintf
 foodwebgraph-pkg/divedgebundle
-foodwebgraph-pkg/ecopath_matlab
 foodwebgraph-pkg/foodwebgraph
-foodwebgraph-pkg/gauzensgroup
 foodwebgraph-pkg/interparc
 foodwebgraph-pkg/jsonlab-1.0
-foodwebgraph-pkg/legendflex
 foodwebgraph-pkg/mergestruct
 foodwebgraph-pkg/minmax
-foodwebgraph-pkg/readtext
-foodwebgraph-pkg/regexpfound
-foodwebgraph-pkg/setgetpos_V1.2
 foodwebgraph-pkg/singlepatch
 foodwebgraph-pkg/vlookup
-foodwebgraph-pkg/wraptext
-</pre><h2 id="2">Syntax</h2><p>This package includes a number of Matlab functions.  The primary ones of interest are:</p><div><ul><li>trophicgroup: Cluster food web nodes based on trophic similarity</li><li>fwgraph2json: Export graph to JSON format for use with d3-foodweb</li><li>foodweblayout: Interactive food web layout tool</li><li>plotfoodweb: Plot food web in Matlab</li></ul></div><p>Please see the help headers (viewable via the <tt>help</tt> command from the Matlab Command Window) for each function for a description of calling syntax, input variables, and output variables.</p><h2 id="3">Examples</h2><p>This example will demonstrate the entire food web graph process, using the Generic_37 Ecopath model (this model is included with the <a href="http://ecopath.org/">Ecopath with Ecosim)</a> software, and represents a generic pelagic fisheries ecosystem).</p><p><b>Step 1:</b> Read an Ecopath model into Matlab.</p><pre class="codeinput">epfile = <span class="string">'examples/Generic_37.EwEmdb'</span>;
+</pre><h2 id="2">Syntax</h2><p>This package includes a number of Matlab functions.  The primary ones of interest are:</p><div><ul><li><tt>trophicgroup.m</tt>: Cluster food web nodes based on trophic similarity</li><li><tt>fwgraph2json.m</tt>: Export graph to JSON format for use with d3-foodweb</li><li><tt>foodweblayout.m</tt>: Interactive food web layout tool</li><li><tt>plotfoodweb.m</tt>: Plot food web in Matlab</li></ul></div><p>Please see the help headers (viewable via the <tt>help</tt> command from the Matlab Command Window) for each function for a description of calling syntax, input variables, and output variables.</p><h2 id="3">Examples</h2><p>This example will demonstrate the entire food web graph process, using the Generic_37 Ecopath model (this model is included with the <a href="http://ecopath.org/">Ecopath with Ecosim)</a> software, and represents a generic pelagic fisheries ecosystem).</p><p><b>Step 1:</b> Read an Ecopath model into Matlab.  This step requires the <a href="https://github.com/kakearney/ecopath_matlab-pkg">ecopath_matlab</a> code to run.</p><pre class="codeinput">epfile = <span class="string">'examples/Generic_37.EwEmdb'</span>;
 
 w = warning(<span class="string">'off'</span>);                <span class="comment">% turning off warnings</span>
 EM = mdb2ecopathmodel(epfile);     <span class="comment">% since this spits out a lot...</span>
@@ -105,7 +94,8 @@ dfracavg = accumarray(tg, detfrac, [max(tg) 1], @mean);
 [~,isrt] = sort(dfracavg);
 [~, tgsorted] = ismember(tg, isrt);
 </pre><p><b>Step 4:</b> Save graph to JSON format</p><p>This step isn't necessary if you're planning to do all your plotting from within Matlab, using the foodweblayout function.  However, if you plan to do anything with this food web outside of Matlab (e.g. add a plot to a webpage), you will want to save graph to a JSON file.  At this stage in the process, the data will include all properties necessary to run d3.foodweblayout.</p><pre class="codeinput">fwgraph2json(G, tgsorted, fullfile(<span class="string">'examples'</span>, <span class="string">'gen37.json'</span>));
-</pre><p><b>Step 5:</b> Run the layout tool</p><p>Now it's time to set the positions for the nodes.  The <tt>foodweblayout</tt> function provides a wrapper around d3.foodweblayout, launching an web page in the Matlab browser that lets you play around with the various parameters and make manual adjustments to node position.  When you're done, click the checkbox in the lower left; this will close the browser and the function will retrieve the information from the visualization (node location, node radius, text label location) and add it to the Node table in the returned graph object.</p><pre>[Gpos, Ax, P] = foodweblayout(G, tgsorted);</pre><p>Here are the parameters I chose for this food web:</p><pre class="codeinput">P
+</pre><p><b>Step 5:</b> Run the layout tool</p><p>Now it's time to set the positions for the nodes.  The <tt>foodweblayout</tt> function provides a wrapper around d3.foodweblayout, launching an web page in the Matlab browser that lets you play around with the various parameters and make manual adjustments to node position.  When you're done, click the checkbox in the lower left; this will close the browser and the function will retrieve the information from the visualization (node location, node radius, text label location) and add it to the Node table in the returned graph object.</p><pre class="language-matlab">[Gpos, Ax, P] = foodweblayout(G, tgsorted);
+</pre><p>Here are the parameters I chose for this food web:</p><pre class="codeinput">P
 </pre><pre class="codeoutput">
 P = 
 
@@ -159,23 +149,23 @@ wtfun = @(x) log10(x) - wlim(1);
 Gbdl = debundle(Gpos, <span class="string">'edgefun'</span>, wtfun, <span class="string">'l'</span>, 100);
 </pre><pre class="codeoutput">Preprocessing...
 100% [=================================================&gt;]  176/ 176
-Elapsed time is 0.784118 seconds.
+Elapsed time is 0.831728 seconds.
 Bundling...
 Pass 1
 100% [=================================================&gt;] Pass 1: 29 of 29
-Elapsed time is 0.497114 seconds.
+Elapsed time is 0.481606 seconds.
 Pass 2
 100% [=================================================&gt;] Pass 2: 29 of 29
-Elapsed time is 1.512034 seconds.
+Elapsed time is 1.370136 seconds.
 Pass 3
 100% [=================================================&gt;] Pass 3: 29 of 29
-Elapsed time is 3.280410 seconds.
+Elapsed time is 3.175688 seconds.
 Pass 4
 100% [=================================================&gt;] Pass 4: 29 of 29
-Elapsed time is 7.013710 seconds.
+Elapsed time is 6.768071 seconds.
 Pass 5
 100% [=================================================&gt;] Pass 5: 29 of 29
-Elapsed time is 14.314822 seconds.
+Elapsed time is 13.943297 seconds.
 Postprocessing...
 Done
 </pre><p>We can save a new version of the JSON file, now containing edge path coordinates.</p><pre class="codeinput">fwgraph2json(Gbdl, tg, fullfile(<span class="string">'examples'</span>, <span class="string">'gen37_postbundle'</span>));
@@ -200,18 +190,24 @@ set(h.cb, <span class="string">'fontsize'</span>, 8);
 set(h.nd, <span class="string">'edgecolor'</span>, <span class="string">'w'</span>);
 </pre><img vspace="5" hspace="5" src="./readmeExtras/README_02.png" alt=""> <h2 id="14">Contributions</h2><p>Community contributions to this package are welcome!</p><p>To report bugs, please submit <a href="https://github.com/kakearney/foodwebgraph-pkg/issues">an issue</a> on GitHub and include:</p><div><ul><li>your operating system</li><li>your version of Matlab and all relevant toolboxes (type <tt>ver</tt> at the Matlab command line to get this info)</li><li>code/data to reproduce the error or buggy behavior, and the full text of any error messages received</li></ul></div><p>Please also feel free to submit enhancement requests, or to send pull requests (via GitHub) for bug fixes or new features.</p><p>I do monitor the MatlabCentral FileExchange entry for any issues raised in the comments, but would prefer to track issues on GitHub.</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016b</a><br></p></div><!--
 ##### SOURCE BEGIN #####
-%% |foodwebgraph.m|: Interactive food web diagrams for Ecopath
+%% Interactive food web diagrams for Ecopath
 % Author: Kelly Kearney
 %
 % This repository includes the Matlab code to perform the trophic 
 % group calculations, JSON file formatting, and divided edge bundling 
-% calculations necessary to plot food webs with the <TODO d3-foodweb> D3 
-% plugin.
+% calculations necessary to plot food webs with the
+% <https://github.com/kakearney/d3-foodweb d3-foodweb> D3 plugin. 
 %
 % The d3-foodweb plugin, and this accompanying code, is currently a work 
 % in progress.  It is being developed alongside the writing of a 
 % manuscript describing the underlying algorithms.  Documentation and 
 % examples will improve as this manuscript progresses.
+%
+% This code was written to work with food web models designed for
+% <http://ecopath.org/ Ecopath>, a software suite commonly used in
+% fisheries ecosystem modeling.  To import an Ecopath model from either
+% Ecopath with Ecosim, Rpath, or EwE-F into Matlab, you will need the
+% <https://github.com/kakearney/ecopath_matlab-pkg ecopath_matlab> toolbox. 
 
 %% Getting started
 %
@@ -228,38 +224,27 @@ set(h.nd, <span class="string">'edgecolor'</span>, <span class="string">'w'</spa
 % The following folders need to be added to your Matlab Search path (via
 % |addpath|, |pathtool|, etc.):
 %
-%   foodwebgraph-pkg/ConsoleProgressBar
 %   foodwebgraph-pkg/InterPointDistanceMatrix
-%   foodwebgraph-pkg/PARTITIONS
 %   foodwebgraph-pkg/aggregate
 %   foodwebgraph-pkg/catuneven
-%   foodwebgraph-pkg/cellstr2
-%   foodwebgraph-pkg/cprintf
 %   foodwebgraph-pkg/divedgebundle
-%   foodwebgraph-pkg/ecopath_matlab
 %   foodwebgraph-pkg/foodwebgraph
-%   foodwebgraph-pkg/gauzensgroup
 %   foodwebgraph-pkg/interparc
 %   foodwebgraph-pkg/jsonlab-1.0
-%   foodwebgraph-pkg/legendflex
 %   foodwebgraph-pkg/mergestruct
 %   foodwebgraph-pkg/minmax
-%   foodwebgraph-pkg/readtext
-%   foodwebgraph-pkg/regexpfound
-%   foodwebgraph-pkg/setgetpos_V1.2
 %   foodwebgraph-pkg/singlepatch
 %   foodwebgraph-pkg/vlookup
-%   foodwebgraph-pkg/wraptext
 
 %% Syntax
 %
 % This package includes a number of Matlab functions.  The primary ones of
 % interest are:
 %
-% * trophicgroup: Cluster food web nodes based on trophic similarity
-% * fwgraph2json: Export graph to JSON format for use with d3-foodweb
-% * foodweblayout: Interactive food web layout tool
-% * plotfoodweb: Plot food web in Matlab
+% * |trophicgroup.m|: Cluster food web nodes based on trophic similarity
+% * |fwgraph2json.m|: Export graph to JSON format for use with d3-foodweb
+% * |foodweblayout.m|: Interactive food web layout tool
+% * |plotfoodweb.m|: Plot food web in Matlab
 %
 % Please see the help headers (viewable via the |help| command from the Matlab
 % Command Window) for each function for a description of calling syntax,
@@ -272,7 +257,9 @@ set(h.nd, <span class="string">'edgecolor'</span>, <span class="string">'w'</spa
 % <http://ecopath.org/ Ecopath with Ecosim)> software, and represents a
 % generic pelagic fisheries ecosystem). 
 %
-% *Step 1:* Read an Ecopath model into Matlab.
+% *Step 1:* Read an Ecopath model into Matlab.  This step requires the
+% <https://github.com/kakearney/ecopath_matlab-pkg ecopath_matlab> code to
+% run.  
 
 epfile = 'examples/Generic_37.EwEmdb';
 
@@ -344,7 +331,7 @@ fwgraph2json(G, tgsorted, fullfile('examples', 'gen37.json'));
 % radius, text label location) and add it to the Node table in the
 % returned graph object. 
 %
-%  [Gpos, Ax, P] = foodweblayout(G, tgsorted);
+%   [Gpos, Ax, P] = foodweblayout(G, tgsorted);
 
 %%
 % Here are the parameters I chose for this food web:
