@@ -1,0 +1,1735 @@
+{
+	"nodes": [
+		[
+			{
+				"B": 0.00100000005,
+				"type": 0,
+				"TL": 3.499434938,
+				"x": 1.486561142,
+				"y": 3.530253475,
+				"r": 0.007766990291,
+				"tx": 1.501600441,
+				"ty": 3.535483892,
+				"th": "left",
+				"tv": "base",
+				"id": "BaleenWhales",
+				"TG": 5
+			},
+			{
+				"B": 0.00200000009,
+				"type": 0,
+				"TL": 4.182959753,
+				"x": 1.524283945,
+				"y": 4.152532264,
+				"r": 0.008267080901,
+				"tx": 1.532611415,
+				"ty": 4.154742996,
+				"th": "left",
+				"tv": "base",
+				"id": "ToothedWhales",
+				"TG": 5
+			},
+			{
+				"B": 0.00300000003,
+				"type": 0,
+				"TL": 4.457682456,
+				"x": 1.587725184,
+				"y": 4.419319431,
+				"r": 0.008650813888,
+				"tx": 1.603124145,
+				"ty": 4.424299781,
+				"th": "left",
+				"tv": "base",
+				"id": "Seals",
+				"TG": 5
+			},
+			{
+				"B": 0.00100000005,
+				"type": 0,
+				"TL": 3.816617023,
+				"x": 2.01818714,
+				"y": 3.849625158,
+				"r": 0.007766990291,
+				"tx": 2.032322064,
+				"ty": 3.85259146,
+				"th": "left",
+				"tv": "base",
+				"id": "Birds",
+				"TG": 7
+			},
+			{
+				"B": 0.100000001,
+				"type": 0,
+				"TL": 4.38218162,
+				"x": 2.260412737,
+				"y": 4.371243354,
+				"r": 0.01863291994,
+				"tx": 2.282507708,
+				"ty": 4.373903836,
+				"th": "left",
+				"tv": "base",
+				"id": "SharksL",
+				"TG": 7
+			},
+			{
+				"B": 0.300000012,
+				"type": 0,
+				"TL": 4.035045768,
+				"x": 2.275847405,
+				"y": 4.038747704,
+				"r": 0.02747115646,
+				"tx": 2.306094183,
+				"ty": 4.05852767,
+				"th": "left",
+				"tv": "base",
+				"id": "SharksSM",
+				"TG": 7
+			},
+			{
+				"B": 0.100000001,
+				"type": 0,
+				"TL": 3.829900235,
+				"x": 2.540363091,
+				"y": 3.850956475,
+				"r": 0.01863291994,
+				"tx": 2.563490414,
+				"ty": 3.853296794,
+				"th": "left",
+				"tv": "base",
+				"id": "RaysL",
+				"TG": 7
+			},
+			{
+				"B": 0.300000012,
+				"type": 0,
+				"TL": 3.868934254,
+				"x": 3.106960624,
+				"y": 3.893376574,
+				"r": 0.02747115646,
+				"tx": 3.111748243,
+				"ty": 3.93792055,
+				"th": "left",
+				"tv": "base",
+				"id": "RaysSM",
+				"TG": 12
+			},
+			{
+				"B": 0.400000006,
+				"type": 0,
+				"TL": 4.343752505,
+				"x": 1.408014376,
+				"y": 4.309370845,
+				"r": 0.03070617519,
+				"tx": 1.438810361,
+				"ty": 4.312140308,
+				"th": "left",
+				"tv": "base",
+				"id": "PelagicsL",
+				"TG": 5
+			},
+			{
+				"B": 1.20000005,
+				"type": 0,
+				"TL": 3.784283622,
+				"x": 1.477626072,
+				"y": 3.794172396,
+				"r": 0.04838264821,
+				"tx": 1.527480402,
+				"ty": 3.80844632,
+				"th": "left",
+				"tv": "base",
+				"id": "PelagicsM",
+				"TG": 5
+			},
+			{
+				"B": 5,
+				"type": 0,
+				"TL": 3.07894737,
+				"x": 1.285836524,
+				"y": 3.058682377,
+				"r": 0.09193047048,
+				"tx": 1.277767379,
+				"ty": 2.91526591,
+				"th": "left",
+				"tv": "base",
+				"id": "PelagicsSCarniv",
+				"TG": 3
+			},
+			{
+				"B": 2.5,
+				"type": 0,
+				"TL": 2.222222232,
+				"x": 1.469384441,
+				"y": 2.229615716,
+				"r": 0.0669259404,
+				"tx": 1.536461936,
+				"ty": 2.238542824,
+				"th": "left",
+				"tv": "base",
+				"id": "PelagicsSHerbiv",
+				"TG": 3
+			},
+			{
+				"B": 0.200000003,
+				"type": 0,
+				"TL": 3.717611177,
+				"x": 2.151858031,
+				"y": 3.719225186,
+				"r": 0.02363382602,
+				"tx": 2.205584788,
+				"ty": 3.719246988,
+				"th": "left",
+				"tv": "base",
+				"id": "BenthopelagicsL",
+				"TG": 7
+			},
+			{
+				"B": 0.400000006,
+				"type": 0,
+				"TL": 3.792415331,
+				"x": 2.339135823,
+				"y": 3.813526036,
+				"r": 0.03070617519,
+				"tx": 2.366237952,
+				"ty": 3.785338041,
+				"th": "left",
+				"tv": "base",
+				"id": "BenthopelagicsSM",
+				"TG": 7
+			},
+			{
+				"B": 0.5,
+				"type": 0,
+				"TL": 4.22840905,
+				"x": 2.403657005,
+				"y": 4.221078879,
+				"r": 0.03355628393,
+				"tx": 2.437398594,
+				"ty": 4.230617933,
+				"th": "left",
+				"tv": "base",
+				"id": "DemersalsL",
+				"TG": 7
+			},
+			{
+				"B": 2,
+				"type": 0,
+				"TL": 4.21287076,
+				"x": 3.061158842,
+				"y": 4.214654653,
+				"r": 0.06055290311,
+				"tx": 3.122954228,
+				"ty": 4.262119408,
+				"th": "left",
+				"tv": "base",
+				"id": "DemersalsM",
+				"TG": 12
+			},
+			{
+				"B": 5,
+				"type": 0,
+				"TL": 3.623265311,
+				"x": 3.518463569,
+				"y": 3.57626361,
+				"r": 0.09193047048,
+				"tx": 3.533040143,
+				"ty": 3.683874359,
+				"th": "left",
+				"tv": "base",
+				"id": "DemersalsS",
+				"TG": 13
+			},
+			{
+				"B": 0.100000001,
+				"type": 0,
+				"TL": 4.227199321,
+				"x": 2.141685999,
+				"y": 4.219582889,
+				"r": 0.01863291994,
+				"tx": 2.158541658,
+				"ty": 4.272946224,
+				"th": "left",
+				"tv": "base",
+				"id": "ReeffishL",
+				"TG": 7
+			},
+			{
+				"B": 0.5,
+				"type": 0,
+				"TL": 3.816868409,
+				"x": 2.902773746,
+				"y": 3.82180491,
+				"r": 0.03355628393,
+				"tx": 2.895119063,
+				"ty": 3.736126468,
+				"th": "left",
+				"tv": "base",
+				"id": "ReeffishM",
+				"TG": 12
+			},
+			{
+				"B": 0.100000001,
+				"type": 0,
+				"TL": 4.179489338,
+				"x": 3.29285991,
+				"y": 4.178365735,
+				"r": 0.01863291994,
+				"tx": 3.318596274,
+				"ty": 4.180575499,
+				"th": "left",
+				"tv": "base",
+				"id": "FlatfishL",
+				"TG": 12
+			},
+			{
+				"B": 1,
+				"type": 0,
+				"TL": 3.748192755,
+				"x": 3.289229823,
+				"y": 3.757153363,
+				"r": 0.04473864973,
+				"tx": 3.335554968,
+				"ty": 3.764758194,
+				"th": "left",
+				"tv": "base",
+				"id": "FlatfishSM",
+				"TG": 12
+			},
+			{
+				"B": 1,
+				"type": 0,
+				"TL": 3.094502923,
+				"x": 2.413424966,
+				"y": 3.086559323,
+				"r": 0.04473864973,
+				"tx": 2.460611158,
+				"ty": 3.090135398,
+				"th": "left",
+				"tv": "base",
+				"id": "ReeffishS",
+				"TG": 6
+			},
+			{
+				"B": 0.5,
+				"type": 0,
+				"TL": 3.11357341,
+				"x": 2.099206024,
+				"y": 3.104819773,
+				"r": 0.03355628393,
+				"tx": 2.100726756,
+				"ty": 3.157784912,
+				"th": "left",
+				"tv": "base",
+				"id": "Bathypelagics",
+				"TG": 6
+			},
+			{
+				"B": 0.200000003,
+				"type": 0,
+				"TL": 3.481799741,
+				"x": 2.919975024,
+				"y": 3.456131513,
+				"r": 0.02363382602,
+				"tx": 2.94488877,
+				"ty": 3.462957511,
+				"th": "left",
+				"tv": "base",
+				"id": "Bathydemersals",
+				"TG": 11
+			},
+			{
+				"B": 1,
+				"type": 0,
+				"TL": 2.836734689,
+				"x": 2.248918678,
+				"y": 2.826058821,
+				"r": 0.04473864973,
+				"tx": 2.267358705,
+				"ty": 2.886951519,
+				"th": "left",
+				"tv": "base",
+				"id": "Jellyfish",
+				"TG": 6
+			},
+			{
+				"B": 0.5,
+				"type": 0,
+				"TL": 2.991959063,
+				"x": 1.566058823,
+				"y": 3.077094879,
+				"r": 0.03355628393,
+				"tx": 1.602204178,
+				"ty": 3.077386061,
+				"th": "left",
+				"tv": "base",
+				"id": "Cephalopods",
+				"TG": 5
+			},
+			{
+				"B": 2,
+				"type": 0,
+				"TL": 2.15555556,
+				"x": 3.387229644,
+				"y": 2.20729605,
+				"r": 0.06055290311,
+				"tx": 3.395397071,
+				"ty": 2.287055952,
+				"th": "left",
+				"tv": "base",
+				"id": "Shrimps",
+				"TG": 13
+			},
+			{
+				"B": 0.5,
+				"type": 0,
+				"TL": 3.176417223,
+				"x": 3.583037561,
+				"y": 3.161203067,
+				"r": 0.03355628393,
+				"tx": 3.617991865,
+				"ty": 3.162415973,
+				"th": "left",
+				"tv": "base",
+				"id": "LobstersCrabs",
+				"TG": 13
+			},
+			{
+				"B": 10,
+				"type": 0,
+				"TL": 2.993197295,
+				"x": 3.323643325,
+				"y": 2.980400204,
+				"r": 0.127292216,
+				"tx": 3.453773641,
+				"ty": 2.984047197,
+				"th": "left",
+				"tv": "base",
+				"id": "Macrobenthos",
+				"TG": 13
+			},
+			{
+				"B": 15,
+				"type": 0,
+				"TL": 2.55555555,
+				"x": 2.922929073,
+				"y": 2.560664544,
+				"r": 0.1544262378,
+				"tx": 3.079330137,
+				"ty": 2.581996326,
+				"th": "left",
+				"tv": "base",
+				"id": "Meiobenthos",
+				"TG": 11
+			},
+			{
+				"B": 0.100000001,
+				"type": 1,
+				"TL": 1.555000006,
+				"x": 2.521231169,
+				"y": 1.543626433,
+				"r": 0.01863291994,
+				"tx": 2.543954743,
+				"ty": 1.546145181,
+				"th": "left",
+				"tv": "base",
+				"id": "Corals",
+				"TG": 9
+			},
+			{
+				"B": 2,
+				"type": 0,
+				"TL": 2.499999996,
+				"x": 2.523361515,
+				"y": 2.485200738,
+				"r": 0.06055290311,
+				"tx": 2.585673117,
+				"ty": 2.495319113,
+				"th": "left",
+				"tv": "base",
+				"id": "SoftcoralsSpongesEtc",
+				"TG": 8
+			},
+			{
+				"B": 1,
+				"type": 0,
+				"TL": 2.789473676,
+				"x": 1.836443135,
+				"y": 2.764013723,
+				"r": 0.04473864973,
+				"tx": 1.882897753,
+				"ty": 2.775588231,
+				"th": "left",
+				"tv": "base",
+				"id": "Krill",
+				"TG": 4
+			},
+			{
+				"B": 10,
+				"type": 0,
+				"TL": 2,
+				"x": 1.959708814,
+				"y": 2.002684992,
+				"r": 0.127292216,
+				"tx": 1.991064124,
+				"ty": 2.145661968,
+				"th": "left",
+				"tv": "base",
+				"id": "ZooplanktonOther",
+				"TG": 4
+			},
+			{
+				"B": 15,
+				"type": 1,
+				"TL": 1,
+				"x": 1.762125726,
+				"y": 0.9898064958,
+				"r": 0.1544262378,
+				"tx": 1.747544243,
+				"ty": 0.9898065039,
+				"th": "left",
+				"tv": "base",
+				"id": "Phytoplankton",
+				"TG": 1
+			},
+			{
+				"B": 2,
+				"type": 1,
+				"TL": 1,
+				"x": 2.141349205,
+				"y": 0.9876416387,
+				"r": 0.06055290311,
+				"tx": 2.14137253,
+				"ty": 0.987641646,
+				"th": "left",
+				"tv": "base",
+				"id": "BenthicPlants",
+				"TG": 2
+			},
+			{
+				"B": 100,
+				"type": 2,
+				"TL": 1,
+				"x": 2.750419254,
+				"y": 0.9946280271,
+				"r": 0.3883495146,
+				"tx": 2.75042153,
+				"ty": 0.9946280326,
+				"th": "center",
+				"tv": "middle",
+				"id": "Detritus",
+				"TG": 14
+			},
+			{
+				"B": 3.407000032,
+				"type": 3,
+				"TL": 4.648655012,
+				"x": 2.769566093,
+				"y": 4.666193755,
+				"r": 0.07703066681,
+				"tx": 2.780521213,
+				"ty": 4.763890317,
+				"th": "left",
+				"tv": "base",
+				"id": "Fleet1",
+				"TG": 10
+			}
+		]
+	],
+	"links1": [
+		[
+			{
+				"source": "BaleenWhales",
+				"target": "Detritus"
+			},
+			{
+				"source": "ToothedWhales",
+				"target": "Detritus"
+			},
+			{
+				"source": "Seals",
+				"target": "ToothedWhales"
+			},
+			{
+				"source": "Seals",
+				"target": "Detritus"
+			},
+			{
+				"source": "Birds",
+				"target": "Detritus"
+			},
+			{
+				"source": "SharksL",
+				"target": "Detritus"
+			},
+			{
+				"source": "SharksL",
+				"target": "Fleet1"
+			},
+			{
+				"source": "SharksSM",
+				"target": "SharksL"
+			},
+			{
+				"source": "SharksSM",
+				"target": "Detritus"
+			},
+			{
+				"source": "SharksSM",
+				"target": "Fleet1"
+			},
+			{
+				"source": "RaysL",
+				"target": "Detritus"
+			},
+			{
+				"source": "RaysL",
+				"target": "Fleet1"
+			},
+			{
+				"source": "RaysSM",
+				"target": "Detritus"
+			},
+			{
+				"source": "RaysSM",
+				"target": "Fleet1"
+			},
+			{
+				"source": "PelagicsL",
+				"target": "ToothedWhales"
+			},
+			{
+				"source": "PelagicsL",
+				"target": "Detritus"
+			},
+			{
+				"source": "PelagicsL",
+				"target": "Fleet1"
+			},
+			{
+				"source": "PelagicsM",
+				"target": "BaleenWhales"
+			},
+			{
+				"source": "PelagicsM",
+				"target": "ToothedWhales"
+			},
+			{
+				"source": "PelagicsM",
+				"target": "Seals"
+			},
+			{
+				"source": "PelagicsM",
+				"target": "SharksL"
+			},
+			{
+				"source": "PelagicsM",
+				"target": "PelagicsL"
+			},
+			{
+				"source": "PelagicsM",
+				"target": "Detritus"
+			},
+			{
+				"source": "PelagicsM",
+				"target": "Fleet1"
+			},
+			{
+				"source": "PelagicsSCarniv",
+				"target": "BaleenWhales"
+			},
+			{
+				"source": "PelagicsSCarniv",
+				"target": "ToothedWhales"
+			},
+			{
+				"source": "PelagicsSCarniv",
+				"target": "Seals"
+			},
+			{
+				"source": "PelagicsSCarniv",
+				"target": "Birds"
+			},
+			{
+				"source": "PelagicsSCarniv",
+				"target": "SharksL"
+			},
+			{
+				"source": "PelagicsSCarniv",
+				"target": "SharksSM"
+			},
+			{
+				"source": "PelagicsSCarniv",
+				"target": "PelagicsL"
+			},
+			{
+				"source": "PelagicsSCarniv",
+				"target": "PelagicsM"
+			},
+			{
+				"source": "PelagicsSCarniv",
+				"target": "BenthopelagicsL"
+			},
+			{
+				"source": "PelagicsSCarniv",
+				"target": "BenthopelagicsSM"
+			},
+			{
+				"source": "PelagicsSCarniv",
+				"target": "DemersalsL"
+			},
+			{
+				"source": "PelagicsSCarniv",
+				"target": "ReeffishL"
+			},
+			{
+				"source": "PelagicsSCarniv",
+				"target": "Cephalopods"
+			},
+			{
+				"source": "PelagicsSCarniv",
+				"target": "Detritus"
+			},
+			{
+				"source": "PelagicsSCarniv",
+				"target": "Fleet1"
+			},
+			{
+				"source": "PelagicsSHerbiv",
+				"target": "BaleenWhales"
+			},
+			{
+				"source": "PelagicsSHerbiv",
+				"target": "ToothedWhales"
+			},
+			{
+				"source": "PelagicsSHerbiv",
+				"target": "Seals"
+			},
+			{
+				"source": "PelagicsSHerbiv",
+				"target": "Birds"
+			},
+			{
+				"source": "PelagicsSHerbiv",
+				"target": "SharksL"
+			},
+			{
+				"source": "PelagicsSHerbiv",
+				"target": "SharksSM"
+			},
+			{
+				"source": "PelagicsSHerbiv",
+				"target": "RaysL"
+			},
+			{
+				"source": "PelagicsSHerbiv",
+				"target": "PelagicsL"
+			},
+			{
+				"source": "PelagicsSHerbiv",
+				"target": "PelagicsM"
+			},
+			{
+				"source": "PelagicsSHerbiv",
+				"target": "BenthopelagicsL"
+			},
+			{
+				"source": "PelagicsSHerbiv",
+				"target": "BenthopelagicsSM"
+			},
+			{
+				"source": "PelagicsSHerbiv",
+				"target": "DemersalsL"
+			},
+			{
+				"source": "PelagicsSHerbiv",
+				"target": "ReeffishL"
+			},
+			{
+				"source": "PelagicsSHerbiv",
+				"target": "Cephalopods"
+			},
+			{
+				"source": "PelagicsSHerbiv",
+				"target": "Detritus"
+			},
+			{
+				"source": "PelagicsSHerbiv",
+				"target": "Fleet1"
+			},
+			{
+				"source": "BenthopelagicsL",
+				"target": "Fleet1"
+			},
+			{
+				"source": "BenthopelagicsSM",
+				"target": "Fleet1"
+			},
+			{
+				"source": "DemersalsL",
+				"target": "Detritus"
+			},
+			{
+				"source": "DemersalsL",
+				"target": "Fleet1"
+			},
+			{
+				"source": "DemersalsM",
+				"target": "Seals"
+			},
+			{
+				"source": "DemersalsM",
+				"target": "SharksL"
+			},
+			{
+				"source": "DemersalsM",
+				"target": "SharksSM"
+			},
+			{
+				"source": "DemersalsM",
+				"target": "PelagicsL"
+			},
+			{
+				"source": "DemersalsM",
+				"target": "DemersalsL"
+			},
+			{
+				"source": "DemersalsM",
+				"target": "FlatfishL"
+			},
+			{
+				"source": "DemersalsM",
+				"target": "Detritus"
+			},
+			{
+				"source": "DemersalsM",
+				"target": "Fleet1"
+			},
+			{
+				"source": "DemersalsS",
+				"target": "Seals"
+			},
+			{
+				"source": "DemersalsS",
+				"target": "Birds"
+			},
+			{
+				"source": "DemersalsS",
+				"target": "SharksL"
+			},
+			{
+				"source": "DemersalsS",
+				"target": "SharksSM"
+			},
+			{
+				"source": "DemersalsS",
+				"target": "RaysL"
+			},
+			{
+				"source": "DemersalsS",
+				"target": "PelagicsL"
+			},
+			{
+				"source": "DemersalsS",
+				"target": "BenthopelagicsL"
+			},
+			{
+				"source": "DemersalsS",
+				"target": "BenthopelagicsSM"
+			},
+			{
+				"source": "DemersalsS",
+				"target": "DemersalsL"
+			},
+			{
+				"source": "DemersalsS",
+				"target": "DemersalsM"
+			},
+			{
+				"source": "DemersalsS",
+				"target": "ReeffishL"
+			},
+			{
+				"source": "DemersalsS",
+				"target": "ReeffishM"
+			},
+			{
+				"source": "DemersalsS",
+				"target": "FlatfishL"
+			},
+			{
+				"source": "DemersalsS",
+				"target": "FlatfishSM"
+			},
+			{
+				"source": "DemersalsS",
+				"target": "Detritus"
+			},
+			{
+				"source": "ReeffishL",
+				"target": "Detritus"
+			},
+			{
+				"source": "ReeffishL",
+				"target": "Fleet1"
+			},
+			{
+				"source": "ReeffishM",
+				"target": "ReeffishL"
+			},
+			{
+				"source": "ReeffishM",
+				"target": "Detritus"
+			},
+			{
+				"source": "ReeffishM",
+				"target": "Fleet1"
+			},
+			{
+				"source": "FlatfishL",
+				"target": "Detritus"
+			},
+			{
+				"source": "FlatfishL",
+				"target": "Fleet1"
+			},
+			{
+				"source": "FlatfishSM",
+				"target": "Seals"
+			},
+			{
+				"source": "FlatfishSM",
+				"target": "FlatfishL"
+			},
+			{
+				"source": "FlatfishSM",
+				"target": "Detritus"
+			},
+			{
+				"source": "FlatfishSM",
+				"target": "Fleet1"
+			},
+			{
+				"source": "ReeffishS",
+				"target": "SharksL"
+			},
+			{
+				"source": "ReeffishS",
+				"target": "ReeffishL"
+			},
+			{
+				"source": "ReeffishS",
+				"target": "ReeffishM"
+			},
+			{
+				"source": "ReeffishS",
+				"target": "Detritus"
+			},
+			{
+				"source": "Bathypelagics",
+				"target": "Bathypelagics"
+			},
+			{
+				"source": "Bathypelagics",
+				"target": "Detritus"
+			},
+			{
+				"source": "Bathydemersals",
+				"target": "Bathydemersals"
+			},
+			{
+				"source": "Bathydemersals",
+				"target": "Detritus"
+			},
+			{
+				"source": "Jellyfish",
+				"target": "Jellyfish"
+			},
+			{
+				"source": "Jellyfish",
+				"target": "Detritus"
+			},
+			{
+				"source": "Cephalopods",
+				"target": "ToothedWhales"
+			},
+			{
+				"source": "Cephalopods",
+				"target": "Seals"
+			},
+			{
+				"source": "Cephalopods",
+				"target": "PelagicsM"
+			},
+			{
+				"source": "Cephalopods",
+				"target": "FlatfishL"
+			},
+			{
+				"source": "Cephalopods",
+				"target": "Detritus"
+			},
+			{
+				"source": "Cephalopods",
+				"target": "Fleet1"
+			},
+			{
+				"source": "Shrimps",
+				"target": "SharksSM"
+			},
+			{
+				"source": "Shrimps",
+				"target": "RaysL"
+			},
+			{
+				"source": "Shrimps",
+				"target": "RaysSM"
+			},
+			{
+				"source": "Shrimps",
+				"target": "BenthopelagicsL"
+			},
+			{
+				"source": "Shrimps",
+				"target": "BenthopelagicsSM"
+			},
+			{
+				"source": "Shrimps",
+				"target": "DemersalsL"
+			},
+			{
+				"source": "Shrimps",
+				"target": "DemersalsM"
+			},
+			{
+				"source": "Shrimps",
+				"target": "DemersalsS"
+			},
+			{
+				"source": "Shrimps",
+				"target": "ReeffishM"
+			},
+			{
+				"source": "Shrimps",
+				"target": "FlatfishL"
+			},
+			{
+				"source": "Shrimps",
+				"target": "FlatfishSM"
+			},
+			{
+				"source": "Shrimps",
+				"target": "ReeffishS"
+			},
+			{
+				"source": "Shrimps",
+				"target": "Detritus"
+			},
+			{
+				"source": "Shrimps",
+				"target": "Fleet1"
+			},
+			{
+				"source": "LobstersCrabs",
+				"target": "SharksSM"
+			},
+			{
+				"source": "LobstersCrabs",
+				"target": "RaysL"
+			},
+			{
+				"source": "LobstersCrabs",
+				"target": "RaysSM"
+			},
+			{
+				"source": "LobstersCrabs",
+				"target": "DemersalsM"
+			},
+			{
+				"source": "LobstersCrabs",
+				"target": "Detritus"
+			},
+			{
+				"source": "LobstersCrabs",
+				"target": "Fleet1"
+			},
+			{
+				"source": "Macrobenthos",
+				"target": "Birds"
+			},
+			{
+				"source": "Macrobenthos",
+				"target": "SharksL"
+			},
+			{
+				"source": "Macrobenthos",
+				"target": "SharksSM"
+			},
+			{
+				"source": "Macrobenthos",
+				"target": "RaysL"
+			},
+			{
+				"source": "Macrobenthos",
+				"target": "RaysSM"
+			},
+			{
+				"source": "Macrobenthos",
+				"target": "BenthopelagicsL"
+			},
+			{
+				"source": "Macrobenthos",
+				"target": "BenthopelagicsSM"
+			},
+			{
+				"source": "Macrobenthos",
+				"target": "DemersalsL"
+			},
+			{
+				"source": "Macrobenthos",
+				"target": "DemersalsM"
+			},
+			{
+				"source": "Macrobenthos",
+				"target": "DemersalsS"
+			},
+			{
+				"source": "Macrobenthos",
+				"target": "ReeffishL"
+			},
+			{
+				"source": "Macrobenthos",
+				"target": "ReeffishM"
+			},
+			{
+				"source": "Macrobenthos",
+				"target": "FlatfishL"
+			},
+			{
+				"source": "Macrobenthos",
+				"target": "FlatfishSM"
+			},
+			{
+				"source": "Macrobenthos",
+				"target": "Bathydemersals"
+			},
+			{
+				"source": "Macrobenthos",
+				"target": "LobstersCrabs"
+			},
+			{
+				"source": "Macrobenthos",
+				"target": "Macrobenthos"
+			},
+			{
+				"source": "Macrobenthos",
+				"target": "Detritus"
+			},
+			{
+				"source": "Macrobenthos",
+				"target": "Fleet1"
+			},
+			{
+				"source": "Meiobenthos",
+				"target": "DemersalsS"
+			},
+			{
+				"source": "Meiobenthos",
+				"target": "ReeffishM"
+			},
+			{
+				"source": "Meiobenthos",
+				"target": "FlatfishSM"
+			},
+			{
+				"source": "Meiobenthos",
+				"target": "Bathydemersals"
+			},
+			{
+				"source": "Meiobenthos",
+				"target": "Shrimps"
+			},
+			{
+				"source": "Meiobenthos",
+				"target": "LobstersCrabs"
+			},
+			{
+				"source": "Meiobenthos",
+				"target": "Macrobenthos"
+			},
+			{
+				"source": "Meiobenthos",
+				"target": "Meiobenthos"
+			},
+			{
+				"source": "Meiobenthos",
+				"target": "Detritus"
+			},
+			{
+				"source": "Corals",
+				"target": "ReeffishM"
+			},
+			{
+				"source": "Corals",
+				"target": "Detritus"
+			},
+			{
+				"source": "SoftcoralsSpongesEtc",
+				"target": "ReeffishM"
+			},
+			{
+				"source": "SoftcoralsSpongesEtc",
+				"target": "Detritus"
+			},
+			{
+				"source": "Krill",
+				"target": "BaleenWhales"
+			},
+			{
+				"source": "Krill",
+				"target": "ToothedWhales"
+			},
+			{
+				"source": "Krill",
+				"target": "Birds"
+			},
+			{
+				"source": "Krill",
+				"target": "PelagicsL"
+			},
+			{
+				"source": "Krill",
+				"target": "PelagicsM"
+			},
+			{
+				"source": "Krill",
+				"target": "PelagicsSCarniv"
+			},
+			{
+				"source": "Krill",
+				"target": "BenthopelagicsL"
+			},
+			{
+				"source": "Krill",
+				"target": "ReeffishS"
+			},
+			{
+				"source": "Krill",
+				"target": "Bathypelagics"
+			},
+			{
+				"source": "Krill",
+				"target": "Cephalopods"
+			},
+			{
+				"source": "Krill",
+				"target": "Krill"
+			},
+			{
+				"source": "Krill",
+				"target": "Detritus"
+			},
+			{
+				"source": "ZooplanktonOther",
+				"target": "BaleenWhales"
+			},
+			{
+				"source": "ZooplanktonOther",
+				"target": "Birds"
+			},
+			{
+				"source": "ZooplanktonOther",
+				"target": "RaysSM"
+			},
+			{
+				"source": "ZooplanktonOther",
+				"target": "PelagicsSCarniv"
+			},
+			{
+				"source": "ZooplanktonOther",
+				"target": "PelagicsSHerbiv"
+			},
+			{
+				"source": "ZooplanktonOther",
+				"target": "BenthopelagicsL"
+			},
+			{
+				"source": "ZooplanktonOther",
+				"target": "BenthopelagicsSM"
+			},
+			{
+				"source": "ZooplanktonOther",
+				"target": "DemersalsS"
+			},
+			{
+				"source": "ZooplanktonOther",
+				"target": "ReeffishM"
+			},
+			{
+				"source": "ZooplanktonOther",
+				"target": "FlatfishL"
+			},
+			{
+				"source": "ZooplanktonOther",
+				"target": "FlatfishSM"
+			},
+			{
+				"source": "ZooplanktonOther",
+				"target": "ReeffishS"
+			},
+			{
+				"source": "ZooplanktonOther",
+				"target": "Bathypelagics"
+			},
+			{
+				"source": "ZooplanktonOther",
+				"target": "Bathydemersals"
+			},
+			{
+				"source": "ZooplanktonOther",
+				"target": "Jellyfish"
+			},
+			{
+				"source": "ZooplanktonOther",
+				"target": "Cephalopods"
+			},
+			{
+				"source": "ZooplanktonOther",
+				"target": "Macrobenthos"
+			},
+			{
+				"source": "ZooplanktonOther",
+				"target": "Meiobenthos"
+			},
+			{
+				"source": "ZooplanktonOther",
+				"target": "Corals"
+			},
+			{
+				"source": "ZooplanktonOther",
+				"target": "SoftcoralsSpongesEtc"
+			},
+			{
+				"source": "ZooplanktonOther",
+				"target": "Krill"
+			},
+			{
+				"source": "ZooplanktonOther",
+				"target": "Detritus"
+			},
+			{
+				"source": "Phytoplankton",
+				"target": "PelagicsSHerbiv"
+			},
+			{
+				"source": "Phytoplankton",
+				"target": "Meiobenthos"
+			},
+			{
+				"source": "Phytoplankton",
+				"target": "Corals"
+			},
+			{
+				"source": "Phytoplankton",
+				"target": "SoftcoralsSpongesEtc"
+			},
+			{
+				"source": "Phytoplankton",
+				"target": "Krill"
+			},
+			{
+				"source": "Phytoplankton",
+				"target": "ZooplanktonOther"
+			},
+			{
+				"source": "Phytoplankton",
+				"target": "Detritus"
+			},
+			{
+				"source": "BenthicPlants",
+				"target": "Macrobenthos"
+			},
+			{
+				"source": "BenthicPlants",
+				"target": "Detritus"
+			},
+			{
+				"source": "Detritus",
+				"target": "Bathypelagics"
+			},
+			{
+				"source": "Detritus",
+				"target": "Bathydemersals"
+			},
+			{
+				"source": "Detritus",
+				"target": "Jellyfish"
+			},
+			{
+				"source": "Detritus",
+				"target": "Cephalopods"
+			},
+			{
+				"source": "Detritus",
+				"target": "Shrimps"
+			},
+			{
+				"source": "Detritus",
+				"target": "LobstersCrabs"
+			},
+			{
+				"source": "Detritus",
+				"target": "Macrobenthos"
+			},
+			{
+				"source": "Detritus",
+				"target": "Meiobenthos"
+			},
+			{
+				"source": "Detritus",
+				"target": "Corals"
+			},
+			{
+				"source": "Detritus",
+				"target": "SoftcoralsSpongesEtc"
+			},
+			{
+				"source": "Detritus",
+				"target": "Krill"
+			},
+			{
+				"source": "Detritus",
+				"target": "ZooplanktonOther"
+			}
+		]
+	],
+	"links2": [
+		[
+			{
+				"source": "BaleenWhales",
+				"target": "ToothedWhales",
+				"TG": 5
+			},
+			{
+				"source": "BaleenWhales",
+				"target": "Seals",
+				"TG": 5
+			},
+			{
+				"source": "BaleenWhales",
+				"target": "PelagicsL",
+				"TG": 5
+			},
+			{
+				"source": "BaleenWhales",
+				"target": "PelagicsM",
+				"TG": 5
+			},
+			{
+				"source": "BaleenWhales",
+				"target": "Cephalopods",
+				"TG": 5
+			},
+			{
+				"source": "ToothedWhales",
+				"target": "Seals",
+				"TG": 5
+			},
+			{
+				"source": "ToothedWhales",
+				"target": "PelagicsL",
+				"TG": 5
+			},
+			{
+				"source": "ToothedWhales",
+				"target": "PelagicsM",
+				"TG": 5
+			},
+			{
+				"source": "ToothedWhales",
+				"target": "Cephalopods",
+				"TG": 5
+			},
+			{
+				"source": "Seals",
+				"target": "PelagicsL",
+				"TG": 5
+			},
+			{
+				"source": "Seals",
+				"target": "PelagicsM",
+				"TG": 5
+			},
+			{
+				"source": "Seals",
+				"target": "Cephalopods",
+				"TG": 5
+			},
+			{
+				"source": "Birds",
+				"target": "SharksL",
+				"TG": 7
+			},
+			{
+				"source": "Birds",
+				"target": "SharksSM",
+				"TG": 7
+			},
+			{
+				"source": "Birds",
+				"target": "RaysL",
+				"TG": 7
+			},
+			{
+				"source": "Birds",
+				"target": "BenthopelagicsL",
+				"TG": 7
+			},
+			{
+				"source": "Birds",
+				"target": "BenthopelagicsSM",
+				"TG": 7
+			},
+			{
+				"source": "Birds",
+				"target": "DemersalsL",
+				"TG": 7
+			},
+			{
+				"source": "Birds",
+				"target": "ReeffishL",
+				"TG": 7
+			},
+			{
+				"source": "SharksL",
+				"target": "SharksSM",
+				"TG": 7
+			},
+			{
+				"source": "SharksL",
+				"target": "RaysL",
+				"TG": 7
+			},
+			{
+				"source": "SharksL",
+				"target": "BenthopelagicsL",
+				"TG": 7
+			},
+			{
+				"source": "SharksL",
+				"target": "BenthopelagicsSM",
+				"TG": 7
+			},
+			{
+				"source": "SharksL",
+				"target": "DemersalsL",
+				"TG": 7
+			},
+			{
+				"source": "SharksL",
+				"target": "ReeffishL",
+				"TG": 7
+			},
+			{
+				"source": "SharksSM",
+				"target": "RaysL",
+				"TG": 7
+			},
+			{
+				"source": "SharksSM",
+				"target": "BenthopelagicsL",
+				"TG": 7
+			},
+			{
+				"source": "SharksSM",
+				"target": "BenthopelagicsSM",
+				"TG": 7
+			},
+			{
+				"source": "SharksSM",
+				"target": "DemersalsL",
+				"TG": 7
+			},
+			{
+				"source": "SharksSM",
+				"target": "ReeffishL",
+				"TG": 7
+			},
+			{
+				"source": "RaysL",
+				"target": "BenthopelagicsL",
+				"TG": 7
+			},
+			{
+				"source": "RaysL",
+				"target": "BenthopelagicsSM",
+				"TG": 7
+			},
+			{
+				"source": "RaysL",
+				"target": "DemersalsL",
+				"TG": 7
+			},
+			{
+				"source": "RaysL",
+				"target": "ReeffishL",
+				"TG": 7
+			},
+			{
+				"source": "RaysSM",
+				"target": "DemersalsM",
+				"TG": 12
+			},
+			{
+				"source": "RaysSM",
+				"target": "ReeffishM",
+				"TG": 12
+			},
+			{
+				"source": "RaysSM",
+				"target": "FlatfishL",
+				"TG": 12
+			},
+			{
+				"source": "RaysSM",
+				"target": "FlatfishSM",
+				"TG": 12
+			},
+			{
+				"source": "PelagicsL",
+				"target": "PelagicsM",
+				"TG": 5
+			},
+			{
+				"source": "PelagicsL",
+				"target": "Cephalopods",
+				"TG": 5
+			},
+			{
+				"source": "PelagicsM",
+				"target": "Cephalopods",
+				"TG": 5
+			},
+			{
+				"source": "PelagicsSCarniv",
+				"target": "PelagicsSHerbiv",
+				"TG": 3
+			},
+			{
+				"source": "BenthopelagicsL",
+				"target": "BenthopelagicsSM",
+				"TG": 7
+			},
+			{
+				"source": "BenthopelagicsL",
+				"target": "DemersalsL",
+				"TG": 7
+			},
+			{
+				"source": "BenthopelagicsL",
+				"target": "ReeffishL",
+				"TG": 7
+			},
+			{
+				"source": "BenthopelagicsSM",
+				"target": "DemersalsL",
+				"TG": 7
+			},
+			{
+				"source": "BenthopelagicsSM",
+				"target": "ReeffishL",
+				"TG": 7
+			},
+			{
+				"source": "DemersalsL",
+				"target": "ReeffishL",
+				"TG": 7
+			},
+			{
+				"source": "DemersalsM",
+				"target": "ReeffishM",
+				"TG": 12
+			},
+			{
+				"source": "DemersalsM",
+				"target": "FlatfishL",
+				"TG": 12
+			},
+			{
+				"source": "DemersalsM",
+				"target": "FlatfishSM",
+				"TG": 12
+			},
+			{
+				"source": "DemersalsS",
+				"target": "Shrimps",
+				"TG": 13
+			},
+			{
+				"source": "DemersalsS",
+				"target": "LobstersCrabs",
+				"TG": 13
+			},
+			{
+				"source": "DemersalsS",
+				"target": "Macrobenthos",
+				"TG": 13
+			},
+			{
+				"source": "ReeffishM",
+				"target": "FlatfishL",
+				"TG": 12
+			},
+			{
+				"source": "ReeffishM",
+				"target": "FlatfishSM",
+				"TG": 12
+			},
+			{
+				"source": "FlatfishL",
+				"target": "FlatfishSM",
+				"TG": 12
+			},
+			{
+				"source": "ReeffishS",
+				"target": "Bathypelagics",
+				"TG": 6
+			},
+			{
+				"source": "ReeffishS",
+				"target": "Jellyfish",
+				"TG": 6
+			},
+			{
+				"source": "Bathypelagics",
+				"target": "Jellyfish",
+				"TG": 6
+			},
+			{
+				"source": "Bathydemersals",
+				"target": "Meiobenthos",
+				"TG": 11
+			},
+			{
+				"source": "Shrimps",
+				"target": "LobstersCrabs",
+				"TG": 13
+			},
+			{
+				"source": "Shrimps",
+				"target": "Macrobenthos",
+				"TG": 13
+			},
+			{
+				"source": "LobstersCrabs",
+				"target": "Macrobenthos",
+				"TG": 13
+			},
+			{
+				"source": "Krill",
+				"target": "ZooplanktonOther",
+				"TG": 4
+			}
+		]
+	]
+}

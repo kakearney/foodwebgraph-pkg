@@ -1,0 +1,365 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+
+	<title>Food web layout tool</title>
+	<meta name="description" content="Food web layout tool">
+	<meta name="author" content="Kelly Kearney">
+	
+	<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
+	
+	<style>
+
+		.flinks line {
+		  stroke: #aaa;
+		}
+
+		.nodes circle {
+		  pointer-events: all;
+		  stroke: none;
+		  stroke-width: 40px;
+		}
+
+		svg {
+	  	background-color: lightsteelblue;
+	  }
+
+		form {
+			margin-left:auto;
+	    margin-right:auto;
+	    max-width: 800px;
+	    background: #FFF;
+	    padding: 5px 5px 5px 5px;
+	    font: 11px "Helvetica Neue", Helvetica, Arial, sans-serif;
+	    color: #888;
+	    text-shadow: 1px 1px 1px #FFF;
+		}
+	
+		#textparams {
+	    width: 100%;
+	    background: #FFF;
+			padding: 0px 0px 0px 0px;
+			font-family: monospace;
+	    color: #888;
+	    text-shadow: 1px 1px 1px #FFF;
+		}
+    #titlebar {
+			border-bottom: 2px solid steelblue;
+			margin: 0px 0px 0px 0px;
+			padding: 5px 5px 5px 10px;
+			position: fixed;
+			z-index: 50;
+			width: 100%;
+			height: 30px;
+			background: white;
+			font: 1.75em "Helvetica Neue", Helvetica, Arial, sans-serif;
+			color: steelblue;
+    }
+    #parameterform {
+			border-right: 2px solid steelblue;
+			float:left; 
+			margin: 45px 0px 0px 0px;
+			width:220px; 
+			padding-left:10px;
+			line-height:26px;
+			z-index:600000;
+    }
+    #foodweb {
+			float:right; 
+			width:100%; 
+			margin-left:240px;
+			margin-top:45px; 
+			z-index:600000;
+			position: fixed;
+			text-align: left;
+    }
+
+	</style>
+
+</head>
+
+<body>
+	
+	<!-- Title bar -->
+	
+	<div id="titlebar">
+		<span id="titletext" class="pagetitle">Food Web Layout Tool</span>
+	</div>
+	
+	<!-- Space for food web -->
+	
+	<div id="foodweb">
+		<h1 style="font-size:1.5em; color:steelblue">Output:</h1>
+	</div>
+	
+	<!-- Parameter entry form -->
+	
+  <div id="parameterform">
+	
+		<form class="pure-form pure-form-stacked">
+
+			<h1 style="color:steelblue">Input parameters</h1>
+	
+			<fieldset>
+				<legend>SVG canvas size</legend>
+		
+				<div class="pure-g">
+					<div class="pure-u-1-2">
+						<label for="totheight">Height:</label>
+						<input type="number" class="pure-u-3-4" min="0" max="2000" step="1" value="600" id="totheight" placeholder="height, pixels">
+					</div>
+			
+					<div class="pure-u-1-2">
+						<label for="totwidth">Width:</label>
+						<input type="number" class="pure-u-3-4" min="0" max="2000" step="1" value="960" id="totwidth">
+					</div>
+				</div>
+	
+			</fieldset>
+			<fieldset>
+				<legend>Margin</legend>
+		
+				<div class="pure-g">
+					<div class="pure-u-1-2">
+						<label for="marl">Left margin:</label>
+						<input class="pure-u-3-4" type="number" min="0" max="200" step="1" value="50" id="marl">
+					</div>
+					<div class="pure-u-1-2">
+						<label for="marr">Right margin:</label>
+						<input class="pure-u-3-4" type="number" min="0" max="200" step="1" value="10" id="marr">
+					</div>
+					<div class="pure-u-1-2">
+						<label for="mart">Top margin:</label>
+						<input class="pure-u-3-4" type="number" min="0" max="200" step="1" value="10" id="mart">
+					</div>
+					<div class="pure-u-1-2">
+						<label for="marb">Bottom margin:</label>
+						<input class="pure-u-3-4" type="number" min="0" max="200" step="1" value="10" id="marb">
+					</div>
+				</div>
+		
+			</fieldset>
+	
+			<fieldset>
+				<legend>Edge opacity</legend>
+		
+				<div class="pure-g">
+					<div class="pure-u-1-1">
+						<label for="glineop">Grouping edges:</label>
+						<input type="range" min="0" max="1" step="0.1" value="1.0" id="glineop">
+					</div>
+					<div class="pure-u-1-1">
+						<label for="flineop">Flux edges:</label>
+						<input type="range" min="0" max="1" step="0.1" value="1.0" id="flineop">
+					</div>
+				</div>
+			</fieldset>
+	
+			<fieldset>
+				<legend>Scales</legend>
+		
+				<div class="pure-g">
+					<div class="pure-u-1-2">
+						<label for="tlmin">Minimum trophic level:</label>
+						<input class="pure-u-3-4" type="number" min="0" max="10" step="1" value="" id="tlmin" placeholder="default: minimum in input">
+					</div>
+					<div class="pure-u-1-2">
+						<label for="tlmax">Maximum trophic level:</label>
+						<input class="pure-u-3-4" type="number" min="0" max="10" step="1" value="" id="tlmax" placeholder="default: maximum in input">
+					</div>
+				</div>
+		
+				<div class="pure-g">
+					<div class="pure-u-1-2">
+						<label for="bbmin">Minimum biomass:</label>
+						<input class="pure-u-3-4" type="number" min="0" max="10000" step="10" value="" id="bbmin" placeholder="default: minimum in input">
+					</div>
+					<div class="pure-u-1-2">
+						<label for="bbmax">Maximum biomass:</label>
+						<input class="pure-u-3-4" type="number" min="0" max="10000" step="10" value="" id="bbmax" placeholder="default: maximum in input">
+					</div>
+				</div>
+		
+				<div class="pure-g">
+					<div class="pure-u-1-2">
+						<label for="rrmin">Minimum radius (pixels):</label>
+						<input class="pure-u-3-4" type="number" min="0" max="20" step="1" value="1" id="rrmin">
+					</div>
+					<div class="pure-u-1-2">
+						<label for="rrmax">Maximum radius (pixels):</label>
+						<input class="pure-u-3-4" type="number" min="0" max="200" step="5" value="50" id="rrmax">
+					</div>
+				</div>
+		
+			</fieldset>
+	
+			<fieldset>
+				<legend>Force-simulation parameters</legend>
+		
+				<div class="pure-g">
+					<div class="pure-u-1-1">
+						<label for="nodepad">Space between nodes (pixels): </label>
+						<input class="pure-u-3-4" type="number" min="0" max="50" step="1" value="10" id="nodepad"><br>
+					</div>
+					<div class="pure-u-1-1">
+						<label for="strengthflxlink">Flux link strength: </label>
+						<input class="pure-u-3-4" type="number" min="0" max="1" step="0.1" value="0.001" id="strengthflxlink"><br>
+					</div>
+					<div class="pure-u-1-1">
+						<label for="strengthgrplink">Trophic group link strength: </label>
+						<input class="pure-u-3-4" type="number" min="0" max="1" step="0.1" value="0.1" id="strengthgrplink"><br>
+					</div>
+					<div class="pure-u-1-1">
+						<label for="strengthtrophic">Trophic level y-positioning strength: </label>
+						<input class="pure-u-3-4" type="number" min="0" max="1" step="0.1" value="0.9" id="strengthtrophic"><br>
+					</div>
+					<div class="pure-u-1-1">
+						<label for="strengthxcenter">Centering x-positioning strength: </label>
+						<input class="pure-u-3-4" type="number" min="0" max="1" step="0.1" value="0.05" id="strengthxcenter">
+					</div>
+				</div>
+		
+			</fieldset>
+	
+			<fieldset>
+				<legend>Node labeling</legend>
+		
+				<div class="pure-g">
+					<div class="pure-u-1-1">
+						<label for="fontsz">Font size:</label>
+						<input class="pure-u-3-4" type="number" min="0" max="50" step="1" value="10" id="fontsz">
+					</div>
+				</div>
+		
+			</fieldset>
+	
+			<fieldset>
+				<legend>Actions</legend>
+		
+				<div class="pure-u-1-1">
+					<input class="pure-button pure-u-3-4"
+				         name="updateButton" 
+			           type="button" 
+			           value="Restart force simulation" 
+			           onclick="update()"/>
+				 </div>
+				<div class="pure-u-1-1" style="padding-top:5px">
+					<input class="pure-button pure-u-3-4"
+					       name="labelButton" 
+				         type="button" 
+				         value="Add text labels" 
+				         onclick="addlabel()"/>
+				</div>
+			  <div class="pure-u-1-1">				
+					<label for="donecheck">Check to mark as done (Matlab interface):</label>
+					<input class="pure-checkbox" type="checkbox" id="donecheck">
+				</div>
+		
+			</fieldset>
+	
+		</form>
+		
+		<!-- Parameter printout -->
+	
+		<div id="textparams" style="float:right">
+			<h1 style="font-size:1.5em">Parameter summary</h1>
+		</div>
+	</div>
+	
+	<script src="https://d3js.org/d3.v4.min.js"></script>
+	<script src="d3-foodweb.min.js"></script>
+	<script>
+
+	update()
+
+	// Call foodweblayout using parameters from form
+
+	function update() {
+		d3.select("svg").remove();
+	
+		d3.json("foodweb.json", function(data) {
+		    d3.select("#foodweb")
+		        .datum(data)
+					.call(d3.foodweblayout()
+						.paddingLeft(  marl.valueAsNumber)
+		        .paddingTop(   mart.valueAsNumber)
+						.paddingRight( marr.valueAsNumber)
+						.paddingBottom(marb.valueAsNumber)
+			    	.totwidth(totwidth.valueAsNumber)
+			    	.totheight(totheight.valueAsNumber)
+						.nodepad(nodepad.valueAsNumber)
+						.strengthflxlink(strengthflxlink.valueAsNumber)
+						.strengthgrplink(strengthgrplink.valueAsNumber)
+						.strengthtrophic(strengthtrophic.valueAsNumber)
+						.strengthxcenter(strengthxcenter.valueAsNumber)
+						.tllim([tlmin.valueAsNumber, tlmax.valueAsNumber])
+						.rlim( [rrmin.valueAsNumber, rrmax.valueAsNumber])
+						.blim( [bbmin.valueAsNumber, bbmax.valueAsNumber])
+		       );
+		});
+	}
+	
+	// Opacity sliders
+
+	d3.select("#flineop").on("input", function() {
+	  updateflink(+this.valueAsNumber);
+	});
+	d3.select("#glineop").on("input", function() {
+	  updateglink(+this.valueAsNumber);
+	});
+
+	function updateflink(val) {
+	  d3.selectAll(".flinks")
+	    .attr("opacity", val);
+	}
+
+	function updateglink(val) {
+	  d3.selectAll(".glinks")
+	    .style("opacity", val);
+	}
+	
+	// When box is checked, print params
+
+	d3.select("#donecheck").on("change", function(d){
+		d3.select("#textparams").html(
+					"<h1 style=\"font-size:1.5em\">Parameter summary</h1>" +
+			    "marl = "      + marl.value      + "<br>" +
+					"marr = "      + marr.value      + "<br>" +
+					"mart = "      + mart.value      + "<br>" +
+					"marb = "      + marb.value      + "<br>" +
+					"totwidth = "  + totwidth.value  + "<br>" +
+					"totheight = " + totheight.value + "<br>" +
+					"nodepad = "   + nodepad.value   + "<br>" +
+			    "strengthflxlink = " + strengthflxlink.value + "<br>" +
+					"strengthgrplink = " + strengthgrplink.value + "<br>" +
+					"strengthtrophic = " + strengthtrophic.value + "<br>" +
+			    "strengthxcenter = " + strengthxcenter.value + "<br>" +
+			    "tlmin = " + tlmin.value + "<br>" +
+					"tlmax = " + tlmax.value + "<br>" +
+			    "rmin = "  + rrmin.value + "<br>" +
+					"rmax = "  + rrmax.value + "<br>" +
+			    "bmin = "  + bbmin.value + "<br>" +
+					"bmax = "  + bbmax.value + "<br>" +
+					"<H1>DONE</H1>"
+		);
+	});
+	
+	// Automated label placement
+
+	function addlabel() {
+	
+		var width = totwidth.valueAsNumber - marl.valueAsNumber - marr.valueAsNumber;
+			  height = totheight.valueAsNumber - mart.valueAsNumber - marb.valueAsNumber;
+	
+		d3.labelnodes(width, height); 
+	}
+	
+	</script>
+	
+
+	
+	</body>
+</html>
+
