@@ -7,7 +7,7 @@ function [C,T] = extractsvg(file)
 %
 %   file:       name of either an svg file, or an html file holding a
 %               single svg element.  The svg should contain a
-%               foodweblayout.js-generated food web diagram. 
+%               d3.foodweblayout.js-generated food web diagram. 
 %
 % Output variables:
 %

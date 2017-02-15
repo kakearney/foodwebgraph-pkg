@@ -11,16 +11,16 @@ function fwgraph2json(G, tg, filename, copyjs)
 %
 %   G:          food web graph object, with the same properties as an
 %               ecopathmodel graph object. Properties expected are:
-%               Node table:
-%                   Name:   string, value used for node IDs
-%                   B:      value used for node size scaling, typically
-%                           biomass 
-%                   TL:     value used for y-positioning, typically trophic
-%                           level
-%                   type:   optional, used for node color scaling if no
-%                           cval property is found 
-%                   cval:   optional, value used for node color scaling
-%               Edge table:
+%               Nodes table:
+%                   Name:       string, value used for node IDs
+%                   B:          value used for node size scaling, typically
+%                               biomass 
+%                   TL:         value used for y-positioning, typically
+%                               trophic level 
+%                   type:       optional, used for node color scaling if no
+%                               cval property is found 
+%                   cval:       optional, value used for node color scaling
+%               Edges table:
 %                   EndNodes:   source and target node names for each edge
 %                   xpath:      optional, x-coordinates of edge path for
 %                               d3.foodwebstatic
@@ -30,15 +30,14 @@ function fwgraph2json(G, tg, filename, copyjs)
 %                               d3.foodwebstatic
 %
 %   tg:         nnode x 1 array, trophic group indices, used to add TG
-%               property to Node property table.  If empty, will assume
-%               each node is in its own group.  
+%               property to Node property table.  The vector 1:nnode can be
+%               used to signify no trophic grouping.
 %
 %   filename:   path to new file, with or without .json extension.
 %
-%   copyjs:     logical scalar, if true, copy to the same folder as the new
-%               .json file all files necessary to run the foodwebgraph
-%               layout utility in the same location.  Default if not
-%               included is false.
+%   copyjs:     logical scalar, if true, copy all files necessary to run
+%               the foodwebgraph layout utility in the same location as the
+%               new JSON file.  Default if not included is false.
 %   
 
 % Copyright 2017 Kelly Kearney
@@ -102,21 +101,6 @@ if ismember('Weight', G.Edges.Properties.VariableNames)
 end
 
 J.links1 = struct(edgedata{:});
-
-% if all(ismember({'x','y'}, G.Edges.Properties.VariableNames))
-%     xpath = cellfun(@(x) x(:)', G.Edges.x, 'uni', 0);
-%     ypath = cellfun(@(x) x(:)', G.Edges.y, 'uni', 0);
-%     J.links1 = struct(...
-%         'source', G.Edges.EndNodes(:,1),  ...
-%         'target', G.Edges.EndNodes(:,2), ...
-%         'xpath', xpath, ...
-%         'ypath', ypath, ...
-%         'Weight', num2cell(G.Edges.Weight));
-% else
-%     J.links1 = struct(...
-%         'source', G.Edges.EndNodes(:,1),  ...
-%         'target', G.Edges.EndNodes(:,2));
-% end
 J.links2 = struct(...
     'source', G2.Edges.EndNodes(:,1), ...
     'target', G2.Edges.EndNodes(:,2), ...

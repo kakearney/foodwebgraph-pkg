@@ -21,8 +21,7 @@ function [G, Ax, Param, Svg] = foodweblayout(G, tg, varargin)
 %           with that returned by the ecopathmodel graph method.
 %
 %   tg:     nnode x n array, trophic group indices.  Nodes sharing an index
-%           will be linked to each other in the force layout tool.  See
-%           trophicgroupgraph for further details.
+%           will be linked to each other in the force layout tool.
 %
 % Optional input variables (passed as parameter/value pairs):
 %
