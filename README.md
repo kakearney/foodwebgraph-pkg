@@ -177,12 +177,12 @@ marl: 50
 marr: 10
 mart: 10
 marb: 60
-totwidth: 500
-totheight: 500
+totwidth: 600
+totheight: 600
 nodepad: 10
 strengthflxlink: 0.001
 strengthgrplink: 0.1
-strengthtrophic: 1.5
+strengthtrophic: 1.2
 strengthxcenter: 0.03
 tlmin: 1
 tlmax: 5
@@ -195,12 +195,16 @@ bmax: NaN
 ```
 
 
-At this point, we can plot the food web using straight line edges.  We can do this in Matab:
+At this point, we can plot the food web using straight line edges.  We can do this in Matlab, after passing the graph through the pixel-to-trophic level converter:
 
 
 
 ```matlab
-h = plotfoodweb(Gpos, Ax, 'p', 1/3, 'w', 50, 'rloop', 40, ...
+[GposTL, AxTL] = pixels2trophic(Gpos, Ax, [P.tlmin P.tlmax]);
+
+% Plot
+
+h = plotfoodweb(GposTL, AxTL, 'p', 1/3, 'w', 50, 'rloop', 40, ...
 'edgecolor', 'byValue', 'initial', true, 'gmax', 500);
 
 % Color edges by log of weight
@@ -260,23 +264,23 @@ Gbdl = debundle(Gpos, 'edgefun', wtfun, 'l', 100);
 ```
 Preprocessing...
 100% [=================================================&gt;]  176/ 176
-Elapsed time is 0.780323 seconds.
+Elapsed time is 0.799930 seconds.
 Bundling...
 Pass 1
 100% [=================================================&gt;] Pass 1: 29 of 29
-Elapsed time is 0.478734 seconds.
+Elapsed time is 0.554867 seconds.
 Pass 2
 100% [=================================================&gt;] Pass 2: 29 of 29
-Elapsed time is 1.373600 seconds.
+Elapsed time is 1.434748 seconds.
 Pass 3
 100% [=================================================&gt;] Pass 3: 29 of 29
-Elapsed time is 3.196537 seconds.
+Elapsed time is 3.388979 seconds.
 Pass 4
 100% [=================================================&gt;] Pass 4: 29 of 29
-Elapsed time is 6.798004 seconds.
+Elapsed time is 7.161596 seconds.
 Pass 5
 100% [=================================================&gt;] Pass 5: 29 of 29
-Elapsed time is 14.025783 seconds.
+Elapsed time is 15.107411 seconds.
 Postprocessing...
 Done
 
@@ -297,7 +301,13 @@ We can also plot as we did in the previous example, now using those path coordin
 
 
 ```matlab
-h = plotfoodweb(Gbdl, Ax, 'p', 1/3, 'w', 50, 'rloop', 40, ...
+% Pixel to trophic conversion
+
+GbdlTL = pixels2trophic(Gbdl, Ax, [P.tlmin P.tlmax]);
+
+% Plot
+
+h = plotfoodweb(GbdlTL, AxTL, 'p', 1/3, 'w', 50, 'rloop', 40, ...
 'edgecolor', 'byValue', 'gmax', 500, 'cthresh', 0.5);
 
 % Color edges by log of weight

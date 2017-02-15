@@ -6,7 +6,7 @@ PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
---><title>Interactive food web diagrams for Ecopath</title><meta name="generator" content="MATLAB 9.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2017-02-13"><meta name="DC.source" content="./readmeExtras/README.m"><style type="text/css">
+--><title>Interactive food web diagrams for Ecopath</title><meta name="generator" content="MATLAB 9.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2017-02-15"><meta name="DC.source" content="./readmeExtras/README.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -105,12 +105,12 @@ marl: 50
 marr: 10
 mart: 10
 marb: 60
-totwidth: 500
-totheight: 500
+totwidth: 600
+totheight: 600
 nodepad: 10
 strengthflxlink: 0.001
 strengthgrplink: 0.1
-strengthtrophic: 1.5
+strengthtrophic: 1.2
 strengthxcenter: 0.03
 tlmin: 1
 tlmax: 5
@@ -119,7 +119,11 @@ rmax: 50
 bmin: NaN
 bmax: NaN
 
-</pre><p>At this point, we can plot the food web using straight line edges.  We can do this in Matab:</p><pre class="codeinput">h = plotfoodweb(Gpos, Ax, <span class="string">'p'</span>, 1/3, <span class="string">'w'</span>, 50, <span class="string">'rloop'</span>, 40, <span class="keyword">...</span>
+</pre><p>At this point, we can plot the food web using straight line edges.  We can do this in Matlab, after passing the graph through the pixel-to-trophic level converter:</p><pre class="codeinput">[GposTL, AxTL] = pixels2trophic(Gpos, Ax, [P.tlmin P.tlmax]);
+
+<span class="comment">% Plot</span>
+
+h = plotfoodweb(GposTL, AxTL, <span class="string">'p'</span>, 1/3, <span class="string">'w'</span>, 50, <span class="string">'rloop'</span>, 40, <span class="keyword">...</span>
 <span class="string">'edgecolor'</span>, <span class="string">'byValue'</span>, <span class="string">'initial'</span>, true, <span class="string">'gmax'</span>, 500);
 
 <span class="comment">% Color edges by log of weight</span>
@@ -149,27 +153,33 @@ wtfun = @(x) log10(x) - wlim(1);
 Gbdl = debundle(Gpos, <span class="string">'edgefun'</span>, wtfun, <span class="string">'l'</span>, 100);
 </pre><pre class="codeoutput">Preprocessing...
 100% [=================================================&gt;]  176/ 176
-Elapsed time is 0.831728 seconds.
+Elapsed time is 0.837228 seconds.
 Bundling...
 Pass 1
 100% [=================================================&gt;] Pass 1: 29 of 29
-Elapsed time is 0.481606 seconds.
+Elapsed time is 0.533837 seconds.
 Pass 2
 100% [=================================================&gt;] Pass 2: 29 of 29
-Elapsed time is 1.370136 seconds.
+Elapsed time is 1.523696 seconds.
 Pass 3
 100% [=================================================&gt;] Pass 3: 29 of 29
-Elapsed time is 3.175688 seconds.
+Elapsed time is 3.629603 seconds.
 Pass 4
 100% [=================================================&gt;] Pass 4: 29 of 29
-Elapsed time is 6.768071 seconds.
+Elapsed time is 7.167741 seconds.
 Pass 5
 100% [=================================================&gt;] Pass 5: 29 of 29
-Elapsed time is 13.943297 seconds.
+Elapsed time is 15.045901 seconds.
 Postprocessing...
 Done
 </pre><p>We can save a new version of the JSON file, now containing edge path coordinates.</p><pre class="codeinput">fwgraph2json(Gbdl, tg, fullfile(<span class="string">'examples'</span>, <span class="string">'gen37_postbundle'</span>));
-</pre><p>We can also plot as we did in the previous example, now using those path coordinates for the edges.</p><pre class="codeinput">h = plotfoodweb(Gbdl, Ax, <span class="string">'p'</span>, 1/3, <span class="string">'w'</span>, 50, <span class="string">'rloop'</span>, 40, <span class="keyword">...</span>
+</pre><p>We can also plot as we did in the previous example, now using those path coordinates for the edges.</p><pre class="codeinput"><span class="comment">% Pixel to trophic conversion</span>
+
+GbdlTL = pixels2trophic(Gbdl, Ax, [P.tlmin P.tlmax]);
+
+<span class="comment">% Plot</span>
+
+h = plotfoodweb(GbdlTL, AxTL, <span class="string">'p'</span>, 1/3, <span class="string">'w'</span>, 50, <span class="string">'rloop'</span>, 40, <span class="keyword">...</span>
 <span class="string">'edgecolor'</span>, <span class="string">'byValue'</span>, <span class="string">'gmax'</span>, 500, <span class="string">'cthresh'</span>, 0.5);
 
 <span class="comment">% Color edges by log of weight</span>
@@ -340,9 +350,14 @@ P
 
 %%
 % At this point, we can plot the food web using straight line edges.  We
-% can do this in Matab:
+% can do this in Matlab, after passing the graph through the
+% pixel-to-trophic level converter:
 
-h = plotfoodweb(Gpos, Ax, 'p', 1/3, 'w', 50, 'rloop', 40, ...
+[GposTL, AxTL] = pixels2trophic(Gpos, Ax, [P.tlmin P.tlmax]);
+
+% Plot
+
+h = plotfoodweb(GposTL, AxTL, 'p', 1/3, 'w', 50, 'rloop', 40, ...
 'edgecolor', 'byValue', 'initial', true, 'gmax', 500);
 
 % Color edges by log of weight
@@ -400,7 +415,13 @@ fwgraph2json(Gbdl, tg, fullfile('examples', 'gen37_postbundle'));
 % We can also plot as we did in the previous example, now using those path
 % coordinates for the edges.
 
-h = plotfoodweb(Gbdl, Ax, 'p', 1/3, 'w', 50, 'rloop', 40, ...
+% Pixel to trophic conversion
+
+GbdlTL = pixels2trophic(Gbdl, Ax, [P.tlmin P.tlmax]);
+
+% Plot
+
+h = plotfoodweb(GbdlTL, AxTL, 'p', 1/3, 'w', 50, 'rloop', 40, ...
 'edgecolor', 'byValue', 'gmax', 500, 'cthresh', 0.5);
 
 % Color edges by log of weight

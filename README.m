@@ -148,9 +148,14 @@ P
 
 %%
 % At this point, we can plot the food web using straight line edges.  We
-% can do this in Matab:
+% can do this in Matlab, after passing the graph through the
+% pixel-to-trophic level converter:
 
-h = plotfoodweb(Gpos, Ax, 'p', 1/3, 'w', 50, 'rloop', 40, ...
+[GposTL, AxTL] = pixels2trophic(Gpos, Ax, [P.tlmin P.tlmax]);
+
+% Plot
+
+h = plotfoodweb(GposTL, AxTL, 'p', 1/3, 'w', 50, 'rloop', 40, ...
     'edgecolor', 'byValue', 'initial', true, 'gmax', 500);
 
 % Color edges by log of weight
@@ -208,7 +213,13 @@ fwgraph2json(Gbdl, tg, fullfile('examples', 'gen37_postbundle'));
 % We can also plot as we did in the previous example, now using those path
 % coordinates for the edges.
 
-h = plotfoodweb(Gbdl, Ax, 'p', 1/3, 'w', 50, 'rloop', 40, ...
+% Pixel to trophic conversion
+
+GbdlTL = pixels2trophic(Gbdl, Ax, [P.tlmin P.tlmax]);
+
+% Plot
+
+h = plotfoodweb(GbdlTL, AxTL, 'p', 1/3, 'w', 50, 'rloop', 40, ...
     'edgecolor', 'byValue', 'gmax', 500, 'cthresh', 0.5);
 
 % Color edges by log of weight
