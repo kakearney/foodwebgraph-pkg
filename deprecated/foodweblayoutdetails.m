@@ -52,14 +52,44 @@ function [G, Ax] = foodweblayoutdetails(G, C, T, tllim)
 
 % Copyright 2016 Kelly Kearney
 
-
-% Trophic level limits assigned to reference points
+% Parse inputs
 
 if nargin < 4
     tllim = [min([G.Nodes.TL]) max([G.Nodes.TL])];
 end
 
+% Assign details to appropriate nodes in the graph object
+
+G.Nodes.x  = vlookup(C, G.Nodes.Name, 'x', 'label');
+G.Nodes.y  = vlookup(C, G.Nodes.Name, 'y', 'label');
+G.Nodes.r  = vlookup(C, G.Nodes.Name, 'r', 'label');
+G.Nodes.tx = vlookup(T, G.Nodes.Name, 'x', 'label');
+G.Nodes.ty = vlookup(T, G.Nodes.Name, 'y', 'label');
+
+G.Nodes.th = vlookup(T, G.Nodes.Name, 'anchor', 'label');
+G.Nodes.th = regexprep(G.Nodes.th, {'start', 'middle'}, {'left', 'center'});
+
+[tf, loc] = ismember(G.Nodes.th, {'left', 'center'});
+vert = {'base'; 'middle'};
+
+G.Nodes.tv = vert(loc);
+
+% Extract details of figure and axis
+
+Ax.ylim = [C.axpos(2)+C.axpos(4), C.axpos(2)]; % pixel units
+Ax.xlim = [C.axpos(1) C.axpos(1)+C.axpos(3)]; % pixel units
+
+Ax.figpos = [0 0 C.svgsz]; % pixels
+
+w = C.axpos(3);
+h = C.axpos(4);
+Ax.axpos = [C.axpos(1) C.svgsz(2)-C.axpos(2)-h w h]./[C.svgsz C.svgsz]; % normalized
+
+Ax.fontsize = T.fontsize(1);
+Ax.fontname = T.font{1};
+
 % Convert pixel coordinates to trophic level coordinates
+
 
 m = (tllim(1) - tllim(2))./C.axpos(4);
 % m = (tllim(1) - tllim(2))./(C.yref(2)-C.yref(1));
@@ -77,21 +107,9 @@ C.r = C.r./fac;
 T.x = T.x./fac;
 T.y = fun(T.y);
 
-% Assign details to appropriate nodes in the graph object
 
-G.Nodes.x  = vlookup(C, G.Nodes.Name, 'x', 'label');
-G.Nodes.y  = vlookup(C, G.Nodes.Name, 'y', 'label');
-G.Nodes.r  = vlookup(C, G.Nodes.Name, 'r', 'label');
-G.Nodes.tx = vlookup(T, G.Nodes.Name, 'x', 'label');
-G.Nodes.ty = vlookup(T, G.Nodes.Name, 'y', 'label');
 
-G.Nodes.th = vlookup(T, G.Nodes.Name, 'anchor', 'label');
-G.Nodes.th = regexprep(G.Nodes.th, {'start', 'middle'}, {'left', 'center'});
 
-[tf, loc] = ismember(G.Nodes.th, {'left', 'center'});
-vert = {'base'; 'middle'};
-
-G.Nodes.tv = vert(loc);
 
 % Calculate figure/axis size necessary to get 
 
