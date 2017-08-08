@@ -49,7 +49,8 @@ end
 axpospix = Ax.axpos .* [Ax.figpos(3:4) Ax.figpos(3:4)];
 
 m = (tllim(1) - tllim(2))./axpospix(4);
-fun = @(x) m*(x - (axpospix(4)+axpospix(2))) + tllim(1);
+mart = Ax.figpos(4) - axpospix(4) - axpospix(2);
+fun = @(x) m*(x - (axpospix(4)+mart)) + tllim(1);
 
 fac = axpospix(4)./diff(tllim);
 
