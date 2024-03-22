@@ -116,8 +116,8 @@ end
 
 % Scale factor for this dataset
 
-xlim = minmax(G.Nodes.x);
-ylim = minmax(G.Nodes.y);
+xlim = [min(G.Nodes.x) max(G.Nodes.x)];
+ylim = [min(G.Nodes.y) max(G.Nodes.y)];
 fac = 1000./(max(diff(xlim), diff(ylim)));
 
 % If initial, use node coordinates for edge paths
