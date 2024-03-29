@@ -84,22 +84,6 @@ p.addParameter('upsample', []);
 p.parse(varargin{:});
 Opt = p.Results;
 
-% 
-% Opt.w = 10;
-% Opt.p = 1;
-% Opt.wmin = 0;
-% Opt.ax = [];
-% Opt.smooth = false;
-% Opt.alpha = 1;
-% Opt.initial = false;
-% Opt.selfloop = true;
-% Opt.rloop = 20;
-% Opt.gmax = NaN;
-% % Opt.plot = true;
-% % Opt.edgefun = [];
-% Opt.upsample = [];
-% 
-% Opt = parsepv(Opt, varargin);
 
 if ~Opt.initial && ~all(ismember({'x','y'}, G.Edges.Properties.VariableNames))
     Opt.initial = true;
