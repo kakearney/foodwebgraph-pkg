@@ -156,8 +156,8 @@ yedge = G.Nodes.y(loc)';
 
 % Scale edges to fit in 1000 x 1000 box
 
-xlim = minmax(xedge);
-ylim = minmax(yedge);
+xlim = [min(xedge) max(xedge)];
+ylim = [min(xedge) max(xedge)];
 fac = 1000./(max(diff(xlim), diff(ylim)));
 
 xedge = (xedge - xlim(1)).*fac;
